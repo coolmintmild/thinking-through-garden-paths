@@ -1,0 +1,17 @@
+family,model_name,api_identifier,thinking_control,no_setting,low_setting,high_setting,strongest4,access_provider
+Claude,Claude Opus 4.5,claude-opus-4-5-20251101,token budget,disabled,2048,8192,0,Anthropic API
+Claude,Claude Opus 4.6,claude-opus-4-6,effort label,disabled,low,high,1,Anthropic API
+Claude,Claude Sonnet 4.5,claude-sonnet-4-5-20250929,token budget,disabled,2048,8192,0,Anthropic API
+Claude,Claude Sonnet 4.6,claude-sonnet-4-6,effort label,disabled,low,high,0,Anthropic API
+Gemini,Gemini 2.5 Flash,gemini-2.5-flash,token budget,0,2048,8192,0,Gemini API
+Gemini,Gemini 2.5 Pro,gemini-2.5-pro,token budget,0,2048,8192,0,Gemini API
+Gemini,Gemini 3 Flash,gemini-3-flash-preview,level label,minimal,low,high,0,Gemini API
+Gemini,Gemini 3 Pro,gemini-3-pro-preview,level label,low,,high,1,Gemini API
+GPT,GPT-5,gpt-5-2025-08-07,effort label,minimal,low,high,1,OpenAI API
+GPT,GPT-5 Mini,gpt-5-mini-2025-08-07,effort label,minimal,low,high,0,OpenAI API
+GPT,GPT-5.2,gpt-5.2-2025-12-11,effort label,minimal,low,high,0,OpenAI API
+DeepSeek,DeepSeek v3.1,deepseek-v3.1,on/off toggle,off,,on,0,Novita AI
+GLM,GLM-4.7,glm-4.7,on/off toggle,off,,on,0,Novita AI
+GLM,GLM-5,glm-5,on/off toggle,off,,on,1,Novita AI
+Qwen,Qwen3-235B-A22B,qwen3-235b-a22b,on/off toggle,off,,on,0,Novita AI
+Qwen,Qwen3-next-80B-A3B,qwen3-next-80b-a3b,on/off toggle,off,,on,0,Novita AI

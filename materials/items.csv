@@ -1,0 +1,73 @@
+itemno,sentence,question,verb_type,condition
+1,While the man hunted the deer that was brown and graceful ran into the woods.,Did the man hunt the deer?,OT,GP
+1,"While the man hunted, the deer that was brown and graceful ran into the woods.",Did the man hunt the deer?,OT,NGP-comma
+1,The deer that was brown and graceful ran into the woods while the man hunted.,Did the man hunt the deer?,OT,NGP-order
+2,While the skipper sailed the boat that was small and leaky veered off course.,Did the skipper sail the boat?,OT,GP
+2,"While the skipper sailed, the boat that was small and leaky veered off course.",Did the skipper sail the boat?,OT,NGP-comma
+2,The boat that was small and leaky veered off course while the skipper sailed.,Did the skipper sail the boat?,OT,NGP-order
+3,While the reporter photographed the rocket that was silver and white sat on the launch pad.,Did the reporter photograph the rocket?,OT,GP
+3,"While the reporter photographed, the rocket that was silver and white sat on the launch pad.",Did the reporter photograph the rocket?,OT,NGP-comma
+3,The rocket that was silver and white sat on the launch pad while the reporter photographed.,Did the reporter photograph the rocket?,OT,NGP-order
+4,While the orchestra performed the symphony that was short and simple played on the radio.,Did the orchestra perform the symphony?,OT,GP
+4,"While the orchestra performed, the symphony that was short and simple played on the radio.",Did the orchestra perform the symphony?,OT,NGP-comma
+4,The symphony that was short and simple played on the radio while the orchestra performed.,Did the orchestra perform the symphony?,OT,NGP-order
+5,While the student read the notes that were long and boring blew off the desk.,Did the student read the notes?,OT,GP
+5,"While the student read, the notes that were long and boring blew off the desk.",Did the student read the notes?,OT,NGP-comma
+5,The notes that were long and boring blew off the desk while the student read.,Did the student read the notes?,OT,NGP-order
+6,While Jack ordered the ﬁsh that was silver and black cooked in a pot.,Did Jack order the ﬁsh?,OT,GP
+6,"While Jack ordered, the ﬁsh that was silver and black cooked in a pot.",Did Jack order the ﬁsh?,OT,NGP-comma
+6,The ﬁsh that was silver and black cooked in a pot while jack ordered.,Did Jack order the ﬁsh?,OT,NGP-order
+7,While Susan wrote the letter that was long and eloquent fell off the table.,Did Susan write the letter?,OT,GP
+7,"While Susan wrote, the letter that was long and eloquent fell off the table.",Did Susan write the letter?,OT,NGP-comma
+7,The letter that was long and eloquent fell off the table while susan wrote.,Did Susan write the letter?,OT,NGP-order
+8,While the secretary typed the memo that was clear and concise neared completion.,Did the secretary type the memo?,OT,GP
+8,"While the secretary typed, the memo that was clear and concise neared completion.",Did the secretary type the memo?,OT,NGP-comma
+8,The memo that was clear and concise neared completion while the secretary typed.,Did the secretary type the memo?,OT,NGP-order
+9,While the farmer steered the tractor that was big and green pulled the plough.,Did the farmer steer the tractor?,OT,GP
+9,"While the farmer steered, the tractor that was big and green pulled the plough.",Did the farmer steer the tractor?,OT,NGP-comma
+9,The tractor that was big and green pulled the plough while the farmer steered.,Did the farmer steer the tractor?,OT,NGP-order
+10,While the lawyer studied the contract that was old and wrinkled lay on the roll-top desk.,Did the lawyer study the contract?,OT,GP
+10,"While the lawyer studied, the contract that was old and wrinkled lay on the roll-top desk.",Did the lawyer study the contract?,OT,NGP-comma
+10,The contract that was old and wrinkled lay on the roll-top desk while the lawyer studied.,Did the lawyer study the contract?,OT,NGP-order
+11,As Henry whittled the stick that was long and bumpy broke in half.,Did Henry whittle the stick?,OT,GP
+11,"As Henry whittled, the stick that was long and bumpy broke in half.",Did Henry whittle the stick?,OT,NGP-comma
+11,The stick that was long and bumpy broke in half as henry whittled.,Did Henry whittle the stick?,OT,NGP-order
+12,While Rick drove the car that was red and dusty veered into a ditch.,Did Rick drive the car?,OT,GP
+12,"While Rick drove, the car that was red and dusty veered into a ditch.",Did Rick drive the car?,OT,NGP-comma
+12,The car that was red and dusty veered into a ditch while rick drove.,Did Rick drive the car?,OT,NGP-order
+13,While Jim bathed the child that was blond and pudgy giggled with delight.,Did Jim bathe the child?,RAT,GP
+13,"While Jim bathed, the child that was blond and pudgy giggled with delight.",Did Jim bathe the child?,RAT,NGP-comma
+13,The child that was blond and pudgy giggled with delight while Jim bathed.,Did Jim bathe the child?,RAT,NGP-order
+14,While the chimps groomed the baboons that were large and hairy sat in the grass.,Did the chimps groom the baboons?,RAT,GP
+14,"While the chimps groomed,, the baboons that were large and hairy sat in the grass.",Did the chimps groom the baboons?,RAT,NGP-comma
+14,The baboons that were large and hairy sat in the grass while the chimps groomed.,Did the chimps groom the baboons?,RAT,NGP-order
+15,While Frank dried off the car that was red and shiny sat in the driveway.,Did Frank dry off the car?,RAT,GP
+15,"While Frank dried off, the car that was red and shiny sat in the driveway.",Did Frank dry off the car?,RAT,NGP-comma
+15,The car that was red and shiny sat in the driveway while Frank dried off.,Did Frank dry off the car?,RAT,NGP-order
+16,While Betty woke up the neighbor that was old and cranky coughed loudly.,Did Betty wake up the neighbor?,RAT,GP
+16,"While Betty woke up, the neighbor that was old and cranky coughed loudly.",Did Betty wake up the neighbor?,RAT,NGP-comma
+16,The neighbor that was old and cranky coughed loudly while Betty woke up.,Did Betty wake up the neighbor?,RAT,NGP-order
+17,While the thief hid the jewelry that was elegant and expensive sparkled brightly.,Did the thief hide the jewelry?,RAT,GP
+17,"While the thief hid, the jewelry that was elegant and expensive sparkled brightly.",Did the thief hide the jewelry?,RAT,NGP-comma
+17,The jewelry that was elegant and expensive sparkled brightly while the thief hid.,Did the thief hide the jewelry?,RAT,NGP-order
+18,While Anna dressed the baby that was small and cute spit up on the bed.,Did Anna dress the baby?,RAT,GP
+18,"While Anna dressed, the baby that was small and cute spit up on the bed.",Did Anna dress the baby?,RAT,NGP-comma
+18,The baby that was small and cute spit up on the bed while Anna dressed.,Did Anna dress the baby?,RAT,NGP-order
+19,While the boy washed the dog that was white and furry barked loudly.,Did the boy wash the dog?,RAT,GP
+19,"While the boy washed, the dog that was white and furry barked loudly.",Did the boy wash the dog?,RAT,NGP-comma
+19,The dog that was white and furry barked loudly while the boy washed.,Did the boy wash the dog?,RAT,NGP-order
+20,While the jockey settled down the horse that was sleek and brown stood in the stall.,Did the jockey settle down the horse?,RAT,GP
+20,"While the jockey settled down, the horse that was sleek and brown stood in the stall.",Did the jockey settle down the horse?,RAT,NGP-comma
+20,The horse that was sleek and brown stood in the stall while the jockey settled down.,Did the jockey settle down the horse?,RAT,NGP-order
+21,While the mother undressed the baby that was bald and helpless cried softly.,Did the mother undress the baby?,RAT,GP
+21,"While the mother undressed, the baby that was bald and helpless cried softly.",Did the mother undress the baby?,RAT,NGP-comma
+21,The baby that was bald and helpless cried softly while the mother undressed.,Did the mother undress the baby?,RAT,NGP-order
+22,While the nurse shaved the patient that was tired and weak watched TV.,Did the nurse shave the patient?,RAT,GP
+22,"While the nurse shaved, the patient that was tired and weak watched TV.",Did the nurse shave the patient?,RAT,NGP-comma
+22,The patient that was tired and weak watched TV while the nurse shaved.,Did the nurse shave the patient?,RAT,NGP-order
+23,While the girl scratched the cat that was grey and white stared at the dog.,Did the girl scratch the cat?,RAT,GP
+23,"While the girl scratched, the cat that was grey and white stared at the dog.",Did the girl scratch the cat?,RAT,NGP-comma
+23,The cat that was gray and white stared at the dog while the girl scratched.,Did the girl scratch the cat?,RAT,NGP-order
+24,While the mother calmed down the children that were tired and irritable sat on the bed.,Did the mother calm down the children?,RAT,GP
+24,"While the mother calmed down, the children that were tired and irritable sat on the bed.",Did the mother calm down the children?,RAT,NGP-comma
+24,The children that were tired and irritable sat on the bed while the mother calmed down.,Did the mother calm down the children?,RAT,NGP-order

@@ -1,0 +1,3150 @@
+====================================================================================================
+STATISTICS RESULTS
+Full printed output of the analyses reported in the paper, one file.
+Sections follow the order of the Results section; each block header describes the statistic it contains.
+====================================================================================================
+
+
+====================================================================================================
+#  1. CORE ERROR MODEL: ERROR ~ GP x VERB x THINKING (Paper Section 4.1-4.2, Appendix A)
+====================================================================================================
+
+----------------------------------------------------------------------------------------------------
+## 1.1  Sum-coded fixed effects as odds ratios, and the omnibus likelihood-ratio test for all thinking terms
+----------------------------------------------------------------------------------------------------
+singular: FALSE 
+
+==== SUM-CODED (+/-0.5) OR TABLE ====
+                     logodds     OR CI_low CI_high      z         p
+(Intercept)           -1.005  0.366  0.165   0.814  -2.47  1.37e-02
+GP (main)              2.601 13.482 11.894  15.281  40.69  0.00e+00
+verbOT (main)          3.034 20.776  7.450  57.940   5.80  6.72e-09
+thinking (main)       -0.983  0.374  0.227   0.618  -3.85  1.21e-04
+GP x verb             -3.816  0.022  0.017   0.028 -30.35 2.83e-202
+GP x thinking          0.189  1.208  0.941   1.551   1.48  1.38e-01
+verb x thinking        0.527  1.694  1.161   2.471   2.74  6.20e-03
+GP x verb x thinking  -0.475  0.622  0.380   1.017  -1.89  5.82e-02
+
+==== LRT overall thinking ====
+Data: df
+Models:
+m_noT: error ~ gp_c + verb_c + gp_c:verb_c + (1 + think_c | item) + (1 + think_c | model)
+m_sum: error ~ gp_c * verb_c * think_c + (1 + think_c | item) + (1 + think_c | model)
+      npar   AIC   BIC  logLik deviance  Chisq Df Pr(>Chisq)   
+m_noT   10 15532 15612 -7756.0    15512                        
+m_sum   14 15523 15636 -7747.4    15495 17.214  4   0.001756 **
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+----------------------------------------------------------------------------------------------------
+## 1.2  Three-way interaction test, estimated error rate per cell, no- vs high-thinking odds ratios and absolute risk differences (Holm-corrected)
+----------------------------------------------------------------------------------------------------
+==== LRT three-way GP x verb x thinking ====
+Data: df
+Models:
+m_no3: error ~ (gp_c + verb_c + think_c)^2 + (1 + think_c | item) + (1 + think_c | model)
+m_sum: error ~ gp_c * verb_c * think_c + (1 + think_c | item) + (1 + think_c | model)
+      npar   AIC   BIC  logLik deviance  Chisq Df Pr(>Chisq)  
+m_no3   13 15525 15629 -7749.3    15499                       
+m_sum   14 15523 15636 -7747.4    15495 3.6979  1    0.05448 .
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+==== EMMEANS cell error rates ====
+gp = NGP, verb = RAT:
+ thinking    prob      SE  df asymp.LCL asymp.UCL
+ no       0.01717 0.00919 Inf   0.00597    0.0483
+ high     0.00404 0.00200 Inf   0.00153    0.0106
+
+gp = GP, verb = RAT:
+ thinking    prob      SE  df asymp.LCL asymp.UCL
+ no       0.56196 0.13200 Inf   0.30900    0.7863
+ high     0.31350 0.09980 Inf   0.15547    0.5311
+
+gp = NGP, verb = OT:
+ thinking    prob      SE  df asymp.LCL asymp.UCL
+ no       0.62540 0.12600 Inf   0.36727    0.8276
+ high     0.45455 0.11500 Inf   0.25131    0.6741
+
+gp = GP, verb = OT:
+ thinking    prob      SE  df asymp.LCL asymp.UCL
+ no       0.77381 0.09470 Inf   0.54218    0.9081
+ high     0.61933 0.11000 Inf   0.39493    0.8022
+
+Confidence level used: 0.95 
+Intervals are back-transformed from the logit scale 
+
+==== no/high odds ratios (Holm) ====
+gp = NGP, verb = RAT:
+ contrast  odds.ratio    SE  df null z.ratio p.value
+ no / high       4.30 1.440 Inf    1   4.359  <.0001
+
+gp = GP, verb = RAT:
+ contrast  odds.ratio    SE  df null z.ratio p.value
+ no / high       2.81 0.759 Inf    1   3.825  0.0001
+
+gp = NGP, verb = OT:
+ contrast  odds.ratio    SE  df null z.ratio p.value
+ no / high       2.00 0.533 Inf    1   2.610  0.0091
+
+gp = GP, verb = OT:
+ contrast  odds.ratio    SE  df null z.ratio p.value
+ no / high       2.10 0.577 Inf    1   2.711  0.0067
+
+Tests are performed on the log odds ratio scale 
+
+==== ABSOLUTE risk diff high-no (pct pts, Holm) ====
+gp = NGP, verb = RAT:
+ contrast  estimate      SE  df asymp.LCL asymp.UCL z.ratio p.value
+ high - no  -0.0131 0.00769 Inf   -0.0282   0.00195  -1.706  0.0879
+
+gp = GP, verb = RAT:
+ contrast  estimate      SE  df asymp.LCL asymp.UCL z.ratio p.value
+ high - no  -0.2485 0.06810 Inf   -0.3819  -0.11502  -3.649  0.0003
+
+gp = NGP, verb = OT:
+ contrast  estimate      SE  df asymp.LCL asymp.UCL z.ratio p.value
+ high - no  -0.1709 0.06260 Inf   -0.2935  -0.04818  -2.730  0.0063
+
+gp = GP, verb = OT:
+ contrast  estimate      SE  df asymp.LCL asymp.UCL z.ratio p.value
+ high - no  -0.1545 0.05570 Inf   -0.2636  -0.04540  -2.776  0.0055
+
+Confidence level used: 0.95
+
+----------------------------------------------------------------------------------------------------
+## 1.3  Two-way likelihood-ratio tests: GP x thinking, verb x thinking, GP x verb
+----------------------------------------------------------------------------------------------------
+==== LRT GP x thinking ====
+Data: df
+Models:
+update(m_no3, . ~ . - gp_c:think_c): error ~ gp_c + verb_c + think_c + (1 + think_c | item) + (1 + think_c | model) + gp_c:verb_c + verb_c:think_c
+m_no3: error ~ (gp_c + verb_c + think_c)^2 + (1 + think_c | item) + (1 + think_c | model)
+                                    npar   AIC   BIC  logLik deviance  Chisq Df Pr(>Chisq)
+update(m_no3, . ~ . - gp_c:think_c)   12 15523 15619 -7749.4    15499                     
+m_no3                                 13 15525 15629 -7749.3    15499 0.1707  1     0.6795
+
+==== LRT verb x thinking ====
+Data: df
+Models:
+update(m_no3, . ~ . - verb_c:think_c): error ~ gp_c + verb_c + think_c + (1 + think_c | item) + (1 + think_c | model) + gp_c:verb_c + gp_c:think_c
+m_no3: error ~ (gp_c + verb_c + think_c)^2 + (1 + think_c | item) + (1 + think_c | model)
+                                      npar   AIC   BIC  logLik deviance  Chisq Df Pr(>Chisq)  
+update(m_no3, . ~ . - verb_c:think_c)   12 15527 15624 -7751.5    15503                       
+m_no3                                   13 15525 15629 -7749.3    15499 4.4057  1    0.03582 *
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+==== LRT GP x verb ====
+Data: df
+Models:
+update(m_no3, . ~ . - gp_c:verb_c): error ~ gp_c + verb_c + think_c + (1 + think_c | item) + (1 + think_c | model) + gp_c:think_c + verb_c:think_c
+m_no3: error ~ (gp_c + verb_c + think_c)^2 + (1 + think_c | item) + (1 + think_c | model)
+                                   npar   AIC   BIC  logLik deviance  Chisq Df Pr(>Chisq)    
+update(m_no3, . ~ . - gp_c:verb_c)   12 16981 17078 -8478.7    16957                         
+m_no3                                13 15525 15629 -7749.3    15499 1458.7  1  < 2.2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+
+====================================================================================================
+#  2. REASONING LENGTH (Paper Section 4.3, Appendix A)
+====================================================================================================
+
+----------------------------------------------------------------------------------------------------
+## 2.1  Length as a function of item difficulty (linear mixed model and correlations), and error as a function of standardised log length
+----------------------------------------------------------------------------------------------------
+
+########################## HIGH-THINKING TRIALS (N=11511) ##########################
+
+-- (a) log(gen_tokens) ~ baseline_error --
+                  Est     SE CI_low CI_high       p
+(Intercept)    5.8339 0.2669 5.3108  6.3571 21.8560
+baseline_error 0.2774 0.0204 0.2374  0.3173 13.5995
+trial-level  Pearson r=0.168 [0.150, 0.186]  Spearman rho=0.234  (n=11511)
+cell-level   Pearson r=0.181 [0.124, 0.236]  (n=1152 model-item-condition cells)
+
+-- (b) error ~ scale(loglen)*gp --
+singular: FALSE 
+                OR CI_low CI_high      p
+(Intercept) 0.1284 0.0444  0.3718 0.0002
+z           0.4545 0.4099  0.5040 0.0000
+gpGP        9.5660 8.3317 10.9831 0.0000
+z:gpGP      0.9380 0.8350  1.0536 0.2804
+
+-- n=6 condition-mean correlation (the inflated one, for reference) --
+      cor 
+0.9237617 
+n = 6 
+
+
+====================================================================================================
+#  3. THE FOUR STRONGEST MODELS: REVERSE GARDEN-PATH PROFILE (Paper Section 4.4, Appendix A)
+====================================================================================================
+
+----------------------------------------------------------------------------------------------------
+## 3.1  Error ~ GP x verb on the high-thinking trials of the four strongest models: per-model error rates, fixed effects, cell estimates, and GP vs NGP contrasts within verb
+----------------------------------------------------------------------------------------------------
+strongest four: claude-opus-4-6, gemini-3-pro-preview, glm-5, gpt-5-2025-08-07 | N: 2880 
+
+== error % by gp3 x verb per model ==
+                  model       gp3 verb error
+1       claude-opus-4-6        GP  RAT   0.0
+2  gemini-3-pro-preview        GP  RAT   0.0
+3                 glm-5        GP  RAT   2.5
+4      gpt-5-2025-08-07        GP  RAT   0.0
+5       claude-opus-4-6 NGP-comma  RAT   0.0
+6  gemini-3-pro-preview NGP-comma  RAT   0.0
+7                 glm-5 NGP-comma  RAT   0.0
+8      gpt-5-2025-08-07 NGP-comma  RAT   0.0
+9       claude-opus-4-6 NGP-order  RAT   0.0
+10 gemini-3-pro-preview NGP-order  RAT   5.0
+11                glm-5 NGP-order  RAT   0.0
+12     gpt-5-2025-08-07 NGP-order  RAT   0.0
+13      claude-opus-4-6        GP   OT   8.3
+14 gemini-3-pro-preview        GP   OT   7.5
+15                glm-5        GP   OT  39.2
+16     gpt-5-2025-08-07        GP   OT  15.8
+17      claude-opus-4-6 NGP-comma   OT  40.0
+18 gemini-3-pro-preview NGP-comma   OT  36.7
+19                glm-5 NGP-comma   OT  40.8
+20     gpt-5-2025-08-07 NGP-comma   OT  26.7
+21      claude-opus-4-6 NGP-order   OT  51.7
+22 gemini-3-pro-preview NGP-order   OT  65.8
+23                glm-5 NGP-order   OT  52.5
+24     gpt-5-2025-08-07 NGP-order   OT  33.3
+
+== MODEL error ~ gp*verb + (1|item)+(1|model) ==
+singular: FALSE 
+                  OR  CI_low   CI_high      p
+(Intercept)   0.0015  0.0003    0.0080 0.0000
+gpGP          1.0000  0.2446    4.0877 1.0000
+verbOT      411.2722 63.4974 2663.8064 0.0000
+gpGP:verbOT   0.1552  0.0365    0.6595 0.0116
+
+== emmeans error/cell ==
+verb = RAT:
+ gp     prob      SE  df asymp.LCL asymp.UCL
+ NGP 0.00149 0.00127 Inf  0.000277   0.00792
+ GP  0.00149 0.00141 Inf  0.000230   0.00953
+
+verb = OT:
+ gp     prob      SE  df asymp.LCL asymp.UCL
+ NGP 0.37967 0.13400 Inf  0.167639   0.65034
+ GP  0.08677 0.04610 Inf  0.029512   0.22891
+
+Confidence level used: 0.95 
+Intervals are back-transformed from the logit scale 
+
+== GP vs NGP within each verb (Holm). NGP/GP >1 = reverse (NGP worse) ==
+verb = RAT:
+ contrast estimate    SE  df z.ratio p.value
+ NGP - GP 5.40e-06 0.718 Inf   0.000  1.0000
+
+verb = OT:
+ contrast estimate    SE  df z.ratio p.value
+ NGP - GP 1.86e+00 0.169 Inf  11.001  <.0001
+
+Results are given on the log odds ratio (not the response) scale. 
+
+
+== sum-coded fit (main effects averaged over the other factor) ==
+                  OR  CI_low  CI_high      p
+(Intercept)   0.0189  0.0066   0.0545 0.0000
+gp_c          0.3940  0.1911   0.8122 0.0116
+verb_c      162.0459 26.3432 996.7998 0.0000
+gp_c:verb_c   0.1552  0.0365   0.6595 0.0116
+
+
+====================================================================================================
+#  4. TRACE-CODE PREVALENCE BY CONDITION (Paper Section 4.5, Appendix B)
+====================================================================================================
+
+----------------------------------------------------------------------------------------------------
+## 4.1  Prevalence models for the six analysis codes (code ~ GP x verb): likelihood-ratio tests, cell rates, within-verb GP contrasts, and A x B descriptives
+----------------------------------------------------------------------------------------------------
+
+============================= A =============================
+N = 10216 
+singular: FALSE 
+              Estimate Std. Error    z value     Pr(>|z|)
+(Intercept) -2.8497646  0.7202992  -3.956362 7.609966e-05
+gp21         6.6030883  0.1722643  38.331137 0.000000e+00
+verb1        0.6322323  0.4294681   1.472129 1.409861e-01
+gp21:verb1  -2.5697498  0.2191348 -11.726797 9.290861e-32
+                 OR   2.5 %   97.5 %
+(Intercept)   0.058   0.014    0.237
+gp21        737.369 526.082 1033.514
+verb1         1.882   0.811    4.367
+gp21:verb1    0.077   0.050    0.118
+
+LRT gp x verb:    Chisq Df Pr(>Chisq)    
+m 164.81  1  < 2.2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+LRT gp:        Chisq Df Pr(>Chisq)    
+m_no3 5286.5  1  < 2.2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+LRT verb:        Chisq Df Pr(>Chisq)
+m_no3 0.0013  1     0.9711
+verb = RAT:
+ gp2     prob       SE  df asymp.LCL asymp.UCL
+ NGP 0.000816 0.000633 Inf  0.000179   0.00372
+ GP  0.685271 0.162000 Inf  0.333707   0.90445
+
+verb = OT:
+ gp2     prob       SE  df asymp.LCL asymp.UCL
+ NGP 0.005526 0.004170 Inf  0.001254   0.02400
+ GP  0.531323 0.187000 Inf  0.206936   0.83124
+
+Confidence level used: 0.95 
+Intervals are back-transformed from the logit scale 
+verb = RAT:
+ contrast odds.ratio    SE  df asymp.LCL asymp.UCL null z.ratio p.value
+ GP / NGP       2665 633.0 Inf      1673      4245    1  33.210  <.0001
+
+verb = OT:
+ contrast odds.ratio    SE  df asymp.LCL asymp.UCL null z.ratio p.value
+ GP / NGP        204  33.5 Inf       148       281    1  32.399  <.0001
+
+Confidence level used: 0.95 
+Intervals are back-transformed from the log odds ratio scale 
+Tests are performed on the log odds ratio scale 
+
+============================= B_det =============================
+N = 10209 
+singular: FALSE 
+              Estimate Std. Error    z value     Pr(>|z|)
+(Intercept)  0.5100633  0.4066879  1.2541885 2.097735e-01
+gp21         6.8746235  0.1479034 46.4804904 0.000000e+00
+verb1        0.3857491  0.4126761  0.9347502 3.499171e-01
+gp21:verb1  -0.9895374  0.2080377 -4.7565285 1.969505e-06
+                 OR   2.5 %   97.5 %
+(Intercept)   1.665   0.750    3.696
+gp21        967.411 723.961 1292.727
+verb1         1.471   0.655    3.302
+gp21:verb1    0.372   0.247    0.559
+
+LRT gp x verb:    Chisq Df Pr(>Chisq)    
+m 22.878  1  1.726e-06 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+LRT gp:        Chisq Df Pr(>Chisq)    
+m_no3 8336.1  1  < 2.2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+LRT verb:        Chisq Df Pr(>Chisq)
+m_no3 2.1097  1     0.1464
+verb = RAT:
+ gp2   prob      SE  df asymp.LCL asymp.UCL
+ NGP 0.0333 0.01480 Inf    0.0138    0.0783
+ GP  0.9820 0.00833 Inf    0.9559    0.9928
+
+verb = OT:
+ gp2   prob      SE  df asymp.LCL asymp.UCL
+ NGP 0.0768 0.03230 Inf    0.0329    0.1689
+ GP  0.9800 0.00922 Inf    0.9512    0.9920
+
+Confidence level used: 0.95 
+Intervals are back-transformed from the logit scale 
+verb = RAT:
+ contrast odds.ratio  SE  df asymp.LCL asymp.UCL null z.ratio p.value
+ GP / NGP       1587 303 Inf      1091      2308    1  38.561  <.0001
+
+verb = OT:
+ contrast odds.ratio  SE  df asymp.LCL asymp.UCL null z.ratio p.value
+ GP / NGP        590 100 Inf       423       823    1  37.549  <.0001
+
+Confidence level used: 0.95 
+Intervals are back-transformed from the log odds ratio scale 
+Tests are performed on the log odds ratio scale 
+
+============================= B_res =============================
+N = 4086 
+singular: FALSE 
+              Estimate Std. Error    z value     Pr(>|z|)
+(Intercept)  5.3907429  0.7031265   7.666818 1.763151e-14
+gp21        -6.7014562  0.4196967 -15.967379 2.156589e-57
+verb1       -1.4259916  0.6715211  -2.123525 3.370991e-02
+gp21:verb1  -0.6970971  0.6801728  -1.024882 3.054187e-01
+                 OR  2.5 %  97.5 %
+(Intercept) 219.366 55.293 870.306
+gp21          0.001  0.001   0.003
+verb1         0.240  0.064   0.896
+gp21:verb1    0.498  0.131   1.889
+
+LRT gp x verb:    Chisq Df Pr(>Chisq)
+m 0.9292  1     0.3351
+LRT gp:       Chisq Df Pr(>Chisq)    
+m_no3 936.8  1  < 2.2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+LRT verb:        Chisq Df Pr(>Chisq)   
+m_no3 7.5165  1   0.006114 **
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+verb = RAT:
+ gp2    prob       SE  df asymp.LCL asymp.UCL
+ NGP 0.99991 9.25e-05 Inf   0.99935   0.99999
+ GP  0.94918 3.55e-02 Inf   0.81552   0.98749
+
+verb = OT:
+ gp2    prob       SE  df asymp.LCL asymp.UCL
+ NGP 0.99973 2.23e-04 Inf   0.99865   0.99994
+ GP  0.76001 1.33e-01 Inf   0.43062   0.92988
+
+Confidence level used: 0.95 
+Intervals are back-transformed from the logit scale 
+verb = RAT:
+ contrast odds.ratio       SE  df asymp.LCL asymp.UCL null z.ratio p.value
+ GP / NGP   0.001742 0.001160 Inf   0.00047   0.00646    1  -9.501  <.0001
+
+verb = OT:
+ contrast odds.ratio       SE  df asymp.LCL asymp.UCL null z.ratio p.value
+ GP / NGP   0.000867 0.000321 Inf   0.00042   0.00179    1 -19.079  <.0001
+
+Confidence level used: 0.95 
+Intervals are back-transformed from the log odds ratio scale 
+Tests are performed on the log odds ratio scale 
+
+============================= C_purs =============================
+N = 10210 
+singular: FALSE 
+             Estimate Std. Error   z value     Pr(>|z|)
+(Intercept)  4.401344  0.3497890 12.582856 2.623699e-36
+gp21         3.834999  0.3155471 12.153494 5.496528e-34
+verb1        3.627266  0.6364358  5.699344 1.202695e-08
+gp21:verb1  -3.791791  0.6301466 -6.017316 1.773329e-09
+                OR  2.5 %  97.5 %
+(Intercept) 81.560 41.090 161.890
+gp21        46.293 24.942  85.924
+verb1       37.610 10.804 130.929
+gp21:verb1   0.023  0.007   0.078
+
+LRT gp x verb:    Chisq Df Pr(>Chisq)    
+m 16.107  1  5.987e-05 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+LRT gp:        Chisq Df Pr(>Chisq)    
+m_no3 2227.5  1  < 2.2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+LRT verb:        Chisq Df Pr(>Chisq)    
+m_no3 38.594  1  5.218e-10 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+verb = RAT:
+ gp2   prob       SE  df asymp.LCL asymp.UCL
+ NGP 0.4310 0.098600 Inf    0.2562    0.6249
+ GP  0.9957 0.002010 Inf    0.9893    0.9983
+
+verb = OT:
+ gp2   prob       SE  df asymp.LCL asymp.UCL
+ NGP 0.9948 0.002400 Inf    0.9872    0.9979
+ GP  0.9992 0.000533 Inf    0.9970    0.9998
+
+Confidence level used: 0.95 
+Intervals are back-transformed from the logit scale 
+verb = RAT:
+ contrast odds.ratio   SE  df asymp.LCL asymp.UCL null z.ratio p.value
+ GP / NGP     308.25 79.6 Inf    185.82     511.3    1  22.193  <.0001
+
+verb = OT:
+ contrast odds.ratio   SE  df asymp.LCL asymp.UCL null z.ratio p.value
+ GP / NGP       6.95  4.0 Inf      2.25      21.5    1   3.370  0.0008
+
+Confidence level used: 0.95 
+Intervals are back-transformed from the log odds ratio scale 
+Tests are performed on the log odds ratio scale 
+
+============================= C_pers =============================
+N = 8360 
+singular: FALSE 
+              Estimate Std. Error     z value     Pr(>|z|)
+(Intercept)  0.5982631 0.35656006   1.6778748 9.337154e-02
+gp21        -0.0654543 0.06668356  -0.9815659 3.263138e-01
+verb1        3.3438338 0.36490320   9.1636188 5.018550e-20
+gp21:verb1  -2.5084575 0.13567276 -18.4890278 2.530760e-76
+                OR  2.5 % 97.5 %
+(Intercept)  1.819  0.904  3.659
+gp21         0.937  0.822  1.067
+verb1       28.328 13.855 57.918
+gp21:verb1   0.081  0.062  0.106
+
+LRT gp x verb:    Chisq Df Pr(>Chisq)    
+m 364.26  1  < 2.2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+LRT gp:        Chisq Df Pr(>Chisq)  
+m_no3 4.3948  1    0.03605 *
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+LRT verb:        Chisq Df Pr(>Chisq)    
+m_no3 40.757  1  1.724e-10 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+verb = RAT:
+ gp2  prob     SE  df asymp.LCL asymp.UCL
+ NGP 0.159 0.0541 Inf    0.0785     0.295
+ GP  0.382 0.0948 Inf    0.2200     0.576
+
+verb = OT:
+ gp2  prob     SE  df asymp.LCL asymp.UCL
+ NGP 0.949 0.0194 Inf    0.8946     0.976
+ GP  0.833 0.0559 Inf    0.6944     0.917
+
+Confidence level used: 0.95 
+Intervals are back-transformed from the logit scale 
+verb = RAT:
+ contrast odds.ratio     SE  df asymp.LCL asymp.UCL null z.ratio p.value
+ GP / NGP      3.283 0.3270 Inf     2.702     3.990    1  11.953  <.0001
+
+verb = OT:
+ contrast odds.ratio     SE  df asymp.LCL asymp.UCL null z.ratio p.value
+ GP / NGP      0.267 0.0242 Inf     0.224     0.319    1 -14.568  <.0001
+
+Confidence level used: 0.95 
+Intervals are back-transformed from the log odds ratio scale 
+Tests are performed on the log odds ratio scale 
+
+============================= D =============================
+N = 10216 
+singular: FALSE 
+             Estimate Std. Error    z value     Pr(>|z|)
+(Intercept) -3.091675  0.3390590  -9.118398 7.624292e-20
+gp21        -1.172483  0.1171023 -10.012462 1.343666e-23
+verb1        2.361680  0.6051868   3.902398 9.524457e-05
+gp21:verb1  -4.273191  0.2338790 -18.270954 1.409660e-74
+                OR 2.5 % 97.5 %
+(Intercept)  0.045 0.023  0.088
+gp21         0.310 0.246  0.389
+verb1       10.609 3.240 34.738
+gp21:verb1   0.014 0.009  0.022
+
+LRT gp x verb:    Chisq Df Pr(>Chisq)    
+m 281.17  1  < 2.2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+LRT gp:       Chisq Df Pr(>Chisq)    
+m_no3 950.9  1  < 2.2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+LRT verb:        Chisq Df Pr(>Chisq)    
+m_no3 22.775  1  1.821e-06 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+verb = RAT:
+ gp2    prob      SE  df asymp.LCL asymp.UCL
+ NGP 0.00854 0.00402 Inf   0.00338    0.0214
+ GP  0.02209 0.01010 Inf   0.00893    0.0536
+
+verb = OT:
+ gp2    prob      SE  df asymp.LCL asymp.UCL
+ NGP 0.43627 0.11000 Inf   0.24390    0.6499
+ GP  0.02751 0.01220 Inf   0.01142    0.0648
+
+Confidence level used: 0.95 
+Intervals are back-transformed from the logit scale 
+verb = RAT:
+ contrast odds.ratio      SE  df asymp.LCL asymp.UCL null z.ratio p.value
+ GP / NGP     2.6225 0.53000 Inf     1.765    3.8961    1   4.773  <.0001
+
+verb = OT:
+ contrast odds.ratio      SE  df asymp.LCL asymp.UCL null z.ratio p.value
+ GP / NGP     0.0365 0.00432 Inf     0.029    0.0461    1 -27.984  <.0001
+
+Confidence level used: 0.95 
+Intervals are back-transformed from the log odds ratio scale 
+Tests are performed on the log odds ratio scale 
+
+
+================ A x B: misuse & resolution ================
+
+Among A=1 GP traces, distribution of B (raw 3-level via B_det/B_res):
+# A tibble: 5 × 4
+# Groups:   A [2]
+      A Blev            n   pct
+  <dbl> <chr>       <int> <dbl>
+1     0 B0_nodiff     216  14.8
+2     0 B1_resolved   600  41.2
+3     0 B2_ungram     640  44  
+4     1 B1_resolved  1836  89.4
+5     1 B2_ungram     217  10.6
+
+B_res ~ A on GP detected subset:
+N = 3293  singular: FALSE 
+            Estimate Std. Error  z value     Pr(>|z|)
+(Intercept) 1.386549  0.7051351 1.966359 4.925715e-02
+A           1.171112  0.1593582 7.348931 1.997978e-13
+               OR 2.5 % 97.5 %
+.sig02      4.001    NA     NA
+(Intercept) 3.226 1.005 15.936
+A           4.001 2.360  4.408
+Warning message:
+In cbind(OR = fixef(mb), confint(mb, method = "Wald")[-1, , drop = FALSE]) :
+  number of rows of result is not a multiple of vector length (arg 1)
+
+Error by A x B level (GP, descriptive):
+# A tibble: 5 × 4
+      A Blev      n   err
+  <dbl> <chr> <int> <dbl>
+1     0 B0      216  96.8
+2     0 B1      600  55.7
+3     0 B2      640  96.4
+4     1 B1     1836  12.3
+5     1 B2      217  81.6
+
+
+====================================================================================================
+#  5. ERROR BY TRACE CODE (Paper Section 4.6, Appendix C)
+====================================================================================================
+
+----------------------------------------------------------------------------------------------------
+## 5.1  Error ~ code x GP x verb for each code: simple effects of each code within condition, adjusted joint models (A + B detection; C persistence + D), and the C-persistence x D analysis on pursued NGP-OT trials
+----------------------------------------------------------------------------------------------------
+
+============================= A =============================
+# A tibble: 4 × 4
+  gp2   verb    nx0   nx1
+  <fct> <fct> <int> <int>
+1 NGP   RAT    3200    44
+2 NGP   OT     3251   208
+3 GP    RAT     662  1095
+4 GP    OT      798   958
+singular: FALSE 
+               Estimate Std. Error     z value      Pr(>|z|)
+(Intercept)  -0.5442036  0.4184928  -1.3003894  1.934675e-01
+x            -1.3250673  0.1946801  -6.8063840  1.000824e-11
+gp21          5.2847401  0.1647218  32.0828270 7.654205e-226
+verb1         4.4432511  0.6366748   6.9788392  2.976290e-12
+x:gp21       -5.2468032  0.3768471 -13.9228966  4.598818e-44
+x:verb1      -3.0902703  0.3694140  -8.3653298  5.994700e-17
+gp21:verb1   -2.5751965  0.3152116  -8.1697399  3.090550e-16
+x:gp21:verb1  0.4389298  0.7290375   0.6020675  5.471292e-01
+
+LRT all x terms:    Chisq Df Pr(>Chisq)    
+m 1197.4  4  < 2.2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+gp2 = NGP, verb = RAT:
+ x    prob      SE  df asymp.LCL asymp.UCL
+ 0 0.00235 0.00133 Inf  0.000771   0.00713
+ 1 0.04316 0.03330 Inf  0.009208   0.17958
+
+gp2 = GP, verb = RAT:
+ x    prob      SE  df asymp.LCL asymp.UCL
+ 0 0.62723 0.12300 Inf  0.375704   0.82470
+ 1 0.11997 0.05530 Inf  0.046576   0.27558
+
+gp2 = NGP, verb = OT:
+ x    prob      SE  df asymp.LCL asymp.UCL
+ 0 0.42040 0.12600 Inf  0.208539   0.66629
+ 1 0.33678 0.12600 Inf  0.144282   0.60463
+
+gp2 = GP, verb = OT:
+ x    prob      SE  df asymp.LCL asymp.UCL
+ 0 0.97530 0.01300 Inf  0.931950   0.99129
+ 1 0.15344 0.06810 Inf  0.060878   0.33633
+
+Confidence level used: 0.95 
+Intervals are back-transformed from the logit scale 
+gp2 = NGP, verb = RAT:
+ contrast odds.ratio       SE  df asymp.LCL asymp.UCL null z.ratio p.value
+ x1 / x0    19.16723 1.27e+01 Inf   5.22660  70.29091    1   4.454  <.0001
+
+gp2 = GP, verb = RAT:
+ contrast odds.ratio       SE  df asymp.LCL asymp.UCL null z.ratio p.value
+ x1 / x0     0.08102 1.26e-02 Inf   0.05972   0.10991    1 -16.151  <.0001
+
+gp2 = NGP, verb = OT:
+ contrast odds.ratio       SE  df asymp.LCL asymp.UCL null z.ratio p.value
+ x1 / x0     0.70010 1.64e-01 Inf   0.44256   1.10750    1  -1.524  0.1276
+
+gp2 = GP, verb = OT:
+ contrast odds.ratio       SE  df asymp.LCL asymp.UCL null z.ratio p.value
+ x1 / x0     0.00459 9.67e-04 Inf   0.00304   0.00694    1 -25.543  <.0001
+
+Confidence level used: 0.95 
+Intervals are back-transformed from the log odds ratio scale 
+Tests are performed on the log odds ratio scale 
+
+============================= B_det =============================
+# A tibble: 4 × 4
+  gp2   verb    nx0   nx1
+  <fct> <fct> <int> <int>
+1 NGP   RAT    2965   277
+2 NGP   OT     2942   516
+3 GP    RAT     105  1651
+4 GP    OT      111  1642
+singular: FALSE 
+               Estimate Std. Error    z value     Pr(>|z|)
+(Intercept)  -0.2460958  0.4870969 -0.5052296 6.133976e-01
+x            -1.2552476  0.2817331 -4.4554502 8.371735e-06
+gp21          7.4703829  0.5404891 13.8215240 1.890250e-43
+verb1         4.7890113  0.7379474  6.4896374 8.604319e-11
+x:gp21       -5.3414050  0.5597745 -9.5420663 1.400142e-21
+x:verb1      -2.6632383  0.5580899 -4.7720601 1.823511e-06
+gp21:verb1   -5.5876188  1.0703686 -5.2202751 1.786575e-07
+x:gp21:verb1  3.9442364  1.1109859  3.5502129 3.849198e-04
+
+LRT all x terms:    Chisq Df Pr(>Chisq)    
+m 298.39  4  < 2.2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+gp2 = NGP, verb = RAT:
+ x     prob       SE  df asymp.LCL asymp.UCL
+ 0 0.000421 0.000316 Inf  9.66e-05   0.00183
+ 1 0.017301 0.009390 Inf  5.92e-03   0.04943
+
+gp2 = GP, verb = RAT:
+ x     prob       SE  df asymp.LCL asymp.UCL
+ 0 0.923543 0.047900 Inf  7.62e-01   0.97858
+ 1 0.251826 0.091100 Inf  1.15e-01   0.46475
+
+gp2 = NGP, verb = OT:
+ x     prob       SE  df asymp.LCL asymp.UCL
+ 0 0.452673 0.119000 Inf  2.43e-01   0.68020
+ 1 0.251223 0.093200 Inf  1.13e-01   0.46965
+
+gp2 = GP, verb = OT:
+ x     prob       SE  df asymp.LCL asymp.UCL
+ 0 0.988868 0.009940 Inf  9.38e-01   0.99808
+ 1 0.553590 0.120000 Inf  3.25e-01   0.76191
+
+Confidence level used: 0.95 
+Intervals are back-transformed from the logit scale 
+gp2 = NGP, verb = RAT:
+ contrast odds.ratio      SE  df asymp.LCL asymp.UCL null z.ratio p.value
+ x1 / x0     41.8099 26.6000 Inf  12.02801  145.3331    1   5.873  <.0001
+
+gp2 = GP, verb = RAT:
+ contrast odds.ratio      SE  df asymp.LCL asymp.UCL null z.ratio p.value
+ x1 / x0      0.0279  0.0136 Inf   0.01072    0.0724    1  -7.349  <.0001
+
+gp2 = NGP, verb = OT:
+ contrast odds.ratio      SE  df asymp.LCL asymp.UCL null z.ratio p.value
+ x1 / x0      0.4057  0.0549 Inf   0.31108    0.5290    1  -6.661  <.0001
+
+gp2 = GP, verb = OT:
+ contrast odds.ratio      SE  df asymp.LCL asymp.UCL null z.ratio p.value
+ x1 / x0      0.0140  0.0107 Inf   0.00309    0.0630    1  -5.556  <.0001
+
+Confidence level used: 0.95 
+Intervals are back-transformed from the log odds ratio scale 
+Tests are performed on the log odds ratio scale 
+
+============================= B_res =============================
+# A tibble: 4 × 4
+  gp2   verb    nx0   nx1
+  <fct> <fct> <int> <int>
+1 NGP   RAT       3   274
+2 NGP   OT       41   475
+3 GP    RAT     293  1358
+4 GP    OT      564  1078
+singular: FALSE 
+               Estimate Std. Error    z value  Pr(>|z|)
+(Intercept)   -3.854134   4.560274 -0.8451540 0.3980248
+x              1.969947   4.535185  0.4343698 0.6640199
+gp21          12.140058   9.067934  1.3387899 0.1806391
+verb1          7.139751   9.064563  0.7876553 0.4308984
+x:gp21       -11.261601   9.067693 -1.2419478 0.2142558
+x:verb1       -4.911422   9.058836 -0.5421692 0.5877019
+gp21:verb1   -11.335386  18.116523 -0.6256933 0.5315161
+x:gp21:verb1   9.315993  18.117441  0.5142003 0.6071120
+
+LRT all x terms:    Chisq Df Pr(>Chisq)    
+m 642.69  4  < 2.2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+gp2 = NGP, verb = RAT:
+ x     prob       SE  df asymp.LCL asymp.UCL
+ 0 1.00e-07 1.47e-06 Inf   0.00000     1.000
+ 1 1.90e-02 1.13e-02 Inf   0.00587     0.060
+
+gp2 = GP, verb = RAT:
+ x     prob       SE  df asymp.LCL asymp.UCL
+ 0 8.15e-01 8.91e-02 Inf   0.58013     0.933
+ 1 1.14e-01 5.46e-02 Inf   0.04241     0.271
+
+gp2 = NGP, verb = OT:
+ x     prob       SE  df asymp.LCL asymp.UCL
+ 0 2.87e-02 2.12e-02 Inf   0.00663     0.116
+ 1 3.31e-01 1.22e-01 Inf   0.14330     0.594
+
+gp2 = GP, verb = OT:
+ x     prob       SE  df asymp.LCL asymp.UCL
+ 0 9.50e-01 2.71e-02 Inf   0.86118     0.983
+ 1 3.02e-01 1.14e-01 Inf   0.13046     0.556
+
+Confidence level used: 0.95 
+Intervals are back-transformed from the logit scale 
+gp2 = NGP, verb = RAT:
+ contrast odds.ratio      SE  df asymp.LCL asymp.UCL null z.ratio p.value
+ x1 / x0    2.39e+05 4340000 Inf    0.0000   6.3e+20    1   0.684  0.4942
+
+gp2 = GP, verb = RAT:
+ contrast odds.ratio      SE  df asymp.LCL asymp.UCL null z.ratio p.value
+ x1 / x0    3.00e-02       0 Inf    0.0170   0.0e+00    1 -12.798  <.0001
+
+gp2 = NGP, verb = OT:
+ contrast odds.ratio      SE  df asymp.LCL asymp.UCL null z.ratio p.value
+ x1 / x0    1.67e+01       9 Inf    5.8348   4.8e+01    1   5.245  <.0001
+
+gp2 = GP, verb = OT:
+ contrast odds.ratio      SE  df asymp.LCL asymp.UCL null z.ratio p.value
+ x1 / x0    2.00e-02       0 Inf    0.0139   0.0e+00    1 -15.167  <.0001
+
+Confidence level used: 0.95 
+Intervals are back-transformed from the log odds ratio scale 
+Tests are performed on the log odds ratio scale 
+
+============================= C_purs =============================
+# A tibble: 4 × 4
+  gp2   verb    nx0   nx1
+  <fct> <fct> <int> <int>
+1 NGP   RAT    1791  1451
+2 NGP   OT       39  3419
+3 GP    RAT      17  1739
+4 GP    OT        3  1751
+singular: FALSE 
+               Estimate Std. Error    z value     Pr(>|z|)
+(Intercept)   -4.664836   4.250811 -1.0973991 2.724670e-01
+x              3.127554   4.233189  0.7388174 4.600179e-01
+gp21           9.656563   6.011195  1.6064297 1.081795e-01
+verb1         27.999413   7.075615  3.9571701 7.584294e-05
+x:gp21        -7.140447   6.011071 -1.1878827 2.348796e-01
+x:verb1      -24.930143   7.078793 -3.5218069 4.286162e-04
+gp21:verb1    17.664329   7.803954  2.2635102 2.360426e-02
+x:gp21:verb1 -21.332588   7.805134 -2.7331481 6.273213e-03
+
+LRT all x terms:    Chisq Df Pr(>Chisq)    
+m 39.692  4  5.011e-08 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+gp2 = NGP, verb = RAT:
+ x      prob       SE  df asymp.LCL asymp.UCL
+ 0 0.0000000 4.00e-08 Inf 0.0000000 0.0276860
+ 1 0.0052355 2.76e-03 Inf 0.0018578 0.0146639
+
+gp2 = GP, verb = RAT:
+ x      prob       SE  df asymp.LCL asymp.UCL
+ 0 0.0000000 9.00e-08 Inf 0.0000000 0.0265889
+ 1 0.2897097 9.90e-02 Inf 0.1370381 0.5116285
+
+gp2 = NGP, verb = OT:
+ x      prob       SE  df asymp.LCL asymp.UCL
+ 0 0.5226112 1.65e-01 Inf 0.2307295 0.7998264
+ 1 0.4149254 1.17e-01 Inf 0.2168289 0.6449607
+
+gp2 = GP, verb = OT:
+ x      prob       SE  df asymp.LCL asymp.UCL
+ 0 1.0000000 6.00e-08 Inf 0.9834444 1.0000000
+ 1 0.5837886 1.17e-01 Inf 0.3529879 0.7828959
+
+Confidence level used: 0.95 
+Intervals are back-transformed from the logit scale 
+gp2 = NGP, verb = RAT:
+ contrast odds.ratio       SE  df asymp.LCL asymp.UCL null z.ratio p.value
+ x1 / x0     1014292 8.03e+06 Inf     0.186  5.53e+12    1   1.747  0.0806
+
+gp2 = GP, verb = RAT:
+ contrast odds.ratio       SE  df asymp.LCL asymp.UCL null z.ratio p.value
+ x1 / x0    34468249 2.58e+08 Inf    15.040  7.90e+13    1   2.323  0.0202
+
+gp2 = NGP, verb = OT:
+ contrast odds.ratio       SE  df asymp.LCL asymp.UCL null z.ratio p.value
+ x1 / x0           1 0.00e+00 Inf     0.264  2.00e+00    1  -0.946  0.3441
+
+gp2 = GP, verb = OT:
+ contrast odds.ratio       SE  df asymp.LCL asymp.UCL null z.ratio p.value
+ x1 / x0           0 0.00e+00 Inf     0.000  0.00e+00    1  -2.472  0.0135
+
+Confidence level used: 0.95 
+Intervals are back-transformed from the log odds ratio scale 
+Tests are performed on the log odds ratio scale 
+
+============================= C_pers =============================
+# A tibble: 4 × 4
+  gp2   verb    nx0   nx1
+  <fct> <fct> <int> <int>
+1 NGP   RAT     946   505
+2 NGP   OT      345  3074
+3 GP    RAT    1001   738
+4 GP    OT      432  1319
+singular: FALSE 
+               Estimate Std. Error   z value     Pr(>|z|)
+(Intercept)   -9.388546   1.721845 -5.452609 4.963615e-08
+x              9.586783   1.678042  5.713078 1.109508e-08
+gp21           6.484225   3.316771  1.954981 5.058530e-02
+verb1          8.409531   3.367545  2.497229 1.251681e-02
+x:gp21        -3.419230   3.318162 -1.030459 3.027946e-01
+x:verb1       -7.396070   3.317844 -2.229179 2.580197e-02
+gp21:verb1   -14.344778   6.532324 -2.195969 2.809419e-02
+x:gp21:verb1  11.550776   6.534849  1.767566 7.713348e-02
+
+LRT all x terms:    Chisq Df Pr(>Chisq)    
+m 2098.2  4  < 2.2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+gp2 = NGP, verb = RAT:
+ x    prob       SE  df asymp.LCL asymp.UCL
+ 0 0.00000 1.00e-08 Inf  0.000000  0.000504
+ 1 0.07314 4.15e-02 Inf  0.023228  0.207495
+
+gp2 = GP, verb = RAT:
+ x    prob       SE  df asymp.LCL asymp.UCL
+ 0 0.00115 9.84e-04 Inf  0.000216  0.006124
+ 1 0.87242 6.39e-02 Inf  0.689469  0.954669
+
+gp2 = NGP, verb = OT:
+ x    prob       SE  df asymp.LCL asymp.UCL
+ 0 0.00785 7.09e-03 Inf  0.001324  0.045051
+ 1 0.46779 1.36e-01 Inf  0.231206  0.719797
+
+gp2 = GP, verb = OT:
+ x    prob       SE  df asymp.LCL asymp.UCL
+ 0 0.00396 2.69e-03 Inf  0.001043  0.014901
+ 1 0.82331 8.01e-02 Inf  0.612823  0.932058
+
+Confidence level used: 0.95 
+Intervals are back-transformed from the logit scale 
+gp2 = NGP, verb = RAT:
+ contrast odds.ratio       SE  df asymp.LCL asymp.UCL null z.ratio p.value
+ x1 / x0    58359128 3.81e+08 Inf     159.9  2.13e+13    1   2.736  0.0062
+
+gp2 = GP, verb = RAT:
+ contrast odds.ratio       SE  df asymp.LCL asymp.UCL null z.ratio p.value
+ x1 / x0        5928 4.34e+03 Inf    1414.3  2.48e+04    1  11.881  <.0001
+
+gp2 = NGP, verb = OT:
+ contrast odds.ratio       SE  df asymp.LCL asymp.UCL null z.ratio p.value
+ x1 / x0         111 8.20e+01 Inf      26.4  4.68e+02    1   6.422  <.0001
+
+gp2 = GP, verb = OT:
+ contrast odds.ratio       SE  df asymp.LCL asymp.UCL null z.ratio p.value
+ x1 / x0        1172 5.01e+02 Inf     507.8  2.71e+03    1  16.552  <.0001
+
+Confidence level used: 0.95 
+Intervals are back-transformed from the log odds ratio scale 
+Tests are performed on the log odds ratio scale 
+
+============================= D =============================
+# A tibble: 4 × 4
+  gp2   verb    nx0   nx1
+  <fct> <fct> <int> <int>
+1 NGP   RAT    3201    43
+2 NGP   OT     1901  1558
+3 GP    RAT    1699    58
+4 GP    OT     1611   145
+singular: FALSE 
+               Estimate Std. Error     z value  Pr(>|z|)
+(Intercept)   -7.225148   187.1301 -0.03861030 0.9692011
+x              9.517456   187.1294  0.05086028 0.9594369
+gp21          13.222391   374.2586  0.03532956 0.9718170
+verb1         10.088714   374.2588  0.02695652 0.9784944
+x:gp21       -12.813486   374.2588 -0.03423696 0.9726882
+x:verb1       -7.105821   374.2588 -0.01898638 0.9848520
+gp21:verb1   -17.140699   748.5171 -0.02289954 0.9817304
+x:gp21:verb1  14.705694   748.5176  0.01964642 0.9843254
+
+LRT all x terms:    Chisq Df Pr(>Chisq)    
+m 3129.8  4  < 2.2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+gp2 = NGP, verb = RAT:
+ x   prob       SE  df asymp.LCL asymp.UCL
+ 0 0.0000 7.00e-08 Inf    0.0000    1.0000
+ 1 0.4969 1.91e-01 Inf    0.1814    0.8149
+
+gp2 = GP, verb = RAT:
+ x   prob       SE  df asymp.LCL asymp.UCL
+ 0 0.2021 9.40e-02 Inf    0.0748    0.4424
+ 1 0.8340 1.06e-01 Inf    0.5266    0.9578
+
+gp2 = NGP, verb = OT:
+ x   prob       SE  df asymp.LCL asymp.UCL
+ 0 0.0109 6.47e-03 Inf    0.0034    0.0345
+ 1 0.9851 8.85e-03 Inf    0.9531    0.9953
+
+gp2 = GP, verb = OT:
+ x   prob       SE  df asymp.LCL asymp.UCL
+ 0 0.5362 1.45e-01 Inf    0.2699    0.7834
+ 1 0.9671 2.37e-02 Inf    0.8724    0.9921
+
+Confidence level used: 0.95 
+Intervals are back-transformed from the logit scale 
+gp2 = NGP, verb = RAT:
+ contrast odds.ratio       SE  df asymp.LCL asymp.UCL null z.ratio p.value
+ x1 / x0    1.14e+10 8.50e+12 Inf      0.00       Inf    1   0.031  0.9753
+
+gp2 = GP, verb = RAT:
+ contrast odds.ratio       SE  df asymp.LCL asymp.UCL null z.ratio p.value
+ x1 / x0    2.00e+01 1.00e+01 Inf      7.25        54    1   5.822  <.0001
+
+gp2 = NGP, verb = OT:
+ contrast odds.ratio       SE  df asymp.LCL asymp.UCL null z.ratio p.value
+ x1 / x0    5.97e+03 1.51e+03 Inf   3643.39      9789    1  34.484  <.0001
+
+gp2 = GP, verb = OT:
+ contrast odds.ratio       SE  df asymp.LCL asymp.UCL null z.ratio p.value
+ x1 / x0    2.50e+01 1.20e+01 Inf     10.02        64    1   6.822  <.0001
+
+Confidence level used: 0.95 
+Intervals are back-transformed from the log odds ratio scale 
+Tests are performed on the log odds ratio scale 
+Warning messages:
+1: In checkConv(attr(opt, "derivs"), opt$par, ctrl = control$checkConv,  :
+  unable to evaluate scaled gradient
+2: In checkConv(attr(opt, "derivs"), opt$par, ctrl = control$checkConv,  :
+  Model failed to converge: degenerate  Hessian with 1 negative eigenvalues
+3: In vcov.merMod(object, use.hessian = use.hessian) :
+  variance-covariance matrix computed from finite-difference Hessian is
+not positive definite or contains NA values: falling back to var-cov estimated from RX
+4: In vcov.merMod(object, correlation = correlation, sigm = sig) :
+  variance-covariance matrix computed from finite-difference Hessian is
+not positive definite or contains NA values: falling back to var-cov estimated from RX
+5: In vcov.merMod(object, complete = FALSE, ...) :
+  variance-covariance matrix computed from finite-difference Hessian is
+not positive definite or contains NA values: falling back to var-cov estimated from RX
+
+
+============ adjusted: error ~ A + B_det, GP subset ============
+N = 3509  singular: FALSE 
+             Estimate Std. Error    z value     Pr(>|z|)
+(Intercept)  3.422994  1.1552814   2.962909 3.047462e-03
+A           -2.259860  0.1936784 -11.668105 1.855085e-31
+B_det       -2.899874  0.5254377  -5.518969 3.409948e-08
+                 OR  2.5 %   97.5 %
+.sig02      30.6611     NA       NA
+(Intercept)  0.1044 3.1857 295.0970
+A            0.0550 0.0714   0.1526
+B_det       30.6611 0.0196   0.1541
+Warning message:
+In cbind(OR = fixef(m1), confint(m1, method = "Wald")[-1, , drop = FALSE]) :
+  number of rows of result is not a multiple of vector length (arg 1)
+
+============ adjusted: error ~ C_pers + D, pursued NGP-OT ============
+N = 3419  singular: FALSE 
+             Estimate Std. Error   z value     Pr(>|z|)
+(Intercept) -7.886471   1.835689 -4.296192 1.737573e-05
+C_pers       2.902701   1.038953  2.793871 5.208127e-03
+D            9.316155   0.692325 13.456331 2.826039e-41
+                    OR     2.5 %     97.5 %
+.sig02          0.0004        NA         NA
+(Intercept)    18.2233    0.0000     0.0137
+C_pers      11116.1572    2.3783   139.6323
+D               0.0004 2861.8478 43178.0298
+Warning message:
+In cbind(OR = fixef(m2), confint(m2, method = "Wald")[-1, , drop = FALSE]) :
+  number of rows of result is not a multiple of vector length (arg 1)
+
+
+================= C' x D on pursued NGP-OT =================
+
+P(D=1 | C_pers):
+# A tibble: 2 × 3
+  C_pers     n D_rate
+   <dbl> <int>  <dbl>
+1      0   345    0.6
+2      1  3074   50.4
+
+Error by C_pers x D cells:
+# A tibble: 4 × 4
+  C_pers     D     n   err
+   <dbl> <dbl> <int> <dbl>
+1      0     0   343   0.6
+2      0     1     2   0  
+3      1     0  1524   3.5
+4      1     1  1550  96.5
+
+error ~ C_pers * D, pursued NGP-OT:
+singular: FALSE 
+             Estimate Std. Error     z value     Pr(>|z|)
+(Intercept) -7.816430   1.847381 -4.23108702 2.325647e-05
+C_pers       2.835024   1.061470  2.67084605 7.566034e-03
+D           -4.774107  75.904854 -0.06289593 9.498494e-01
+C_pers:D    14.088717  75.905063  0.18560972 8.527508e-01
+LRT C_pers x D:     Chisq Df Pr(>Chisq)
+m3 0.1187  1     0.7304
+
+
+========== error ~ C_pers * gp2, pursued OT trials ==========
+N = 5170  singular: FALSE 
+              Estimate Std. Error   z value     Pr(>|z|)
+(Intercept) -5.1854430  0.7186770 -7.215263 5.383000e-13
+C_pers       5.9108228  0.4310791 13.711689 8.642235e-43
+gp21        -0.7407519  0.8268695 -0.895851 3.703324e-01
+C_pers:gp21  2.3806601  0.8342447  2.853671 4.321723e-03
+gp2 = NGP:
+ C_pers    prob      SE  df asymp.LCL asymp.UCL
+      0 0.00804 0.00743 Inf  0.001303    0.0480
+      1 0.47637 0.14500 Inf  0.225117    0.7402
+
+gp2 = GP:
+ C_pers    prob      SE  df asymp.LCL asymp.UCL
+      0 0.00385 0.00273 Inf  0.000957    0.0153
+      1 0.82424 0.08490 Inf  0.598000    0.9366
+
+Confidence level used: 0.95 
+Intervals are back-transformed from the logit scale 
+gp2 = NGP:
+ contrast          odds.ratio    SE  df asymp.LCL asymp.UCL null z.ratio p.value
+ C_pers1 / C_pers0        112  82.2 Inf      26.7       471    1   6.448  <.0001
+
+gp2 = GP:
+ contrast          odds.ratio    SE  df asymp.LCL asymp.UCL null z.ratio p.value
+ C_pers1 / C_pers0       1213 520.0 Inf     523.9      2810    1  16.572  <.0001
+
+Confidence level used: 0.95 
+Intervals are back-transformed from the log odds ratio scale 
+Tests are performed on the log odds ratio scale
+
+----------------------------------------------------------------------------------------------------
+## 5.2  Refinements: the D error model refitted without the three-way term, cleaned Wald intervals for the joint models, and raw cell counts for B resolution
+----------------------------------------------------------------------------------------------------
+========== D error model, two-way fallback ==========
+singular: FALSE  converged: TRUE 
+              Estimate Std. Error     z value      Pr(>|z|)
+(Intercept) -3.8461253  0.5697468  -6.7505873  1.472479e-11
+x            6.0880307  0.2803201  21.7181352 1.382789e-104
+gp21         6.4624548  0.3379216  19.1241266  1.590146e-81
+verb1        3.3015574  0.4999162   6.6042218  3.996110e-11
+x:gp21      -5.8267798  0.4579892 -12.7225257  4.432959e-37
+x:verb1     -0.4613983  0.5861221  -0.7872051  4.311618e-01
+gp21:verb1  -3.5329501  0.6147527  -5.7469453  9.087010e-09
+                  OR    2.5 %    97.5 %
+(Intercept)   0.0214   0.0070    0.0653
+x           440.5530 254.3251  763.1450
+gp21        640.6317 330.3460 1242.3610
+verb1        27.1549  10.1934   72.3399
+x:gp21        0.0029   0.0012    0.0072
+x:verb1       0.6304   0.1999    1.9885
+gp21:verb1    0.0292   0.0088    0.0975
+LRT all x terms:    Chisq Df Pr(>Chisq)    
+m 3125.2  3  < 2.2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+gp2 = NGP, verb = RAT:
+ x     prob       SE  df asymp.LCL asymp.UCL
+ 0 0.000067 5.68e-05 Inf  1.27e-05  0.000353
+ 1 0.406308 1.79e-01 Inf  1.38e-01  0.744948
+
+gp2 = GP, verb = RAT:
+ x     prob       SE  df asymp.LCL asymp.UCL
+ 0 0.200618 9.34e-02 Inf  7.42e-02  0.439988
+ 1 0.883181 8.00e-02 Inf  6.23e-01  0.971871
+
+gp2 = NGP, verb = OT:
+ x     prob       SE  df asymp.LCL asymp.UCL
+ 0 0.010526 6.24e-03 Inf  3.28e-03  0.033275
+ 1 0.985619 8.51e-03 Inf  9.55e-01  0.995523
+
+gp2 = GP, verb = OT:
+ x     prob       SE  df asymp.LCL asymp.UCL
+ 0 0.538087 1.45e-01 Inf  2.72e-01  0.784536
+ 1 0.956752 2.90e-02 Inf  8.48e-01  0.988705
+
+Confidence level used: 0.95 
+Intervals are back-transformed from the logit scale 
+gp2 = NGP, verb = RAT:
+ contrast odds.ratio      SE  df asymp.LCL asymp.UCL null z.ratio p.value
+ x1 / x0     10220.2 6220.00 Inf   3100.98   33683.6    1  15.172  <.0001
+
+gp2 = GP, verb = RAT:
+ contrast odds.ratio      SE  df asymp.LCL asymp.UCL null z.ratio p.value
+ x1 / x0        30.1   15.60 Inf     10.88      83.4    1   6.555  <.0001
+
+gp2 = NGP, verb = OT:
+ contrast odds.ratio      SE  df asymp.LCL asymp.UCL null z.ratio p.value
+ x1 / x0      6442.8 1620.00 Inf   3934.56   10550.1    1  34.857  <.0001
+
+gp2 = GP, verb = OT:
+ contrast odds.ratio      SE  df asymp.LCL asymp.UCL null z.ratio p.value
+ x1 / x0        19.0    7.69 Inf      8.58      42.0    1   7.267  <.0001
+
+Confidence level used: 0.95 
+Intervals are back-transformed from the log odds ratio scale 
+Tests are performed on the log odds ratio scale 
+
+========== adjusted error ~ A + B_det (GP), clean CIs ==========
+N = 3509  singular: FALSE 
+             Estimate Std. Error    z value     Pr(>|z|)
+(Intercept)  3.422994  1.1552814   2.962909 3.047462e-03
+A           -2.259860  0.1936784 -11.668105 1.855085e-31
+B_det       -2.899874  0.5254377  -5.518969 3.409948e-08
+                 OR  2.5 %   97.5 %
+(Intercept) 30.6611 3.1857 295.0970
+A            0.1044 0.0714   0.1526
+B_det        0.0550 0.0196   0.1541
+
+========== adjusted error ~ C_pers + D (pursued NGP-OT), clean CIs ==========
+N = 3419  singular: FALSE 
+             Estimate Std. Error   z value     Pr(>|z|)
+(Intercept) -7.886471   1.835689 -4.296192 1.737573e-05
+C_pers       2.902701   1.038953  2.793871 5.208127e-03
+D            9.316155   0.692325 13.456331 2.826039e-41
+                    OR     2.5 %     97.5 %
+(Intercept)     0.0004    0.0000     0.0137
+C_pers         18.2233    2.3783   139.6323
+D           11116.1572 2861.8478 43178.0298
+
+========== B_res: raw cell Ns and error rates ==========
+# A tibble: 8 × 5
+  gp2   verb  B_res     n   err
+  <fct> <fct> <dbl> <int> <dbl>
+1 NGP   RAT       0     3   0  
+2 NGP   RAT       1   274   6.6
+3 NGP   OT        0    41  12.2
+4 NGP   OT        1   475  42.3
+5 GP    RAT       0   293  91.5
+6 GP    RAT       1  1358  17.6
+7 GP    OT        0   564  93.3
+8 GP    OT        1  1078  29.7
+
+----------------------------------------------------------------------------------------------------
+## 5.3  The A x B-resolution interaction on detected garden-path traces: recognition amplifies resolution
+----------------------------------------------------------------------------------------------------
+B-prime rate by A (detected GP traces):
+# A tibble: 2 × 3
+      A     n   res
+  <dbl> <int> <dbl>
+1     0  1240  48.4
+2     1  2053  89.4
+N = 3293  singular: FALSE 
+              Estimate Std. Error   z value     Pr(>|z|)
+(Intercept)  1.7412432  0.9773480  1.781600 7.481447e-02
+A           -0.5671843  0.4037997 -1.404618 1.601349e-01
+B_res       -1.5136663  0.3303105 -4.582557 4.593254e-06
+A:B_res     -2.0316189  0.4397318 -4.620132 3.834958e-06
+LRT A x Bres:    Chisq Df Pr(>Chisq)    
+m 20.301  1  6.616e-06 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+main-effects model:
+             Estimate Std. Error    z value     Pr(>|z|)
+(Intercept)  2.688456  0.9393871   2.861926 4.210756e-03
+A           -2.235310  0.2059744 -10.852368 1.943243e-27
+B_res       -2.764349  0.2395000 -11.542169 8.086062e-31
+                OR  2.5 %  97.5 %
+(Intercept) 14.709 2.3333 92.7234
+A            0.107 0.0714  0.1602
+B_res        0.063 0.0394  0.1008
+B_res = 0:
+ A   prob     SE  df asymp.LCL asymp.UCL
+ 0 0.8508 0.1240 Inf    0.4565     0.975
+ 1 0.7639 0.1760 Inf    0.3238     0.956
+
+B_res = 1:
+ A   prob     SE  df asymp.LCL asymp.UCL
+ 0 0.5566 0.2340 Inf    0.1632     0.890
+ 1 0.0854 0.0737 Inf    0.0145     0.372
+
+Confidence level used: 0.95 
+Intervals are back-transformed from the logit scale 
+
+A effect within B_res levels:
+B_res = 0:
+ contrast odds.ratio     SE  df asymp.LCL asymp.UCL null z.ratio p.value
+ A1 / A0      0.5671 0.2290 Inf    0.2570     1.251    1  -1.405  0.1601
+
+B_res = 1:
+ contrast odds.ratio     SE  df asymp.LCL asymp.UCL null z.ratio p.value
+ A1 / A0      0.0744 0.0168 Inf    0.0477     0.116    1 -11.498  <.0001
+
+Confidence level used: 0.95 
+Intervals are back-transformed from the log odds ratio scale 
+Tests are performed on the log odds ratio scale 
+
+B_res effect within A levels:
+A = 0:
+ contrast        odds.ratio      SE  df asymp.LCL asymp.UCL null z.ratio p.value
+ B_res1 / B_res0     0.2201 0.07270 Inf    0.1152     0.421    1  -4.583  <.0001
+
+A = 1:
+ contrast        odds.ratio      SE  df asymp.LCL asymp.UCL null z.ratio p.value
+ B_res1 / B_res0     0.0289 0.00894 Inf    0.0157     0.053    1 -11.444  <.0001
+
+Confidence level used: 0.95 
+Intervals are back-transformed from the log odds ratio scale 
+Tests are performed on the log odds ratio scale
+
+----------------------------------------------------------------------------------------------------
+## 5.4  The A x B-resolution interaction separately for the strongest four and the remaining models
+----------------------------------------------------------------------------------------------------
+
+############ Strong4 ############
+cells (A x B_res: n, err%):
+# A tibble: 4 × 4
+      A B_res     n   err
+  <dbl> <dbl> <int> <dbl>
+1     0     0    45  88.9
+2     0     1    72  11.1
+3     1     0    53  62.3
+4     1     1   750   0.3
+B_res rate by A:
+# A tibble: 2 × 3
+      A     n   res
+  <dbl> <int> <dbl>
+1     0   117  61.5
+2     1   803  93.4
+singular: FALSE 
+              Estimate Std. Error   z value     Pr(>|z|)
+(Intercept) -20.736199   6.589174 -3.147010 1.649492e-03
+A            -3.386602   2.620180 -1.292507 1.961815e-01
+B_res        -3.223089   2.553327 -1.262309 2.068375e-01
+A:B_res     -22.959439   4.937428 -4.650081 3.318049e-06
+LRT A x Bres:    Chisq Df Pr(>Chisq)    
+m 19.358  1  1.084e-05 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+A within B_res:
+B_res = 0:
+ contrast odds.ratio     SE  df asymp.LCL asymp.UCL null z.ratio p.value
+ A1 / A0      0.0338 0.0886 Inf  0.000199      5.75    1  -1.293  0.1962
+
+B_res = 1:
+ contrast odds.ratio     SE  df asymp.LCL asymp.UCL null z.ratio p.value
+ A1 / A0      0.0000 0.0000 Inf  0.000000      0.00    1  -4.940  <.0001
+
+Confidence level used: 0.95 
+Intervals are back-transformed from the log odds ratio scale 
+Tests are performed on the log odds ratio scale 
+B_res within A:
+A = 0:
+ contrast        odds.ratio    SE  df asymp.LCL asymp.UCL null z.ratio p.value
+ B_res1 / B_res0     0.0398 0.102 Inf  0.000267      5.94    1  -1.262  0.2068
+
+A = 1:
+ contrast        odds.ratio    SE  df asymp.LCL asymp.UCL null z.ratio p.value
+ B_res1 / B_res0     0.0000 0.000 Inf  0.000000      0.00    1  -5.103  <.0001
+
+Confidence level used: 0.95 
+Intervals are back-transformed from the log odds ratio scale 
+Tests are performed on the log odds ratio scale 
+
+############ Others ############
+cells (A x B_res: n, err%):
+# A tibble: 4 × 4
+      A B_res     n   err
+  <dbl> <dbl> <int> <dbl>
+1     0     0   595  97  
+2     0     1   528  61.7
+3     1     0   164  87.8
+4     1     1  1086  20.5
+B_res rate by A:
+# A tibble: 2 × 3
+      A     n   res
+  <dbl> <int> <dbl>
+1     0  1123  47  
+2     1  1250  86.9
+singular: FALSE 
+              Estimate Std. Error   z value     Pr(>|z|)
+(Intercept)  2.7326956  0.9133252  2.992029 2.771297e-03
+A           -0.9825636  0.4337093 -2.265489 2.348270e-02
+B_res       -1.4374804  0.3430237 -4.190615 2.781993e-05
+A:B_res     -1.4200900  0.4673108 -3.038855 2.374790e-03
+LRT A x Bres:    Chisq Df Pr(>Chisq)   
+m 8.9465  1    0.00278 **
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+A within B_res:
+B_res = 0:
+ contrast odds.ratio     SE  df asymp.LCL asymp.UCL null z.ratio p.value
+ A1 / A0      0.3744 0.1620 Inf    0.1600     0.876    1  -2.265  0.0235
+
+B_res = 1:
+ contrast odds.ratio     SE  df asymp.LCL asymp.UCL null z.ratio p.value
+ A1 / A0      0.0905 0.0206 Inf    0.0579     0.141    1 -10.552  <.0001
+
+Confidence level used: 0.95 
+Intervals are back-transformed from the log odds ratio scale 
+Tests are performed on the log odds ratio scale 
+B_res within A:
+A = 0:
+ contrast        odds.ratio     SE  df asymp.LCL asymp.UCL null z.ratio p.value
+ B_res1 / B_res0     0.2375 0.0815 Inf    0.1213     0.465    1  -4.191  <.0001
+
+A = 1:
+ contrast        odds.ratio     SE  df asymp.LCL asymp.UCL null z.ratio p.value
+ B_res1 / B_res0     0.0574 0.0194 Inf    0.0296     0.111    1  -8.475  <.0001
+
+Confidence level used: 0.95 
+Intervals are back-transformed from the log odds ratio scale 
+Tests are performed on the log odds ratio scale
+
+
+====================================================================================================
+#  6. STRONGEST VS REMAINING MODELS (Paper Section 4.8, Appendix B-C)
+====================================================================================================
+
+----------------------------------------------------------------------------------------------------
+## 6.1  Cohort models (code ~ cohort x GP x verb): where the strongest four differ from the rest, with per-cell contrasts and descriptives
+----------------------------------------------------------------------------------------------------
+
+============================= A =============================
+N = 10216  singular: FALSE 
+                     Estimate Std. Error     z value     Pr(>|z|)
+(Intercept)        -2.0483148  0.7095964  -2.8865912 3.894399e-03
+cohort1             3.0254389  1.3530727   2.2359766 2.535330e-02
+gp21                6.6243542  0.1759427  37.6506237 0.000000e+00
+verb1               0.6668314  0.4346250   1.5342682 1.249637e-01
+cohort1:gp21        0.3045422  0.3239372   0.9401274 3.471522e-01
+cohort1:verb1       0.1486036  0.2379157   0.6246063 5.322295e-01
+gp21:verb1         -2.4710320  0.2466203 -10.0195800 1.250332e-23
+cohort1:gp21:verb1  0.2526868  0.4737501   0.5333758 5.937735e-01
+
+LRT all cohort terms:    Chisq Df Pr(>Chisq)
+m 6.7965  4      0.147
+gp2 = NGP, verb = RAT:
+ cohort      prob       SE  df asymp.LCL asymp.UCL
+ Others  0.000434 0.000352 Inf  8.82e-05   0.00213
+ Strong4 0.007535 0.009160 Inf  6.88e-04   0.07722
+
+gp2 = GP, verb = RAT:
+ cohort      prob       SE  df asymp.LCL asymp.UCL
+ Others  0.507021 0.186000 Inf  1.93e-01   0.81564
+ Strong4 0.955567 0.051700 Inf  6.65e-01   0.99574
+
+gp2 = NGP, verb = OT:
+ cohort      prob       SE  df asymp.LCL asymp.UCL
+ Others  0.002867 0.002180 Inf  6.43e-04   0.01268
+ Strong4 0.048931 0.056300 Inf  4.77e-03   0.35561
+
+gp2 = GP, verb = OT:
+ cohort      prob       SE  df asymp.LCL asymp.UCL
+ Others  0.336692 0.166000 Inf  1.05e-01   0.68604
+ Strong4 0.933212 0.075600 Inf  5.65e-01   0.99340
+
+Confidence level used: 0.95 
+Intervals are back-transformed from the logit scale 
+gp2 = NGP, verb = RAT:
+ contrast         odds.ratio   SE  df asymp.LCL asymp.UCL null z.ratio p.value
+ Strong4 / Others       17.5 24.6 Inf      1.12       274    1   2.038  0.0415
+
+gp2 = GP, verb = RAT:
+ contrast         odds.ratio   SE  df asymp.LCL asymp.UCL null z.ratio p.value
+ Strong4 / Others       20.9 28.5 Inf      1.45       302    1   2.231  0.0257
+
+gp2 = NGP, verb = OT:
+ contrast         odds.ratio   SE  df asymp.LCL asymp.UCL null z.ratio p.value
+ Strong4 / Others       17.9 24.4 Inf      1.23       260    1   2.113  0.0346
+
+gp2 = GP, verb = OT:
+ contrast         odds.ratio   SE  df asymp.LCL asymp.UCL null z.ratio p.value
+ Strong4 / Others       27.5 37.4 Inf      1.92       396    1   2.438  0.0148
+
+Confidence level used: 0.95 
+Intervals are back-transformed from the log odds ratio scale 
+Tests are performed on the log odds ratio scale 
+
+============================= B_det =============================
+N = 10209  singular: FALSE 
+                     Estimate Std. Error   z value     Pr(>|z|)
+(Intercept)          2.460386  0.9425882  2.610245 9.047739e-03
+cohort1              4.322888  1.8363782  2.354029 1.857115e-02
+gp21                10.530858  1.6894644  6.233253 4.568486e-10
+verb1               -2.664948  1.7132097 -1.555529 1.198201e-01
+cohort1:gp21         8.027396  3.3747453  2.378667 1.737536e-02
+cohort1:verb1       -6.135533  3.3382757 -1.837935 6.607202e-02
+gp21:verb1          -7.086685  3.3380980 -2.122971 3.375630e-02
+cohort1:gp21:verb1 -12.241655  6.6687286 -1.835680 6.640493e-02
+
+LRT all cohort terms:    Chisq Df Pr(>Chisq)    
+m 38.809  4  7.628e-08 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+gp2 = NGP, verb = RAT:
+ cohort       prob       SE  df asymp.LCL asymp.UCL
+ Others  0.0322171 1.51e-02 Inf 0.0127349 0.0791151
+ Strong4 0.0436897 3.03e-02 Inf 0.0108826 0.1594549
+
+gp2 = GP, verb = RAT:
+ cohort       prob       SE  df asymp.LCL asymp.UCL
+ Others  0.9733402 1.28e-02 Inf 0.9329051 0.9896765
+ Strong4 1.0000000 1.00e-07 Inf 0.9927352 1.0000000
+
+gp2 = NGP, verb = OT:
+ cohort       prob       SE  df asymp.LCL asymp.UCL
+ Others  0.0746913 3.31e-02 Inf 0.0306242 0.1709845
+ Strong4 0.0984180 6.38e-02 Inf 0.0259679 0.3088989
+
+gp2 = GP, verb = OT:
+ cohort       prob       SE  df asymp.LCL asymp.UCL
+ Others  0.9711807 1.38e-02 Inf 0.9278395 0.9888043
+ Strong4 0.9967501 3.00e-03 Inf 0.9804063 0.9994683
+
+Confidence level used: 0.95 
+Intervals are back-transformed from the logit scale 
+gp2 = NGP, verb = RAT:
+ contrast         odds.ratio       SE  df asymp.LCL asymp.UCL null z.ratio p.value
+ Strong4 / Others   1.40e+00        1 Inf     0.303  6.00e+00    1   0.411  0.6810
+
+gp2 = GP, verb = RAT:
+ contrast         odds.ratio       SE  df asymp.LCL asymp.UCL null z.ratio p.value
+ Strong4 / Others   1.91e+06 12800000 Inf     3.712  9.87e+11    1   2.155  0.0311
+
+gp2 = NGP, verb = OT:
+ contrast         odds.ratio       SE  df asymp.LCL asymp.UCL null z.ratio p.value
+ Strong4 / Others   1.40e+00        1 Inf     0.303  6.00e+00    1   0.396  0.6922
+
+gp2 = GP, verb = OT:
+ contrast         odds.ratio       SE  df asymp.LCL asymp.UCL null z.ratio p.value
+ Strong4 / Others   9.10e+00        9 Inf     1.376  6.00e+01    1   2.291  0.0220
+
+Confidence level used: 0.95 
+Intervals are back-transformed from the log odds ratio scale 
+Tests are performed on the log odds ratio scale 
+
+============================= B_res =============================
+N = 4086  singular: FALSE 
+                    Estimate Std. Error    z value    Pr(>|z|)
+(Intercept)         6.704834   1.789726  3.7462901 0.000179469
+cohort1             3.535191   3.506461  1.0081936 0.313361540
+gp21               -8.332933   3.278975 -2.5413225 0.011043401
+verb1              -4.029475   3.297111 -1.2221229 0.221661138
+cohort1:gp21       -3.204798   6.525306 -0.4911338 0.623331802
+cohort1:verb1      -5.274439   6.471767 -0.8149920 0.415076887
+gp21:verb1          4.213537   6.492365  0.6489988 0.516339183
+cohort1:gp21:verb1  9.729681  12.932069  0.7523684 0.451829524
+
+LRT all cohort terms:    Chisq Df Pr(>Chisq)
+m 4.7868  4     0.3099
+gp2 = NGP, verb = RAT:
+ cohort       prob       SE  df asymp.LCL asymp.UCL
+ Others  0.9998546 1.49e-04 Inf 0.9989227 0.9999804
+ Strong4 1.0000000 7.00e-08 Inf 0.0015964 1.0000000
+
+gp2 = GP, verb = RAT:
+ cohort       prob       SE  df asymp.LCL asymp.UCL
+ Others  0.9191553 5.78e-02 Inf 0.7121285 0.9812219
+ Strong4 0.9897332 1.26e-02 Inf 0.8944838 0.9990886
+
+gp2 = NGP, verb = OT:
+ cohort       prob       SE  df asymp.LCL asymp.UCL
+ Others  0.9995776 3.59e-04 Inf 0.9977727 0.9999200
+ Strong4 0.9996054 6.45e-04 Inf 0.9903508 0.9999840
+
+gp2 = GP, verb = OT:
+ cohort       prob       SE  df asymp.LCL asymp.UCL
+ Others  0.6710676 1.71e-01 Inf 0.3090068 0.9029816
+ Strong4 0.9199016 8.91e-02 Inf 0.5178129 0.9919239
+
+Confidence level used: 0.95 
+Intervals are back-transformed from the logit scale 
+gp2 = NGP, verb = RAT:
+ contrast         odds.ratio       SE  df asymp.LCL asymp.UCL null z.ratio p.value
+ Strong4 / Others   27098.40 352000.0 Inf  2.00e-07  3.15e+15    1   0.785  0.4323
+
+gp2 = GP, verb = RAT:
+ contrast         odds.ratio       SE  df asymp.LCL asymp.UCL null z.ratio p.value
+ Strong4 / Others       8.48     11.4 Inf  6.08e-01  1.18e+02    1   1.590  0.1119
+
+gp2 = NGP, verb = OT:
+ contrast         odds.ratio       SE  df asymp.LCL asymp.UCL null z.ratio p.value
+ Strong4 / Others       1.07      1.8 Inf  3.72e-02  3.10e+01    1   0.040  0.9684
+
+gp2 = GP, verb = OT:
+ contrast         odds.ratio       SE  df asymp.LCL asymp.UCL null z.ratio p.value
+ Strong4 / Others       5.63      7.4 Inf  4.28e-01  7.40e+01    1   1.314  0.1889
+
+Confidence level used: 0.95 
+Intervals are back-transformed from the log odds ratio scale 
+Tests are performed on the log odds ratio scale 
+
+============================= C_purs =============================
+N = 10210  singular: FALSE 
+                    Estimate Std. Error   z value     Pr(>|z|)
+(Intercept)         5.852068   1.125188 5.2009667 1.982546e-07
+cohort1             3.016330   2.173670 1.3876666 1.652386e-01
+gp21                6.901245   2.158452 3.1973120 1.387148e-03
+verb1               6.511039   2.212704 2.9425710 3.254991e-03
+cohort1:gp21        6.683747   4.292651 1.5570207 1.194656e-01
+cohort1:verb1       5.998378   4.271400 1.4043120 1.602260e-01
+gp21:verb1          1.943931   4.295442 0.4525568 6.508679e-01
+cohort1:gp21:verb1 11.832023   8.525442 1.3878486 1.651831e-01
+
+LRT all cohort terms:    Chisq Df Pr(>Chisq)
+m 4.8638  4     0.3016
+gp2 = NGP, verb = RAT:
+ cohort       prob       SE  df asymp.LCL asymp.UCL
+ Others  0.4539489 1.01e-01 Inf 0.2717794 0.6493442
+ Strong4 0.3655269 1.09e-01 Inf 0.1863940 0.5916290
+
+gp2 = GP, verb = RAT:
+ cohort       prob       SE  df asymp.LCL asymp.UCL
+ Others  0.9953243 2.29e-03 Inf 0.9878390 0.9982106
+ Strong4 0.9968641 2.33e-03 Inf 0.9865984 0.9992720
+
+gp2 = NGP, verb = OT:
+ cohort       prob       SE  df asymp.LCL asymp.UCL
+ Others  0.9950978 2.33e-03 Inf 0.9876050 0.9980701
+ Strong4 0.9934959 3.66e-03 Inf 0.9804940 0.9978503
+
+gp2 = GP, verb = OT:
+ cohort       prob       SE  df asymp.LCL asymp.UCL
+ Others  0.9989796 7.22e-04 Inf 0.9959218 0.9997452
+ Strong4 1.0000000 4.00e-08 Inf 0.9201858 1.0000000
+
+Confidence level used: 0.95 
+Intervals are back-transformed from the logit scale 
+gp2 = NGP, verb = RAT:
+ contrast         odds.ratio      SE  df asymp.LCL asymp.UCL null z.ratio p.value
+ Strong4 / Others   6.90e-01 2.0e-01 Inf     0.362  1.00e+00    1  -1.108  0.2680
+
+gp2 = GP, verb = RAT:
+ contrast         odds.ratio      SE  df asymp.LCL asymp.UCL null z.ratio p.value
+ Strong4 / Others   1.49e+00 1.1e+00 Inf     0.366  6.00e+00    1   0.558  0.5765
+
+gp2 = NGP, verb = OT:
+ contrast         odds.ratio      SE  df asymp.LCL asymp.UCL null z.ratio p.value
+ Strong4 / Others   7.50e-01 3.0e-01 Inf     0.303  2.00e+00    1  -0.613  0.5399
+
+gp2 = GP, verb = OT:
+ contrast         odds.ratio      SE  df asymp.LCL asymp.UCL null z.ratio p.value
+ Strong4 / Others   2.23e+05 1.9e+06 Inf     0.012  4.13e+12    1   1.442  0.1492
+
+Confidence level used: 0.95 
+Intervals are back-transformed from the log odds ratio scale 
+Tests are performed on the log odds ratio scale 
+
+============================= C_pers =============================
+N = 8360  singular: FALSE 
+                      Estimate Std. Error      z value     Pr(>|z|)
+(Intercept)         0.02959158 0.31796503   0.09306552 9.258515e-01
+cohort1            -2.07299670 0.51196735  -4.04907988 5.141939e-05
+gp21               -0.50419059 0.08485159  -5.94202894 2.815157e-09
+verb1               3.48303444 0.38682973   9.00405061 2.175398e-19
+cohort1:gp21       -1.86495674 0.16808723 -11.09517227 1.324047e-28
+cohort1:verb1       0.40851669 0.17284522   2.36348268 1.810407e-02
+gp21:verb1         -1.74420710 0.16959984 -10.28424972 8.298586e-25
+cohort1:gp21:verb1  1.17359050 0.33494761   3.50380312 4.586643e-04
+
+LRT all cohort terms:    Chisq Df Pr(>Chisq)    
+m 150.51  4  < 2.2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+gp2 = NGP, verb = RAT:
+ cohort    prob     SE  df asymp.LCL asymp.UCL
+ Others  0.2026 0.0608 Inf    0.1083     0.347
+ Strong4 0.0815 0.0403 Inf    0.0300     0.203
+
+gp2 = GP, verb = RAT:
+ cohort    prob     SE  df asymp.LCL asymp.UCL
+ Others  0.5557 0.0919 Inf    0.3762     0.722
+ Strong4 0.0363 0.0194 Inf    0.0126     0.100
+
+gp2 = NGP, verb = OT:
+ cohort    prob     SE  df asymp.LCL asymp.UCL
+ Others  0.9558 0.0159 Inf    0.9117     0.978
+ Strong4 0.8635 0.0614 Inf    0.6951     0.946
+
+gp2 = GP, verb = OT:
+ cohort    prob     SE  df asymp.LCL asymp.UCL
+ Others  0.9119 0.0304 Inf    0.8313     0.956
+ Strong4 0.4574 0.1290 Inf    0.2329     0.701
+
+Confidence level used: 0.95 
+Intervals are back-transformed from the logit scale 
+gp2 = NGP, verb = RAT:
+ contrast         odds.ratio     SE  df asymp.LCL asymp.UCL null z.ratio p.value
+ Strong4 / Others     0.3495 0.1870 Inf    0.1227    0.9949    1  -1.970  0.0489
+
+gp2 = GP, verb = RAT:
+ contrast         odds.ratio     SE  df asymp.LCL asymp.UCL null z.ratio p.value
+ Strong4 / Others     0.0301 0.0166 Inf    0.0102    0.0888    1  -6.344  <.0001
+
+gp2 = NGP, verb = OT:
+ contrast         odds.ratio     SE  df asymp.LCL asymp.UCL null z.ratio p.value
+ Strong4 / Others     0.2924 0.1520 Inf    0.1054    0.8109    1  -2.363  0.0181
+
+gp2 = GP, verb = OT:
+ contrast         odds.ratio     SE  df asymp.LCL asymp.UCL null z.ratio p.value
+ Strong4 / Others     0.0814 0.0426 Inf    0.0292    0.2272    1  -4.792  <.0001
+
+Confidence level used: 0.95 
+Intervals are back-transformed from the log odds ratio scale 
+Tests are performed on the log odds ratio scale 
+
+============================= D =============================
+N = 10216  singular: FALSE 
+                     Estimate Std. Error    z value     Pr(>|z|)
+(Intercept)        -3.5879241  0.3630567 -9.8825456 4.955768e-23
+cohort1            -1.3241581  0.4176742 -3.1703130 1.522748e-03
+gp21               -2.1508232  0.2762241 -7.7865149 6.888281e-15
+verb1               2.5253242  0.6531010  3.8666672 1.103328e-04
+cohort1:gp21       -2.7094198  0.5497874 -4.9281224 8.302361e-07
+cohort1:verb1       0.0641711  0.5501893  0.1166346 9.071496e-01
+gp21:verb1         -3.5861257  0.5519187 -6.4975610 8.163261e-11
+cohort1:gp21:verb1  1.7681706  1.0989886  1.6089071 1.076367e-01
+
+LRT all cohort terms:    Chisq Df Pr(>Chisq)    
+m 59.706  4  3.343e-12 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+gp2 = NGP, verb = RAT:
+ cohort     prob      SE  df asymp.LCL asymp.UCL
+ Others  0.00745 0.00362 Inf  0.002865    0.0192
+ Strong4 0.01153 0.00640 Inf  0.003863    0.0339
+
+gp2 = GP, verb = RAT:
+ cohort     prob      SE  df asymp.LCL asymp.UCL
+ Others  0.03068 0.01400 Inf  0.012453    0.0736
+ Strong4 0.00135 0.00147 Inf  0.000159    0.0114
+
+gp2 = NGP, verb = OT:
+ cohort     prob      SE  df asymp.LCL asymp.UCL
+ Others  0.45919 0.11100 Inf  0.260857    0.6713
+ Strong4 0.36749 0.11700 Inf  0.177647    0.6098
+
+gp2 = GP, verb = OT:
+ cohort     prob      SE  df asymp.LCL asymp.UCL
+ Others  0.03936 0.01730 Inf  0.016418    0.0914
+ Strong4 0.00450 0.00277 Inf  0.001344    0.0149
+
+Confidence level used: 0.95 
+Intervals are back-transformed from the logit scale 
+gp2 = NGP, verb = RAT:
+ contrast         odds.ratio     SE  df asymp.LCL asymp.UCL null z.ratio p.value
+ Strong4 / Others     1.5535 0.6910 Inf    0.6494     3.716    1   0.990  0.3222
+
+gp2 = GP, verb = RAT:
+ contrast         odds.ratio     SE  df asymp.LCL asymp.UCL null z.ratio p.value
+ Strong4 / Others     0.0427 0.0439 Inf    0.0057     0.320    1  -3.067  0.0022
+
+gp2 = NGP, verb = OT:
+ contrast         odds.ratio     SE  df asymp.LCL asymp.UCL null z.ratio p.value
+ Strong4 / Others     0.6843 0.2260 Inf    0.3579     1.308    1  -1.147  0.2512
+
+gp2 = GP, verb = OT:
+ contrast         odds.ratio     SE  df asymp.LCL asymp.UCL null z.ratio p.value
+ Strong4 / Others     0.1103 0.0541 Inf    0.0422     0.288    1  -4.496  <.0001
+
+Confidence level used: 0.95 
+Intervals are back-transformed from the log odds ratio scale 
+Tests are performed on the log odds ratio scale 
+
+
+========= Strong4 only: gp2 effect within OT (C_pers, D) =========
+
+--- C_pers (Strong4, OT trials) ---
+N = 1368  singular: FALSE 
+              Estimate Std. Error    z value     Pr(>|z|)
+(Intercept)  0.8417646  0.3077673   2.735068 6.236732e-03
+gp21        -2.0279962  0.1442631 -14.057623 6.917116e-45
+ gp2  prob     SE  df asymp.LCL asymp.UCL
+ NGP 0.865 0.0370 Inf     0.775     0.922
+ GP  0.457 0.0784 Inf     0.312     0.610
+
+Confidence level used: 0.95 
+Intervals are back-transformed from the logit scale 
+ contrast odds.ratio    SE  df asymp.LCL asymp.UCL null z.ratio p.value
+ GP / NGP      0.132 0.019 Inf    0.0992     0.175    1 -14.058  <.0001
+
+Confidence level used: 0.95 
+Intervals are back-transformed from the log odds ratio scale 
+Tests are performed on the log odds ratio scale 
+
+--- D (Strong4, OT trials) ---
+N = 1380  singular: FALSE 
+             Estimate Std. Error    z value     Pr(>|z|)
+(Intercept) -3.074181  0.6840320  -4.494206 6.983005e-06
+gp21        -5.059875  0.4061553 -12.457983 1.265297e-35
+ gp2    prob      SE  df asymp.LCL asymp.UCL
+ NGP 0.36720 0.15300 Inf  0.137522    0.6786
+ GP  0.00367 0.00279 Inf  0.000823    0.0162
+
+Confidence level used: 0.95 
+Intervals are back-transformed from the logit scale 
+ contrast odds.ratio      SE  df asymp.LCL asymp.UCL null z.ratio p.value
+ GP / NGP    0.00635 0.00258 Inf   0.00286    0.0141    1 -12.458  <.0001
+
+Confidence level used: 0.95 
+Intervals are back-transformed from the log odds ratio scale 
+Tests are performed on the log odds ratio scale 
+
+
+========= error by code x cell x cohort (descriptive) =========
+
+--- A ---
+# A tibble: 16 × 6
+   cohort  gp2   verb      x     n   err
+   <fct>   <fct> <fct> <dbl> <int> <dbl>
+ 1 Others  NGP   RAT       0  2394   0.6
+ 2 Others  NGP   RAT       1    12   0  
+ 3 Others  NGP   OT        0  2474  46.7
+ 4 Others  NGP   OT        1    75  17.3
+ 5 Others  GP    RAT       0   616  70.3
+ 6 Others  GP    RAT       1   688  25  
+ 7 Others  GP    OT        0   724  94.2
+ 8 Others  GP    OT        1   562  34.7
+ 9 Strong4 NGP   RAT       0   806   0.4
+10 Strong4 NGP   RAT       1    32   9.4
+11 Strong4 NGP   OT        0   777  47.6
+12 Strong4 NGP   OT        1   133  25.6
+13 Strong4 GP    RAT       0    46   0  
+14 Strong4 GP    RAT       1   407   0.7
+15 Strong4 GP    OT        0    74  66.2
+16 Strong4 GP    OT        1   396   8.1
+
+--- B_det ---
+# A tibble: 15 × 6
+   cohort  gp2   verb      x     n   err
+   <fct>   <fct> <fct> <dbl> <int> <dbl>
+ 1 Others  NGP   RAT       0  2201   0.1
+ 2 Others  NGP   RAT       1   204   5.9
+ 3 Others  NGP   OT        0  2168  46.5
+ 4 Others  NGP   OT        1   381  42  
+ 5 Others  GP    RAT       0   105  95.2
+ 6 Others  GP    RAT       1  1198  42.1
+ 7 Others  GP    OT        0   108 100  
+ 8 Others  GP    OT        1  1175  65.2
+ 9 Strong4 NGP   RAT       0   764   0  
+10 Strong4 NGP   RAT       1    73   8.2
+11 Strong4 NGP   OT        0   774  46.3
+12 Strong4 NGP   OT        1   135  34.1
+13 Strong4 GP    RAT       1   453   0.7
+14 Strong4 GP    OT        0     3  33.3
+15 Strong4 GP    OT        1   467  17.1
+
+--- B_res ---
+# A tibble: 15 × 6
+   cohort  gp2   verb      x     n   err
+   <fct>   <fct> <fct> <dbl> <int> <dbl>
+ 1 Others  NGP   RAT       0     3   0  
+ 2 Others  NGP   RAT       1   201   6  
+ 3 Others  NGP   OT        0    40  10  
+ 4 Others  NGP   OT        1   341  45.7
+ 5 Others  GP    RAT       0   281  94.3
+ 6 Others  GP    RAT       1   917  26.1
+ 7 Others  GP    OT        0   478  95.4
+ 8 Others  GP    OT        1   697  44.5
+ 9 Strong4 NGP   RAT       1    73   8.2
+10 Strong4 NGP   OT        0     1 100  
+11 Strong4 NGP   OT        1   134  33.6
+12 Strong4 GP    RAT       0    12  25  
+13 Strong4 GP    RAT       1   441   0  
+14 Strong4 GP    OT        0    86  81.4
+15 Strong4 GP    OT        1   381   2.6
+
+--- C_purs ---
+# A tibble: 15 × 6
+   cohort  gp2   verb      x     n   err
+   <fct>   <fct> <fct> <dbl> <int> <dbl>
+ 1 Others  NGP   RAT       0  1290   0  
+ 2 Others  NGP   RAT       1  1114   1.3
+ 3 Others  NGP   OT        0    27  74.1
+ 4 Others  NGP   OT        1  2521  45.5
+ 5 Others  GP    RAT       0    14   0  
+ 6 Others  GP    RAT       1  1289  46.9
+ 7 Others  GP    OT        0     3 100  
+ 8 Others  GP    OT        1  1281  68.1
+ 9 Strong4 NGP   RAT       0   501   0  
+10 Strong4 NGP   RAT       1   337   1.8
+11 Strong4 NGP   OT        0    12   0  
+12 Strong4 NGP   OT        1   898  45  
+13 Strong4 GP    RAT       0     3   0  
+14 Strong4 GP    RAT       1   450   0.7
+15 Strong4 GP    OT        1   470  17.2
+
+--- C_pers ---
+# A tibble: 16 × 6
+   cohort  gp2   verb      x     n   err
+   <fct>   <fct> <fct> <dbl> <int> <dbl>
+ 1 Others  NGP   RAT       0   666   0  
+ 2 Others  NGP   RAT       1   448   3.3
+ 3 Others  NGP   OT        0   197   0  
+ 4 Others  NGP   OT        1  2324  49.4
+ 5 Others  GP    RAT       0   578   0.5
+ 6 Others  GP    RAT       1   711  84.5
+ 7 Others  GP    OT        0   179   3.9
+ 8 Others  GP    OT        1  1102  78.5
+ 9 Strong4 NGP   RAT       0   280   0  
+10 Strong4 NGP   RAT       1    57  10.5
+11 Strong4 NGP   OT        0   148   1.4
+12 Strong4 NGP   OT        1   750  53.6
+13 Strong4 GP    RAT       0   423   0  
+14 Strong4 GP    RAT       1    27  11.1
+15 Strong4 GP    OT        0   253   0  
+16 Strong4 GP    OT        1   217  37.3
+
+--- D ---
+# A tibble: 16 × 6
+   cohort  gp2   verb      x     n   err
+   <fct>   <fct> <fct> <dbl> <int> <dbl>
+ 1 Others  NGP   RAT       0  2379   0  
+ 2 Others  NGP   RAT       1    27  55.6
+ 3 Others  NGP   OT        0  1384   3  
+ 4 Others  NGP   OT        1  1165  96.7
+ 5 Others  GP    RAT       0  1247  44.3
+ 6 Others  GP    RAT       1    57  93  
+ 7 Others  GP    OT        0  1149  64.9
+ 8 Others  GP    OT        1   137  95.6
+ 9 Strong4 NGP   RAT       0   822   0  
+10 Strong4 NGP   RAT       1    16  37.5
+11 Strong4 NGP   OT        0   517   5.8
+12 Strong4 NGP   OT        1   393  95.2
+13 Strong4 GP    RAT       0   452   0.7
+14 Strong4 GP    RAT       1     1   0  
+15 Strong4 GP    OT        0   462  15.8
+16 Strong4 GP    OT        1     8 100  
+
+
+===== error ~ (C_pers + D) * cohort, pursued NGP-OT =====
+N = 3419  singular: FALSE 
+                  Estimate Std. Error    z value     Pr(>|z|)
+(Intercept)    -15.6162223 15.3719764 -1.0158890 3.096822e-01
+C_pers          10.6373377 15.3100639  0.6947938 4.871845e-01
+D                9.1553444  0.7134692 12.8321512 1.083143e-37
+cohort1         16.0817723 30.5667569  0.5261197 5.988051e-01
+C_pers:cohort1 -16.1283700 30.5634654 -0.5277010 5.977069e-01
+D:cohort1       -0.5756861  0.8835153 -0.6515859 5.146684e-01
+
+===== Strong4 OT cells: C_pers x D joint rates =====
+# A tibble: 3 × 7
+  gp3           n  pers     D pers_and_D pers_no_D   err
+  <chr>     <int> <dbl> <dbl>      <dbl>     <dbl> <dbl>
+1 GP          470  46.2   1.7          0         0  17.2
+2 NGP-comma   444  78.2  36.7          0         0  37.8
+3 NGP-order   454  88.8  50.4          0         0  52  
+# A tibble: 3 × 7
+  gp3           n  pers     D pers_and_D pers_no_D   err
+  <chr>     <int> <dbl> <dbl>      <dbl>     <dbl> <dbl>
+1 GP         1281  86    10.5          0         0  68.1
+2 NGP-comma  1248  89.3  41.1          0         0  41.2
+3 NGP-order  1273  95.1  50.8          0         0  49.8
+
+----------------------------------------------------------------------------------------------------
+## 6.2  Final group analysis set: prevalence models with the group factor, and accuracy models with group interactions on detected GP and pursued NGP-OT trials
+----------------------------------------------------------------------------------------------------
+
+===================== A =====================
+N = 10216 | singular: FALSE | convergence messages: 0 
+LRT all group terms: chi2( 4 ) = 6.8 , p = 0.147 
+gp2 = NGP, verb = RAT:
+ group       prob       SE  df asymp.LCL asymp.UCL
+ Others  0.000434 0.000352 Inf  8.82e-05   0.00213
+ Strong4 0.007535 0.009160 Inf  6.88e-04   0.07722
+
+gp2 = GP, verb = RAT:
+ group       prob       SE  df asymp.LCL asymp.UCL
+ Others  0.507021 0.186000 Inf  1.93e-01   0.81564
+ Strong4 0.955567 0.051700 Inf  6.65e-01   0.99574
+
+gp2 = NGP, verb = OT:
+ group       prob       SE  df asymp.LCL asymp.UCL
+ Others  0.002867 0.002180 Inf  6.43e-04   0.01268
+ Strong4 0.048931 0.056300 Inf  4.77e-03   0.35561
+
+gp2 = GP, verb = OT:
+ group       prob       SE  df asymp.LCL asymp.UCL
+ Others  0.336692 0.166000 Inf  1.05e-01   0.68604
+ Strong4 0.933212 0.075600 Inf  5.65e-01   0.99340
+
+Confidence level used: 0.95 
+Intervals are back-transformed from the logit scale 
+gp2 = NGP, verb = RAT:
+ contrast         odds.ratio   SE  df asymp.LCL asymp.UCL null z.ratio p.value
+ Strong4 / Others       17.5 24.6 Inf      1.12       274    1   2.038  0.0415
+
+gp2 = GP, verb = RAT:
+ contrast         odds.ratio   SE  df asymp.LCL asymp.UCL null z.ratio p.value
+ Strong4 / Others       20.9 28.5 Inf      1.45       302    1   2.231  0.0257
+
+gp2 = NGP, verb = OT:
+ contrast         odds.ratio   SE  df asymp.LCL asymp.UCL null z.ratio p.value
+ Strong4 / Others       17.9 24.4 Inf      1.23       260    1   2.113  0.0346
+
+gp2 = GP, verb = OT:
+ contrast         odds.ratio   SE  df asymp.LCL asymp.UCL null z.ratio p.value
+ Strong4 / Others       27.5 37.4 Inf      1.92       396    1   2.438  0.0148
+
+Confidence level used: 0.95 
+Intervals are back-transformed from the log odds ratio scale 
+Tests are performed on the log odds ratio scale 
+
+===================== B_det =====================
+N = 10209 | singular: FALSE | convergence messages: 0 
+LRT all group terms: chi2( 4 ) = 38.81 , p = 7.63e-08 
+gp2 = NGP, verb = RAT:
+ group        prob       SE  df asymp.LCL asymp.UCL
+ Others  0.0322171 1.51e-02 Inf 0.0127349 0.0791151
+ Strong4 0.0436897 3.03e-02 Inf 0.0108826 0.1594549
+
+gp2 = GP, verb = RAT:
+ group        prob       SE  df asymp.LCL asymp.UCL
+ Others  0.9733402 1.28e-02 Inf 0.9329051 0.9896765
+ Strong4 1.0000000 1.00e-07 Inf 0.9927352 1.0000000
+
+gp2 = NGP, verb = OT:
+ group        prob       SE  df asymp.LCL asymp.UCL
+ Others  0.0746913 3.31e-02 Inf 0.0306242 0.1709845
+ Strong4 0.0984180 6.38e-02 Inf 0.0259679 0.3088989
+
+gp2 = GP, verb = OT:
+ group        prob       SE  df asymp.LCL asymp.UCL
+ Others  0.9711807 1.38e-02 Inf 0.9278395 0.9888043
+ Strong4 0.9967501 3.00e-03 Inf 0.9804063 0.9994683
+
+Confidence level used: 0.95 
+Intervals are back-transformed from the logit scale 
+gp2 = NGP, verb = RAT:
+ contrast         odds.ratio       SE  df asymp.LCL asymp.UCL null z.ratio p.value
+ Strong4 / Others   1.40e+00        1 Inf     0.303  6.00e+00    1   0.411  0.6810
+
+gp2 = GP, verb = RAT:
+ contrast         odds.ratio       SE  df asymp.LCL asymp.UCL null z.ratio p.value
+ Strong4 / Others   1.91e+06 12800000 Inf     3.712  9.87e+11    1   2.155  0.0311
+
+gp2 = NGP, verb = OT:
+ contrast         odds.ratio       SE  df asymp.LCL asymp.UCL null z.ratio p.value
+ Strong4 / Others   1.40e+00        1 Inf     0.303  6.00e+00    1   0.396  0.6922
+
+gp2 = GP, verb = OT:
+ contrast         odds.ratio       SE  df asymp.LCL asymp.UCL null z.ratio p.value
+ Strong4 / Others   9.10e+00        9 Inf     1.376  6.00e+01    1   2.291  0.0220
+
+Confidence level used: 0.95 
+Intervals are back-transformed from the log odds ratio scale 
+Tests are performed on the log odds ratio scale 
+
+===================== B_res =====================
+N = 4086 | singular: FALSE | convergence messages: 0 
+LRT all group terms: chi2( 4 ) = 4.79 , p = 0.31 
+gp2 = NGP, verb = RAT:
+ group        prob       SE  df asymp.LCL asymp.UCL
+ Others  0.9998546 1.49e-04 Inf 0.9989227 0.9999804
+ Strong4 1.0000000 7.00e-08 Inf 0.0015964 1.0000000
+
+gp2 = GP, verb = RAT:
+ group        prob       SE  df asymp.LCL asymp.UCL
+ Others  0.9191553 5.78e-02 Inf 0.7121285 0.9812219
+ Strong4 0.9897332 1.26e-02 Inf 0.8944838 0.9990886
+
+gp2 = NGP, verb = OT:
+ group        prob       SE  df asymp.LCL asymp.UCL
+ Others  0.9995776 3.59e-04 Inf 0.9977727 0.9999200
+ Strong4 0.9996054 6.45e-04 Inf 0.9903508 0.9999840
+
+gp2 = GP, verb = OT:
+ group        prob       SE  df asymp.LCL asymp.UCL
+ Others  0.6710676 1.71e-01 Inf 0.3090068 0.9029816
+ Strong4 0.9199016 8.91e-02 Inf 0.5178129 0.9919239
+
+Confidence level used: 0.95 
+Intervals are back-transformed from the logit scale 
+gp2 = NGP, verb = RAT:
+ contrast         odds.ratio       SE  df asymp.LCL asymp.UCL null z.ratio p.value
+ Strong4 / Others   27098.40 352000.0 Inf  2.00e-07  3.15e+15    1   0.785  0.4323
+
+gp2 = GP, verb = RAT:
+ contrast         odds.ratio       SE  df asymp.LCL asymp.UCL null z.ratio p.value
+ Strong4 / Others       8.48     11.4 Inf  6.08e-01  1.18e+02    1   1.590  0.1119
+
+gp2 = NGP, verb = OT:
+ contrast         odds.ratio       SE  df asymp.LCL asymp.UCL null z.ratio p.value
+ Strong4 / Others       1.07      1.8 Inf  3.72e-02  3.10e+01    1   0.040  0.9684
+
+gp2 = GP, verb = OT:
+ contrast         odds.ratio       SE  df asymp.LCL asymp.UCL null z.ratio p.value
+ Strong4 / Others       5.63      7.4 Inf  4.28e-01  7.40e+01    1   1.314  0.1889
+
+Confidence level used: 0.95 
+Intervals are back-transformed from the log odds ratio scale 
+Tests are performed on the log odds ratio scale 
+
+===================== C_purs =====================
+N = 10210 | singular: FALSE | convergence messages: 0 
+LRT all group terms: chi2( 4 ) = 4.86 , p = 0.302 
+gp2 = NGP, verb = RAT:
+ group        prob       SE  df asymp.LCL asymp.UCL
+ Others  0.4539489 1.01e-01 Inf 0.2717794 0.6493442
+ Strong4 0.3655269 1.09e-01 Inf 0.1863940 0.5916290
+
+gp2 = GP, verb = RAT:
+ group        prob       SE  df asymp.LCL asymp.UCL
+ Others  0.9953243 2.29e-03 Inf 0.9878390 0.9982106
+ Strong4 0.9968641 2.33e-03 Inf 0.9865984 0.9992720
+
+gp2 = NGP, verb = OT:
+ group        prob       SE  df asymp.LCL asymp.UCL
+ Others  0.9950978 2.33e-03 Inf 0.9876050 0.9980701
+ Strong4 0.9934959 3.66e-03 Inf 0.9804940 0.9978503
+
+gp2 = GP, verb = OT:
+ group        prob       SE  df asymp.LCL asymp.UCL
+ Others  0.9989796 7.22e-04 Inf 0.9959218 0.9997452
+ Strong4 1.0000000 4.00e-08 Inf 0.9201858 1.0000000
+
+Confidence level used: 0.95 
+Intervals are back-transformed from the logit scale 
+gp2 = NGP, verb = RAT:
+ contrast         odds.ratio      SE  df asymp.LCL asymp.UCL null z.ratio p.value
+ Strong4 / Others   6.90e-01 2.0e-01 Inf     0.362  1.00e+00    1  -1.108  0.2680
+
+gp2 = GP, verb = RAT:
+ contrast         odds.ratio      SE  df asymp.LCL asymp.UCL null z.ratio p.value
+ Strong4 / Others   1.49e+00 1.1e+00 Inf     0.366  6.00e+00    1   0.558  0.5765
+
+gp2 = NGP, verb = OT:
+ contrast         odds.ratio      SE  df asymp.LCL asymp.UCL null z.ratio p.value
+ Strong4 / Others   7.50e-01 3.0e-01 Inf     0.303  2.00e+00    1  -0.613  0.5399
+
+gp2 = GP, verb = OT:
+ contrast         odds.ratio      SE  df asymp.LCL asymp.UCL null z.ratio p.value
+ Strong4 / Others   2.23e+05 1.9e+06 Inf     0.012  4.13e+12    1   1.442  0.1492
+
+Confidence level used: 0.95 
+Intervals are back-transformed from the log odds ratio scale 
+Tests are performed on the log odds ratio scale 
+
+===================== C_pers =====================
+N = 8360 | singular: FALSE | convergence messages: 0 
+LRT all group terms: chi2( 4 ) = 150.51 , p = 1.58e-31 
+gp2 = NGP, verb = RAT:
+ group     prob     SE  df asymp.LCL asymp.UCL
+ Others  0.2026 0.0608 Inf    0.1083     0.347
+ Strong4 0.0815 0.0403 Inf    0.0300     0.203
+
+gp2 = GP, verb = RAT:
+ group     prob     SE  df asymp.LCL asymp.UCL
+ Others  0.5557 0.0919 Inf    0.3762     0.722
+ Strong4 0.0363 0.0194 Inf    0.0126     0.100
+
+gp2 = NGP, verb = OT:
+ group     prob     SE  df asymp.LCL asymp.UCL
+ Others  0.9558 0.0159 Inf    0.9117     0.978
+ Strong4 0.8635 0.0614 Inf    0.6951     0.946
+
+gp2 = GP, verb = OT:
+ group     prob     SE  df asymp.LCL asymp.UCL
+ Others  0.9119 0.0304 Inf    0.8313     0.956
+ Strong4 0.4574 0.1290 Inf    0.2329     0.701
+
+Confidence level used: 0.95 
+Intervals are back-transformed from the logit scale 
+gp2 = NGP, verb = RAT:
+ contrast         odds.ratio     SE  df asymp.LCL asymp.UCL null z.ratio p.value
+ Strong4 / Others     0.3495 0.1870 Inf    0.1227    0.9949    1  -1.970  0.0489
+
+gp2 = GP, verb = RAT:
+ contrast         odds.ratio     SE  df asymp.LCL asymp.UCL null z.ratio p.value
+ Strong4 / Others     0.0301 0.0166 Inf    0.0102    0.0888    1  -6.344  <.0001
+
+gp2 = NGP, verb = OT:
+ contrast         odds.ratio     SE  df asymp.LCL asymp.UCL null z.ratio p.value
+ Strong4 / Others     0.2924 0.1520 Inf    0.1054    0.8109    1  -2.363  0.0181
+
+gp2 = GP, verb = OT:
+ contrast         odds.ratio     SE  df asymp.LCL asymp.UCL null z.ratio p.value
+ Strong4 / Others     0.0814 0.0426 Inf    0.0292    0.2272    1  -4.792  <.0001
+
+Confidence level used: 0.95 
+Intervals are back-transformed from the log odds ratio scale 
+Tests are performed on the log odds ratio scale 
+
+===================== D =====================
+N = 10216 | singular: FALSE | convergence messages: 0 
+LRT all group terms: chi2( 4 ) = 59.71 , p = 3.34e-12 
+gp2 = NGP, verb = RAT:
+ group      prob      SE  df asymp.LCL asymp.UCL
+ Others  0.00745 0.00362 Inf  0.002865    0.0192
+ Strong4 0.01153 0.00640 Inf  0.003863    0.0339
+
+gp2 = GP, verb = RAT:
+ group      prob      SE  df asymp.LCL asymp.UCL
+ Others  0.03068 0.01400 Inf  0.012453    0.0736
+ Strong4 0.00135 0.00147 Inf  0.000159    0.0114
+
+gp2 = NGP, verb = OT:
+ group      prob      SE  df asymp.LCL asymp.UCL
+ Others  0.45919 0.11100 Inf  0.260857    0.6713
+ Strong4 0.36749 0.11700 Inf  0.177647    0.6098
+
+gp2 = GP, verb = OT:
+ group      prob      SE  df asymp.LCL asymp.UCL
+ Others  0.03936 0.01730 Inf  0.016418    0.0914
+ Strong4 0.00450 0.00277 Inf  0.001344    0.0149
+
+Confidence level used: 0.95 
+Intervals are back-transformed from the logit scale 
+gp2 = NGP, verb = RAT:
+ contrast         odds.ratio     SE  df asymp.LCL asymp.UCL null z.ratio p.value
+ Strong4 / Others     1.5535 0.6910 Inf    0.6494     3.716    1   0.990  0.3222
+
+gp2 = GP, verb = RAT:
+ contrast         odds.ratio     SE  df asymp.LCL asymp.UCL null z.ratio p.value
+ Strong4 / Others     0.0427 0.0439 Inf    0.0057     0.320    1  -3.067  0.0022
+
+gp2 = NGP, verb = OT:
+ contrast         odds.ratio     SE  df asymp.LCL asymp.UCL null z.ratio p.value
+ Strong4 / Others     0.6843 0.2260 Inf    0.3579     1.308    1  -1.147  0.2512
+
+gp2 = GP, verb = OT:
+ contrast         odds.ratio     SE  df asymp.LCL asymp.UCL null z.ratio p.value
+ Strong4 / Others     0.1103 0.0541 Inf    0.0422     0.288    1  -4.496  <.0001
+
+Confidence level used: 0.95 
+Intervals are back-transformed from the log odds ratio scale 
+Tests are performed on the log odds ratio scale 
+
+
+===================== accuracy: GP detected, (A + B_res)*group =====================
+cells:
+# A tibble: 8 × 5
+  group       A B_res     n   err
+  <fct>   <dbl> <dbl> <int> <dbl>
+1 Others      0     0   595  97  
+2 Others      0     1   528  61.7
+3 Others      1     0   164  87.8
+4 Others      1     1  1086  20.5
+5 Strong4     0     0    45  88.9
+6 Strong4     0     1    72  11.1
+7 Strong4     1     0    53  62.3
+8 Strong4     1     1   750   0.3
+N = 3293 | singular: FALSE | convergence messages: 0 
+              Estimate Std. Error     z value     Pr(>|z|)
+(Intercept)   2.694962  1.0504801   2.5654575 1.030399e-02
+A            -3.161448  0.4937655  -6.4027323 1.526207e-10
+B_res        -4.041427  0.3929922 -10.2837341 8.343118e-25
+group1       -1.365201  1.8981103  -0.7192422 4.719917e-01
+A:group1     -2.084501  0.9837495  -2.1189349 3.409597e-02
+B_res:group1 -3.721644  0.7745451  -4.8049416 1.547967e-06
+LRT group interactions: chi2( 2 ) = 32.32 , p = 9.57e-08 
+
+
+===================== accuracy: pursued NGP-OT, (C_pers + D)*group =====================
+cells:
+# A tibble: 8 × 5
+  group   C_pers     D     n   err
+  <fct>    <dbl> <dbl> <int> <dbl>
+1 Others       0     0   196   0  
+2 Others       0     1     1   0  
+3 Others       1     0  1165   2.2
+4 Others       1     1  1159  96.8
+5 Strong4      0     0   147   1.4
+6 Strong4      0     1     1   0  
+7 Strong4      1     0   359   7.8
+8 Strong4      1     1   391  95.7
+N = 3419 | singular: FALSE | convergence messages: 0 
+                 Estimate Std. Error    z value     Pr(>|z|)
+(Intercept)   -15.6162223 15.3719764 -1.0158890 3.096822e-01
+C_pers         10.6373377 15.3100639  0.6947938 4.871845e-01
+D               9.1553444  0.7134692 12.8321512 1.083143e-37
+group1         16.0817723 30.5667569  0.5261197 5.988051e-01
+C_pers:group1 -16.1283700 30.5634654 -0.5277010 5.977069e-01
+D:group1       -0.5756861  0.8835153 -0.6515859 5.146684e-01
+LRT group interactions: chi2( 2 ) = 1.49 , p = 0.476
+
+----------------------------------------------------------------------------------------------------
+## 6.3  All prevalence and accuracy analyses refitted within the four strongest models only
+----------------------------------------------------------------------------------------------------
+Raw code rates (%), Strong4, by condition:
+A : # A tibble: 1 × 6
+  GP_RAT GP_OT `NGP-comma_RAT` `NGP-comma_OT` `NGP-order_RAT` `NGP-order_OT`
+   <dbl> <dbl>           <dbl>          <dbl>           <dbl>          <dbl>
+1   89.8  84.3             3.8           19.9             3.8            9.4
+B_det : # A tibble: 1 × 6
+  GP_RAT GP_OT `NGP-comma_RAT` `NGP-comma_OT` `NGP-order_RAT` `NGP-order_OT`
+   <dbl> <dbl>           <dbl>          <dbl>           <dbl>          <dbl>
+1    100  99.4             9.1             20             8.3            9.8
+B_res : # A tibble: 1 × 6
+  GP_RAT GP_OT `NGP-comma_RAT` `NGP-comma_OT` `NGP-order_RAT` `NGP-order_OT`
+   <dbl> <dbl>           <dbl>          <dbl>           <dbl>          <dbl>
+1   97.4  81.6             100           98.9             100            100
+C_purs : # A tibble: 1 × 6
+  GP_RAT GP_OT `NGP-comma_RAT` `NGP-comma_OT` `NGP-order_RAT` `NGP-order_OT`
+   <dbl> <dbl>           <dbl>          <dbl>           <dbl>          <dbl>
+1   99.3   100            39.1           98.2            41.3           99.1
+C_pers : # A tibble: 1 × 6
+  GP_RAT GP_OT `NGP-comma_RAT` `NGP-comma_OT` `NGP-order_RAT` `NGP-order_OT`
+   <dbl> <dbl>           <dbl>          <dbl>           <dbl>          <dbl>
+1      6  46.2            10.4           78.2              23           88.8
+D : # A tibble: 1 × 6
+  GP_RAT GP_OT `NGP-comma_RAT` `NGP-comma_OT` `NGP-order_RAT` `NGP-order_OT`
+   <dbl> <dbl>           <dbl>          <dbl>           <dbl>          <dbl>
+1    0.2   1.7             0.5           36.1             3.3           50.2
+
+===================== A (Strong4) =====================
+N = 2671 | singular: FALSE | convergence messages: 0 
+LRT gp:      chi2(1) = 2075.55 , p = 0 
+LRT verb:    chi2(1) = 2.76 , p = 0.0965 
+LRT gpXverb: chi2(1) = 58.41 , p = 2.13e-14 
+verb = RAT:
+ gp2    prob      SE  df asymp.LCL asymp.UCL
+ NGP 0.00579 0.00557 Inf  0.000871    0.0374
+ GP  0.96313 0.03380 Inf  0.801476    0.9941
+
+verb = OT:
+ gp2    prob      SE  df asymp.LCL asymp.UCL
+ NGP 0.04828 0.04320 Inf  0.007957    0.2429
+ GP  0.93374 0.05840 Inf  0.689145    0.9890
+
+Confidence level used: 0.95 
+Intervals are back-transformed from the logit scale 
+verb = RAT:
+ contrast odds.ratio     SE  df asymp.LCL asymp.UCL null z.ratio p.value
+ GP / NGP       4489 1880.0 Inf      1977     10189    1  20.105 <0.0001
+
+verb = OT:
+ contrast odds.ratio     SE  df asymp.LCL asymp.UCL null z.ratio p.value
+ GP / NGP        278   78.2 Inf       160       482    1  19.995 <0.0001
+
+Confidence level used: 0.95 
+Intervals are back-transformed from the log odds ratio scale 
+Tests are performed on the log odds ratio scale 
+
+===================== B_det (Strong4) =====================
+N = 2669 | singular: FALSE | convergence messages: 0 
+LRT gp:      chi2(1) = 2515.74 , p = 0 
+LRT verb:    chi2(1) = 2.9 , p = 0.0883 
+LRT gpXverb: chi2(1) = 9.45 , p = 0.00211 
+verb = RAT:
+ gp2      prob       SE  df asymp.LCL asymp.UCL
+ NGP 0.0287232 1.76e-02 Inf 0.0085161 0.0924089
+ GP  1.0000000 2.00e-08 Inf 0.0000000 1.0000000
+
+verb = OT:
+ gp2      prob       SE  df asymp.LCL asymp.UCL
+ NGP 0.0933626 5.03e-02 Inf 0.0311044 0.2483004
+ GP  0.9972708 2.35e-03 Inf 0.9853687 0.9994959
+
+Confidence level used: 0.95 
+Intervals are back-transformed from the logit scale 
+verb = RAT:
+ contrast odds.ratio       SE  df asymp.LCL asymp.UCL null z.ratio p.value
+ GP / NGP   5.74e+10 2.18e+12 Inf         0  1.13e+43    1   0.653  0.5138
+
+verb = OT:
+ contrast odds.ratio       SE  df asymp.LCL asymp.UCL null z.ratio p.value
+ GP / NGP   3.55e+03 2.38e+03 Inf       951  1.32e+04    1  12.166 <0.0001
+
+Confidence level used: 0.95 
+Intervals are back-transformed from the log odds ratio scale 
+Tests are performed on the log odds ratio scale 
+
+===================== B_res (Strong4) =====================
+N = 1128 | singular: FALSE | convergence messages: 2 
+LRT gp:      chi2(1) = 51.46 , p = 7.3e-13 
+LRT verb:    chi2(1) = 9.92 , p = 0.00163 
+LRT gpXverb: chi2(1) = 0.02 , p = 0.886 
+verb = RAT:
+ gp2     prob       SE  df asymp.LCL asymp.UCL
+ NGP 1.000000 3.46e-06 Inf  0.000000  1.000000
+ GP  0.991220 7.30e-03 Inf  0.956209  0.998290
+
+verb = OT:
+ gp2     prob       SE  df asymp.LCL asymp.UCL
+ NGP 0.999316 9.60e-04 Inf  0.989365  0.999957
+ GP  0.913228 6.15e-02 Inf  0.697059  0.979649
+
+Confidence level used: 0.95 
+Intervals are back-transformed from the logit scale 
+verb = RAT:
+ contrast odds.ratio       SE  df asymp.LCL asymp.UCL null z.ratio p.value
+ GP / NGP   1.97e-07 0.000391 Inf  0.000000       Inf    1  -0.008  0.9938
+
+verb = OT:
+ contrast odds.ratio       SE  df asymp.LCL asymp.UCL null z.ratio p.value
+ GP / NGP   7.20e-03 0.008420 Inf  0.000727         0    1  -4.218 <0.0001
+
+Confidence level used: 0.95 
+Intervals are back-transformed from the log odds ratio scale 
+Tests are performed on the log odds ratio scale 
+
+===================== C_purs (Strong4) =====================
+N = 2671 | singular: FALSE | convergence messages: 0 
+LRT gp:      chi2(1) = 626.88 , p = 2.39e-138 
+LRT verb:    chi2(1) = 44.89 , p = 2.08e-11 
+LRT gpXverb: chi2(1) = 0.03 , p = 0.854 
+verb = RAT:
+ gp2      prob       SE  df asymp.LCL asymp.UCL
+ NGP 0.3824642 7.63e-02 Inf 0.2474742 0.5384054
+ GP  0.9956853 2.85e-03 Inf 0.9843374 0.9988212
+
+verb = OT:
+ gp2      prob       SE  df asymp.LCL asymp.UCL
+ NGP 0.9919272 3.83e-03 Inf 0.9796431 0.9968227
+ GP  1.0000000 7.00e-08 Inf 0.0000000 1.0000000
+
+Confidence level used: 0.95 
+Intervals are back-transformed from the logit scale 
+verb = RAT:
+ contrast odds.ratio       SE  df asymp.LCL asymp.UCL null z.ratio p.value
+ GP / NGP        373 2.21e+02 Inf       117  1.19e+03    1   9.982 <0.0001
+
+verb = OT:
+ contrast odds.ratio       SE  df asymp.LCL asymp.UCL null z.ratio p.value
+ GP / NGP    3514410 1.10e+08 Inf         0  1.85e+33    1   0.480  0.6311
+
+Confidence level used: 0.95 
+Intervals are back-transformed from the log odds ratio scale 
+Tests are performed on the log odds ratio scale 
+
+===================== C_pers (Strong4) =====================
+N = 2155 | singular: FALSE | convergence messages: 0 
+LRT gp:      chi2(1) = 221.44 , p = 4.39e-50 
+LRT verb:    chi2(1) = 33.62 , p = 6.7e-09 
+LRT gpXverb: chi2(1) = 14.42 , p = 0.000146 
+verb = RAT:
+ gp2   prob     SE  df asymp.LCL asymp.UCL
+ NGP 0.0667 0.0270 Inf    0.0296    0.1433
+ GP  0.0296 0.0126 Inf    0.0127    0.0674
+
+verb = OT:
+ gp2   prob     SE  df asymp.LCL asymp.UCL
+ NGP 0.8644 0.0419 Inf    0.7599    0.9278
+ GP  0.4578 0.0887 Inf    0.2954    0.6297
+
+Confidence level used: 0.95 
+Intervals are back-transformed from the logit scale 
+verb = RAT:
+ contrast odds.ratio    SE  df asymp.LCL asymp.UCL null z.ratio p.value
+ GP / NGP      0.426 0.110 Inf     0.257     0.706    1  -3.310  0.0009
+
+verb = OT:
+ contrast odds.ratio    SE  df asymp.LCL asymp.UCL null z.ratio p.value
+ GP / NGP      0.132 0.019 Inf     0.100     0.175    1 -14.120 <0.0001
+
+Confidence level used: 0.95 
+Intervals are back-transformed from the log odds ratio scale 
+Tests are performed on the log odds ratio scale 
+
+===================== D (Strong4) =====================
+N = 2671 | singular: FALSE | convergence messages: 0 
+LRT gp:      chi2(1) = 454.76 , p = 6.65e-101 
+LRT verb:    chi2(1) = 22.2 , p = 2.45e-06 
+LRT gpXverb: chi2(1) = 3.55 , p = 0.0597 
+verb = RAT:
+ gp2    prob       SE  df asymp.LCL asymp.UCL
+ NGP 0.00629 0.004420 Inf  1.58e-03   0.02468
+ GP  0.00072 0.000866 Inf  6.82e-05   0.00756
+
+verb = OT:
+ gp2    prob       SE  df asymp.LCL asymp.UCL
+ NGP 0.37238 0.134000 Inf  1.62e-01   0.64601
+ GP  0.00404 0.002770 Inf  1.05e-03   0.01537
+
+Confidence level used: 0.95 
+Intervals are back-transformed from the logit scale 
+verb = RAT:
+ contrast odds.ratio      SE  df asymp.LCL asymp.UCL null z.ratio p.value
+ GP / NGP    0.11394 0.11800 Inf   0.01494     0.869    1  -2.096  0.0361
+
+verb = OT:
+ contrast odds.ratio      SE  df asymp.LCL asymp.UCL null z.ratio p.value
+ GP / NGP    0.00684 0.00273 Inf   0.00313     0.015    1 -12.484 <0.0001
+
+Confidence level used: 0.95 
+Intervals are back-transformed from the log odds ratio scale 
+Tests are performed on the log odds ratio scale 
+Warning messages:
+1: In checkConv(attr(opt, "derivs"), opt$par, ctrl = control$checkConv,  :
+  Model failed to converge with max|grad| = 0.0519992 (tol = 0.002, component 1)
+  See ?lme4::convergence and ?lme4::troubleshooting.
+2: In checkConv(attr(opt, "derivs"), opt$par, ctrl = control$checkConv,  :
+  Model is nearly unidentifiable: very large eigenvalue
+ - Rescale variables?
+3: In checkConv(attr(opt, "derivs"), opt$par, ctrl = control$checkConv,  :
+  Model failed to converge with max|grad| = 0.0533317 (tol = 0.002, component 1)
+  See ?lme4::convergence and ?lme4::troubleshooting.
+4: In checkConv(attr(opt, "derivs"), opt$par, ctrl = control$checkConv,  :
+  Model is nearly unidentifiable: very large eigenvalue
+ - Rescale variables?
+5: In checkConv(attr(opt, "derivs"), opt$par, ctrl = control$checkConv,  :
+  unable to evaluate scaled gradient
+6: In checkConv(attr(opt, "derivs"), opt$par, ctrl = control$checkConv,  :
+  Model failed to converge: degenerate  Hessian with 1 negative eigenvalues
+  See ?lme4::convergence and ?lme4::troubleshooting.
+7: In vcov.merMod(object, complete = FALSE, ...) :
+  variance-covariance matrix computed from finite-difference Hessian is
+not positive definite or contains NA values: falling back to var-cov estimated from RX
+
+
+============ Strong4 accuracy GP: error ~ A*B_res, detected GP trials ============
+B_res rate by A: # A tibble: 2 × 3
+      A     n   res
+  <dbl> <int> <dbl>
+1     0   117  61.5
+2     1   803  93.4
+cells:
+# A tibble: 4 × 4
+      A B_res     n   err
+  <dbl> <dbl> <int> <dbl>
+1     0     0    45  88.9
+2     0     1    72  11.1
+3     1     0    53  62.3
+4     1     1   750   0.3
+N = 920 | singular: FALSE | convergence messages: 0 
+              Estimate Std. Error   z value     Pr(>|z|)
+(Intercept) -20.736148   6.658652 -3.114166 1.844657e-03
+A            -3.386591   2.628305 -1.288508 1.975693e-01
+B_res        -3.223080   2.561208 -1.258421 2.082394e-01
+A:B_res     -22.959411   4.977176 -4.612940 3.970133e-06
+LRT A x B_res: chi2(1) = 19.36 , p = 1.08e-05 
+main-effects model:
+              Estimate Std. Error    z value     Pr(>|z|)
+(Intercept)  -1.028379   5.532092 -0.1858933 8.525284e-01
+A           -20.422007   4.612844 -4.4272052 9.546191e-06
+B_res       -20.785247   4.316380 -4.8154350 1.468795e-06
+                OR 2.5 %   97.5 %
+(Intercept) 0.3576     0 18293.88
+A           0.0000     0     0.00
+B_res       0.0000     0     0.00
+A within B_res:
+B_res = 0:
+ contrast odds.ratio     SE  df asymp.LCL asymp.UCL null z.ratio p.value
+ A1 / A0      0.0338 0.0889 Inf  0.000196      5.84    1  -1.289  0.1976
+
+B_res = 1:
+ contrast odds.ratio     SE  df asymp.LCL asymp.UCL null z.ratio p.value
+ A1 / A0      0.0000 0.0000 Inf  0.000000      0.00    1  -4.895 <0.0001
+
+Confidence level used: 0.95 
+Intervals are back-transformed from the log odds ratio scale 
+Tests are performed on the log odds ratio scale 
+B_res within A:
+A = 0:
+ contrast        odds.ratio    SE  df asymp.LCL asymp.UCL null z.ratio p.value
+ B_res1 / B_res0     0.0398 0.102 Inf  0.000263      6.03    1  -1.258  0.2082
+
+A = 1:
+ contrast        odds.ratio    SE  df asymp.LCL asymp.UCL null z.ratio p.value
+ B_res1 / B_res0     0.0000 0.000 Inf  0.000000      0.00    1  -5.054 <0.0001
+
+Confidence level used: 0.95 
+Intervals are back-transformed from the log odds ratio scale 
+Tests are performed on the log odds ratio scale 
+
+
+============ Strong4 accuracy NGP-OT: error ~ C_pers + D, pursued trials ============
+P(D=1|C_pers): # A tibble: 2 × 3
+  C_pers     n     D
+   <dbl> <int> <dbl>
+1      0   148   0.7
+2      1   750  52.1
+C' x D cells:
+# A tibble: 4 × 4
+  C_pers     D     n   err
+   <dbl> <dbl> <int> <dbl>
+1      0     0   147   1.4
+2      0     1     1   0  
+3      1     0   359   7.8
+4      1     1   391  95.7
+N = 898 | singular: FALSE | convergence messages: 0 
+             Estimate Std. Error   z value     Pr(>|z|)
+(Intercept) -8.811268   3.142079 -2.804279 5.042922e-03
+C_pers       2.267031   1.189980  1.905101 5.676696e-02
+D           11.383135   2.884253  3.946650 7.925229e-05
+                    OR    2.5 %       97.5 %
+(Intercept)     0.0001   0.0000 7.040000e-02
+C_pers          9.6507   0.9368 9.941950e+01
+D           87827.9823 308.0014 2.504455e+07
+
+
+====================================================================================================
+#  7. TRACE VS FOLLOW-UP EXPLANATION (Paper Section 4.7, Appendix D)
+====================================================================================================
+
+----------------------------------------------------------------------------------------------------
+## 7.1  Cell-level similarity: does the trace resemble its own follow-up more than the baseline follow-up does (paired Wilcoxon signed-rank, Lin's concordance)
+----------------------------------------------------------------------------------------------------
+=== Question 1 ===
+Unit: item x model x condition cells, rates computed from the trial-level data
+Rows (cells): 1152 
+Unique itemno x model x gp3: 1152 
+No split by condition, verb or answer.
+
+---------------- code A ----------------
+cells with both distances defined: 1110   (of 1152 )
+tied cells (d1 == d2): 827    contributing cells: 283 
+mean   d1 = 0.0919    mean   d2 = 0.0283 
+median d1 = 0    median d2 = 0 
+sd     d1 = 0.2039    sd     d2 = 0.0973 
+% cells with d2 < d1: 21.6 
+% cells with d1 < d2: 3.9 
+Wilcoxon signed-rank (paired, d1 vs d2): V = 35331   p = 1.802e-28 
+CCC(Q1trace, Q2high) = 0.7924 
+CCC(Q2base,  Q2high) = 0.9464 
+closer to Q2high (by mean distance): Q2base 
+
+---------------- code B ----------------
+cells with both distances defined: 1109   (of 1152 )
+tied cells (d1 == d2): 666    contributing cells: 443 
+mean   d1 = 0.1193    mean   d2 = 0.0612 
+median d1 = 0    median d2 = 0 
+sd     d1 = 0.213    sd     d2 = 0.1404 
+% cells with d2 < d1: 28.1 
+% cells with d1 < d2: 11.8 
+Wilcoxon signed-rank (paired, d1 vs d2): V = 74614.5   p = 3.545e-21 
+CCC(Q1trace, Q2high) = 0.8454 
+CCC(Q2base,  Q2high) = 0.9352 
+closer to Q2high (by mean distance): Q2base 
+
+---------------- code Bres ----------------
+cells with both distances defined: 384   (of 1152 )
+tied cells (d1 == d2): 186    contributing cells: 198 
+mean   d1 = 0.184    mean   d2 = 0.1362 
+median d1 = 0.1    median d2 = 0 
+sd     d1 = 0.255    sd     d2 = 0.2159 
+% cells with d2 < d1: 32.8 
+% cells with d1 < d2: 18.8 
+Wilcoxon signed-rank (paired, d1 vs d2): V = 12938.5   p = 0.0001302 
+CCC(Q1trace, Q2high) = 0.5596 
+CCC(Q2base,  Q2high) = 0.7291 
+closer to Q2high (by mean distance): Q2base 
+
+---------------- code C ----------------
+cells with both distances defined: 1109   (of 1152 )
+tied cells (d1 == d2): 703    contributing cells: 406 
+mean   d1 = 0.1034    mean   d2 = 0.0599 
+median d1 = 0    median d2 = 0 
+sd     d1 = 0.1837    sd     d2 = 0.1213 
+% cells with d2 < d1: 24.3 
+% cells with d1 < d2: 12.3 
+Wilcoxon signed-rank (paired, d1 vs d2): V = 61143.5   p = 4.26e-17 
+CCC(Q1trace, Q2high) = 0.8253 
+CCC(Q2base,  Q2high) = 0.9339 
+closer to Q2high (by mean distance): Q2base 
+
+---------------- code Cpers ----------------
+cells with both distances defined: 923   (of 1152 )
+tied cells (d1 == d2): 464    contributing cells: 459 
+mean   d1 = 0.1256    mean   d2 = 0.0876 
+median d1 = 0    median d2 = 0 
+sd     d1 = 0.1821    sd     d2 = 0.167 
+% cells with d2 < d1: 31.9 
+% cells with d1 < d2: 17.9 
+Wilcoxon signed-rank (paired, d1 vs d2): V = 70547   p = 4.069e-10 
+CCC(Q1trace, Q2high) = 0.8408 
+CCC(Q2base,  Q2high) = 0.8771 
+closer to Q2high (by mean distance): Q2base 
+
+---------------- code D ----------------
+cells with both distances defined: 1110   (of 1152 )
+tied cells (d1 == d2): 694    contributing cells: 416 
+mean   d1 = 0.059    mean   d2 = 0.0901 
+median d1 = 0    median d2 = 0 
+sd     d1 = 0.1384    sd     d2 = 0.1999 
+% cells with d2 < d1: 16.4 
+% cells with d1 < d2: 21.1 
+Wilcoxon signed-rank (paired, d1 vs d2): V = 35786   p = 0.001949 
+CCC(Q1trace, Q2high) = 0.8923 
+CCC(Q2base,  Q2high) = 0.7991 
+closer to Q2high (by mean distance): Q1trace 
+
+=== summary table ===
+  code cells contributing mean_d1 mean_d2 median_d1 median_d2 pct_d2_lt_d1
+     A  1110          283  0.0919  0.0283       0.0         0         21.6
+     B  1109          443  0.1193  0.0612       0.0         0         28.1
+  Bres   384          198  0.1840  0.1362       0.1         0         32.8
+     C  1109          406  0.1034  0.0599       0.0         0         24.3
+ Cpers   923          459  0.1256  0.0876       0.0         0         31.9
+     D  1110          416  0.0590  0.0901       0.0         0         16.4
+   wilcoxon_p ccc_trace_high ccc_base_high  closer
+ 1.801983e-28         0.7924        0.9464  Q2base
+ 3.545167e-21         0.8454        0.9352  Q2base
+ 1.301572e-04         0.5596        0.7291  Q2base
+ 4.259799e-17         0.8253        0.9339  Q2base
+ 4.069169e-10         0.8408        0.8771  Q2base
+ 1.949017e-03         0.8923        0.7991 Q1trace
+
+
+----------------------------------------------------------------------------------------------------
+## 7.2  Cell counts of every source x answer x construction x verb cell per code, with sparse-cell flags
+----------------------------------------------------------------------------------------------------
+=== Cell counts, source x answer x gp2 x verb (16 cells per code) ===
+sparse flag: fewer than 40 of either outcome
+
+---------------- code A ----------------
+N defined: 21727   (Q1trace 10216 / Q2high 11511 )
+overall 1s:3857 (17.8% )
+
+  source answer gp2 verb   n0  n1    n  pct sparse
+ Q1trace     No  GP   OT   67 731  798 91.6       
+  Q2high     No  GP   OT  197 642  839 76.5       
+ Q1trace     No  GP  RAT  229 920 1149 80.1       
+  Q2high     No  GP  RAT  523 711 1234 57.6       
+ Q1trace     No NGP   OT 1726 161 1887  8.5       
+  Q2high     No NGP   OT 2029  15 2044  0.7 SPARSE
+ Q1trace     No NGP  RAT 3182  41 3223  1.3       
+  Q2high     No NGP  RAT 3806   3 3809  0.1 SPARSE
+ Q1trace    Yes  GP   OT  731 227  958 23.7       
+  Q2high    Yes  GP   OT  988  90 1078  8.3       
+ Q1trace    Yes  GP  RAT  433 175  608 28.8       
+  Q2high    Yes  GP  RAT  591  89  680 13.1       
+ Q1trace    Yes NGP   OT 1525  47 1572  3.0       
+  Q2high    Yes NGP   OT 1794   2 1796  0.1 SPARSE
+ Q1trace    Yes NGP  RAT   18   3   21 14.3 SPARSE
+  Q2high    Yes NGP  RAT   31   0   31  0.0 SPARSE
+
+sparse cells: 5 of 16 
+cells with a zero count: 1 
+
+---------------- code B ----------------
+N defined: 21717   (Q1trace 10209 / Q2high 11508 )
+overall 1s:7543 (34.7% )
+
+  source answer gp2 verb   n0   n1    n  pct sparse
+ Q1trace     No  GP   OT    2  796  798 99.7 SPARSE
+  Q2high     No  GP   OT   14  825  839 98.3 SPARSE
+ Q1trace     No  GP  RAT    5 1144 1149 99.6 SPARSE
+  Q2high     No  GP  RAT   39 1195 1234 96.8 SPARSE
+ Q1trace     No NGP   OT 1576  310 1886 16.4       
+  Q2high     No NGP   OT 1954   90 2044  4.4       
+ Q1trace     No NGP  RAT 2962  259 3221  8.0       
+  Q2high     No NGP  RAT 3687  122 3809  3.2       
+ Q1trace    Yes  GP   OT  109  846  955 88.6       
+  Q2high    Yes  GP   OT  355  723 1078 67.1       
+ Q1trace    Yes  GP  RAT  100  507  607 83.5       
+  Q2high    Yes  GP  RAT  265  412  677 60.9       
+ Q1trace    Yes NGP   OT 1366  206 1572 13.1       
+  Q2high    Yes NGP   OT 1716   80 1796  4.5       
+ Q1trace    Yes NGP  RAT    3   18   21 85.7 SPARSE
+  Q2high    Yes NGP  RAT   21   10   31 32.3 SPARSE
+
+sparse cells: 6 of 16 
+cells with a zero count: 0 
+
+---------------- code Bres ----------------
+N defined: 7543   (Q1trace 4086 / Q2high 3457 )
+overall 1s:5700 (75.6% )
+
+  source answer gp2 verb  n0   n1    n   pct sparse
+ Q1trace     No  GP   OT  38  758  796  95.2 SPARSE
+  Q2high     No  GP   OT 229  596  825  72.2       
+ Q1trace     No  GP  RAT  25 1119 1144  97.8 SPARSE
+  Q2high     No  GP  RAT 106 1089 1195  91.1       
+ Q1trace     No NGP   OT  36  274  310  88.4 SPARSE
+  Q2high     No NGP   OT  26   64   90  71.1 SPARSE
+ Q1trace     No NGP  RAT   3  256  259  98.8 SPARSE
+  Q2high     No NGP  RAT   7  115  122  94.3 SPARSE
+ Q1trace    Yes  GP   OT 526  320  846  37.8       
+  Q2high    Yes  GP   OT 410  313  723  43.3       
+ Q1trace    Yes  GP  RAT 268  239  507  47.1       
+  Q2high    Yes  GP  RAT 162  250  412  60.7       
+ Q1trace    Yes NGP   OT   5  201  206  97.6 SPARSE
+  Q2high    Yes NGP   OT   2   78   80  97.5 SPARSE
+ Q1trace    Yes NGP  RAT   0   18   18 100.0 SPARSE
+  Q2high    Yes NGP  RAT   0   10   10 100.0 SPARSE
+
+sparse cells: 10 of 16 
+cells with a zero count: 2 
+
+---------------- code C ----------------
+N defined: 21716   (Q1trace 10210 / Q2high 11506 )
+overall 1s:17039 (78.5% )
+
+  source answer gp2 verb   n0   n1    n   pct sparse
+ Q1trace     No  GP   OT    0  798  798 100.0 SPARSE
+  Q2high     No  GP   OT    9  830  839  98.9 SPARSE
+ Q1trace     No  GP  RAT   17 1132 1149  98.5 SPARSE
+  Q2high     No  GP  RAT   64 1170 1234  94.8       
+ Q1trace     No NGP   OT   19 1867 1886  99.0 SPARSE
+  Q2high     No NGP   OT   53 1991 2044  97.4       
+ Q1trace     No NGP  RAT 1791 1430 3221  44.4       
+  Q2high     No NGP  RAT 2545 1263 3808  33.2       
+ Q1trace    Yes  GP   OT    3  953  956  99.7 SPARSE
+  Q2high    Yes  GP   OT    6 1072 1078  99.4 SPARSE
+ Q1trace    Yes  GP  RAT    0  607  607 100.0 SPARSE
+  Q2high    Yes  GP  RAT    3  673  676  99.6 SPARSE
+ Q1trace    Yes NGP   OT   20 1552 1572  98.7 SPARSE
+  Q2high    Yes NGP   OT  145 1651 1796  91.9       
+ Q1trace    Yes NGP  RAT    0   21   21 100.0 SPARSE
+  Q2high    Yes NGP  RAT    2   29   31  93.5 SPARSE
+
+sparse cells: 11 of 16 
+cells with a zero count: 3 
+
+---------------- code Cpers ----------------
+N defined: 17039   (Q1trace 8360 / Q2high 8679 )
+overall 1s:12312 (72.3% )
+
+  source answer gp2 verb  n0   n1    n   pct sparse
+ Q1trace     No  GP   OT 425  373  798  46.7       
+  Q2high     No  GP   OT 313  517  830  62.3       
+ Q1trace     No  GP  RAT 998  134 1132  11.8       
+  Q2high     No  GP  RAT 895  275 1170  23.5       
+ Q1trace     No NGP   OT 343 1524 1867  81.6       
+  Q2high     No NGP   OT 155 1836 1991  92.2       
+ Q1trace     No NGP  RAT 946  484 1430  33.8       
+  Q2high     No NGP  RAT 604  659 1263  52.2       
+ Q1trace    Yes  GP   OT   7  946  953  99.3 SPARSE
+  Q2high    Yes  GP   OT  17 1055 1072  98.4 SPARSE
+ Q1trace    Yes  GP  RAT   3  604  607  99.5 SPARSE
+  Q2high    Yes  GP  RAT  17  656  673  97.5 SPARSE
+ Q1trace    Yes NGP   OT   2 1550 1552  99.9 SPARSE
+  Q2high    Yes NGP   OT   1 1650 1651  99.9 SPARSE
+ Q1trace    Yes NGP  RAT   0   21   21 100.0 SPARSE
+  Q2high    Yes NGP  RAT   1   28   29  96.6 SPARSE
+
+sparse cells: 8 of 16 
+cells with a zero count: 1 
+
+---------------- code D ----------------
+N defined: 21727   (Q1trace 10216 / Q2high 11511 )
+overall 1s:3638 (16.7% )
+
+  source answer gp2 verb   n0   n1    n   pct sparse
+ Q1trace     No  GP   OT  792    6  798   0.8 SPARSE
+  Q2high     No  GP   OT  820   19  839   2.3 SPARSE
+ Q1trace     No  GP  RAT 1144    5 1149   0.4 SPARSE
+  Q2high     No  GP  RAT 1217   17 1234   1.4 SPARSE
+ Q1trace     No NGP   OT 1830   57 1887   3.0       
+  Q2high     No NGP   OT 1933  111 2044   5.4       
+ Q1trace     No NGP  RAT 3201   22 3223   0.7 SPARSE
+  Q2high     No NGP  RAT 3780   29 3809   0.8 SPARSE
+ Q1trace    Yes  GP   OT  819  139  958  14.5       
+  Q2high    Yes  GP   OT 1009   69 1078   6.4       
+ Q1trace    Yes  GP  RAT  555   53  608   8.7       
+  Q2high    Yes  GP  RAT  659   21  680   3.1 SPARSE
+ Q1trace    Yes NGP   OT   71 1501 1572  95.5       
+  Q2high    Yes NGP   OT  256 1540 1796  85.7       
+ Q1trace    Yes NGP  RAT    0   21   21 100.0 SPARSE
+  Q2high    Yes NGP  RAT    3   28   31  90.3 SPARSE
+
+sparse cells: 9 of 16 
+cells with a zero count: 1 
+
+
+----------------------------------------------------------------------------------------------------
+## 7.3  Model-selection ladder: the retained model complexity per code, with fit diagnostics
+----------------------------------------------------------------------------------------------------
+A     full four-way model      N=21727  max fixed-effect SE=  868.292  singular=FALSE  -> descend (max SE above 5)
+A     four-way term dropped    N=21727  max fixed-effect SE=    0.847  singular=FALSE  -> RETAINED
+B     full four-way model      N=21717  max fixed-effect SE=    1.277  singular=FALSE  -> RETAINED
+Bres  full four-way model      N=7543   max fixed-effect SE=   15.750  singular=FALSE  -> descend (max SE above 5)
+Cpers full four-way model      N=17039  max fixed-effect SE=  184.506  singular=FALSE  -> descend (max SE above 5)
+Bres  four-way term dropped    N=7543   max fixed-effect SE=    8.577  singular=FALSE  -> descend (max SE above 5)
+Cpers four-way term dropped    N=17039  max fixed-effect SE=    1.374  singular=FALSE  -> RETAINED
+C     full four-way model      N=21716  max fixed-effect SE= 2425.029  singular=FALSE  -> descend (max SE above 5)
+Bres  three-way terms dropped  N=7543   max fixed-effect SE=    0.490  singular=FALSE  -> RETAINED
+C     four-way term dropped    N=21716  max fixed-effect SE=  513.219  singular=FALSE  -> descend (max SE above 5)
+D     full four-way model      N=21727  max fixed-effect SE=  530.411  singular=FALSE  -> descend (max SE above 5)
+C     three-way terms dropped  N=21716  max fixed-effect SE=    0.588  singular=FALSE  -> RETAINED
+D     four-way term dropped    N=21727  max fixed-effect SE=    0.777  singular=FALSE  -> RETAINED
+
+----------------------------------------------------------------------------------------------------
+## 7.4  Likelihood-ratio tests on every source-containing term, each df = 1, plus the omnibus test per code
+----------------------------------------------------------------------------------------------------
+Bres   source                   chisq=1.1465      df=1   p=0.2843       llf=-2360.098 llr=-2360.671
+Bres   source:answer            chisq=298.8176    df=1   p=5.962e-67    llf=-2360.098 llr=-2509.506
+Bres   source:gp2               chisq=3.3156      df=1   p=0.06862      llf=-2360.098 llr=-2361.755
+Bres   source:verb              chisq=13.5017     df=1   p=0.0002383    llf=-2360.098 llr=-2366.849
+Bres   OMNIBUS                  chisq=333.6284    df=4   p=6.003e-71    llf=-2360.098 llr=-2526.912
+C      source                   chisq=125.6525    df=1   p=3.663e-29    llf=-4770.344 llr=-4833.170
+C      source:answer            chisq=5.8838      df=1   p=0.01528      llf=-4770.344 llr=-4773.286
+C      source:gp2               chisq=5.1085      df=1   p=0.02381      llf=-4770.344 llr=-4772.898
+C      source:verb              chisq=1.9681      df=1   p=0.1606       llf=-4770.344 llr=-4771.328
+C      OMNIBUS                  chisq=297.0745    df=4   p=4.633e-63    llf=-4770.344 llr=-4918.881
+A      source                   chisq=260.9401    df=1   p=1.071e-58    llf=-3086.954 llr=-3217.424
+A      source:answer            chisq=0.1386      df=1   p=0.7097       llf=-3086.954 llr=-3087.023
+A      source:gp2               chisq=14.4328     df=1   p=0.0001453    llf=-3086.954 llr=-3094.170
+A      source:verb              chisq=0.4551      df=1   p=0.4999       llf=-3086.954 llr=-3087.181
+A      source:answer:gp2        chisq=0.3255      df=1   p=0.5683       llf=-3086.954 llr=-3087.117
+A      source:answer:verb       chisq=1.1836      df=1   p=0.2766       llf=-3086.954 llr=-3087.546
+A      source:gp2:verb          chisq=0.1514      df=1   p=0.6972       llf=-3086.954 llr=-3087.029
+A      OMNIBUS                  chisq=800.5771    df=7   p=1.393e-168   llf=-3086.954 llr=-3487.242
+D      source                   chisq=5.7219      df=1   p=0.01675      llf=-3071.077 llr=-3073.938
+D      source:answer            chisq=66.6971     df=1   p=3.166e-16    llf=-3071.077 llr=-3104.426
+D      source:gp2               chisq=7.1646      df=1   p=0.007436     llf=-3071.077 llr=-3074.659
+D      source:verb              chisq=3.2425      df=1   p=0.07175      llf=-3071.077 llr=-3072.698
+D      source:answer:gp2        chisq=0.0651      df=1   p=0.7986       llf=-3071.077 llr=-3071.110
+D      source:answer:verb       chisq=0.1992      df=1   p=0.6553       llf=-3071.077 llr=-3071.177
+D      source:gp2:verb          chisq=0.9547      df=1   p=0.3285       llf=-3071.077 llr=-3071.554
+D      OMNIBUS                  chisq=202.9102    df=7   p=2.776e-40    llf=-3071.077 llr=-3172.532
+Cpers  source                   chisq=0.0502      df=1   p=0.8228       llf=-4591.931 llr=-4591.956
+Cpers  source:answer            chisq=6.4947      df=1   p=0.01082      llf=-4591.931 llr=-4595.178
+Cpers  source:gp2               chisq=0.5874      df=1   p=0.4434       llf=-4591.931 llr=-4592.225
+Cpers  source:verb              chisq=2.5834      df=1   p=0.108        llf=-4591.931 llr=-4593.223
+Cpers  source:answer:gp2        chisq=0.7389      df=1   p=0.39         llf=-4591.931 llr=-4592.300
+Cpers  source:answer:verb       chisq=3.2116      df=1   p=0.07312      llf=-4591.931 llr=-4593.537
+Cpers  source:gp2:verb          chisq=10.5610     df=1   p=0.001155     llf=-4591.931 llr=-4597.211
+Cpers  OMNIBUS                  chisq=295.2240    df=7   p=6.332e-60    llf=-4591.931 llr=-4739.543
+B      source                   chisq=197.2763    df=1   p=8.208e-45    llf=-4412.068 llr=-4510.706
+B      source:answer            chisq=0.6699      df=1   p=0.4131       llf=-4412.068 llr=-4412.403
+B      source:gp2               chisq=2.2787      df=1   p=0.1312       llf=-4412.068 llr=-4413.208
+B      source:verb              chisq=0.2485      df=1   p=0.6181       llf=-4412.068 llr=-4412.192
+B      source:answer:gp2        chisq=0.5514      df=1   p=0.4577       llf=-4412.068 llr=-4412.344
+B      source:answer:verb       chisq=1.5294      df=1   p=0.2162       llf=-4412.068 llr=-4412.833
+B      source:gp2:verb          chisq=0.0155      df=1   p=0.901        llf=-4412.068 llr=-4412.076
+B      source:answer:gp2:verb   chisq=1.9258      df=1   p=0.1652       llf=-4412.068 llr=-4413.031
+B      OMNIBUS                  chisq=775.9135    df=8   p=3.192e-162   llf=-4412.068 llr=-4800.025
+
+----------------------------------------------------------------------------------------------------
+## 7.5  Post hoc source contrasts for code A (garden-path recognition)
+----------------------------------------------------------------------------------------------------
+=== Post hoc, code A  (retained rung: four-way dropped ) ===
+emmeans weights = proportional; one p per contrast; no test on percentages
+
+---- family: source:gp2 ----
+source contrast within gp2 - 2 cells
+
+NOTE: Results may be misleading due to involvement in interactions
+    cell n_Q1trace k_Q1trace pct_Q1trace n_Q2high k_Q2high pct_Q2high pp_diff
+  gp2=GP      3513      2053        58.4     3831     1532       40.0    18.5
+ gp2=NGP      6703       252         3.8     7680       20        0.3     3.5
+     OR OR_lcl OR_ucl        p   p_holm
+  5.716  4.820  6.778 2.00e-89 4.00e-89
+ 22.129 10.699 45.771 6.71e-17 6.71e-17
+
+
+----------------------------------------------------------------------------------------------------
+## 7.6  Post hoc source contrasts for code B (difficulty detection)
+----------------------------------------------------------------------------------------------------
+=== Post hoc, code B  (retained rung: full four-way ) ===
+emmeans weights = proportional; one p per contrast; no test on percentages
+
+---- family: source (main effect; all interactions ns) ----
+source main effect, 1 marginal contrast (averaged over answer, gp2, verb, proportional weights)
+
+NOTE: Results may be misleading due to involvement in interactions
+     cell n_Q1trace k_Q1trace pct_Q1trace n_Q2high k_Q2high pct_Q2high pp_diff
+ all rows     10209      4086          40    11508     3457         30      10
+    OR OR_lcl OR_ucl       p  p_holm
+ 4.771   3.95  5.762 3.5e-59 3.5e-59
+
+
+----------------------------------------------------------------------------------------------------
+## 7.7  Post hoc source contrasts for code B-prime (resolution of the detected difficulty)
+----------------------------------------------------------------------------------------------------
+=== Post hoc, code Bres  (retained rung: three-ways dropped ) ===
+emmeans weights = proportional; one p per contrast; no test on percentages
+
+---- family: source:answer ----
+source contrast within answer - 2 cells
+
+       cell n_Q1trace k_Q1trace pct_Q1trace n_Q2high k_Q2high pct_Q2high
+  answer=No      2509      2407        95.9     2232     1864       83.5
+ answer=Yes      1577       778        49.3     1225      651       53.1
+ pp_diff    OR OR_lcl OR_ucl        p   p_holm
+    12.4 6.658  5.040  8.797 1.35e-40 2.71e-40
+    -3.8 0.364  0.289  0.457 4.86e-18 4.86e-18
+
+---- family: source:verb ----
+source contrast within verb - 2 cells
+
+     cell n_Q1trace k_Q1trace pct_Q1trace n_Q2high k_Q2high pct_Q2high pp_diff
+  verb=OT      2158      1553        72.0     1718     1051       61.2    10.8
+ verb=RAT      1928      1632        84.6     1739     1464       84.2     0.5
+    OR OR_lcl OR_ucl        p   p_holm
+ 3.045  2.429  3.817 4.66e-22 9.33e-22
+ 1.651  1.248  2.182 0.000435 0.000435
+
+
+----------------------------------------------------------------------------------------------------
+## 7.8  Post hoc source contrasts for code C (pursuit of the object analysis)
+----------------------------------------------------------------------------------------------------
+=== Post hoc, code C  (retained rung: three-ways dropped ) ===
+emmeans weights = proportional; one p per contrast; no test on percentages
+
+---- family: source:answer ----
+source contrast within answer - 2 cells
+
+       cell n_Q1trace k_Q1trace pct_Q1trace n_Q2high k_Q2high pct_Q2high
+  answer=No      7054      5227        74.1     7925     5254       66.3
+ answer=Yes      3156      3133        99.3     3581     3425       95.6
+ pp_diff    OR OR_lcl OR_ucl        p   p_holm
+     7.8 3.032  2.240  4.104 6.89e-13 1.38e-12
+     3.6 6.961  4.073 11.896 1.29e-12 1.38e-12
+
+---- family: source:gp2 ----
+source contrast within gp2 - 2 cells
+
+    cell n_Q1trace k_Q1trace pct_Q1trace n_Q2high k_Q2high pct_Q2high pp_diff
+  gp2=GP      3510      3490        99.4     3827     3745       97.9     1.6
+ gp2=NGP      6700      4870        72.7     7679     4934       64.3     8.4
+    OR OR_lcl OR_ucl        p   p_holm
+ 5.719  3.381  9.673 7.92e-11 7.92e-11
+ 3.237  2.689  3.898 2.74e-35 5.48e-35
+
+
+----------------------------------------------------------------------------------------------------
+## 7.9  Post hoc source contrasts for code C-prime (persistence of the object expectation)
+----------------------------------------------------------------------------------------------------
+=== Post hoc, code Cpers  (retained rung: four-way dropped ) ===
+emmeans weights = proportional; one p per contrast; no test on percentages
+
+---- family: source:gp2:verb ----
+source contrast within gp2 x verb - 4 cells
+
+              cell n_Q1trace k_Q1trace pct_Q1trace n_Q2high k_Q2high pct_Q2high
+   gp2=GP, verb=OT      1751      1319        75.3     1902     1572       82.6
+  gp2=NGP, verb=OT      3419      3074        89.9     3642     3486       95.7
+  gp2=GP, verb=RAT      1739       738        42.4     1843      931       50.5
+ gp2=NGP, verb=RAT      1451       505        34.8     1292      687       53.2
+ pp_diff    OR OR_lcl OR_ucl      p p_holm
+    -7.3 0.872  0.606  1.257 0.4642  1.000
+    -5.8 0.430  0.181  1.023 0.0563  0.225
+    -8.1 0.943  0.564  1.576 0.8221  1.000
+   -18.4 0.970  0.350  2.687 0.9529  1.000
+
+---- family: source:answer (significant, not contained in the three-way) ----
+source contrast within answer - 2 cells
+
+NOTE: Results may be misleading due to involvement in interactions
+       cell n_Q1trace k_Q1trace pct_Q1trace n_Q2high k_Q2high pct_Q2high
+  answer=No      5227      2515        48.1     5254     3287       62.6
+ answer=Yes      3133      3121        99.6     3425     3389       98.9
+ pp_diff    OR OR_lcl OR_ucl        p   p_holm
+   -14.4 0.383  0.340  0.432 1.33e-56 2.66e-56
+     0.7 1.653  0.435  6.283    0.461    0.461
+
+
+----------------------------------------------------------------------------------------------------
+## 7.10  Post hoc source contrasts for code D (pragmatic override)
+----------------------------------------------------------------------------------------------------
+=== Post hoc, code D  (retained rung: four-way dropped ) ===
+emmeans weights = proportional; one p per contrast; no test on percentages
+
+---- family: source:answer ----
+source contrast within answer - 2 cells
+
+NOTE: Results may be misleading due to involvement in interactions
+       cell n_Q1trace k_Q1trace pct_Q1trace n_Q2high k_Q2high pct_Q2high
+  answer=No      7057        90         1.3     7926      176        2.2
+ answer=Yes      3159      1714        54.3     3585     1658       46.2
+ pp_diff    OR OR_lcl OR_ucl        p   p_holm
+    -0.9 0.555  0.405  0.762 0.000264 0.000264
+     8.0 4.860  2.765  8.544 3.94e-08 7.88e-08
+
+---- family: source:gp2 ----
+source contrast within gp2 - 2 cells
+
+NOTE: Results may be misleading due to involvement in interactions
+    cell n_Q1trace k_Q1trace pct_Q1trace n_Q2high k_Q2high pct_Q2high pp_diff
+  gp2=GP      3513       203         5.8     3831      126        3.3     2.5
+ gp2=NGP      6703      1601        23.9     7680     1708       22.2     1.6
+    OR OR_lcl OR_ucl      p p_holm
+ 0.626  0.378   1.04 0.0704  0.077
+ 1.383  1.017   1.88 0.0385  0.077
+
+
+====================================================================================================
+#  8. CODER RELIABILITY (Paper Methods 3.4)
+====================================================================================================
+
+----------------------------------------------------------------------------------------------------
+## 8.1  Inter-coder reliability: primary vs second LLM coder on all eligible traces, and the human-validation sample against both
+----------------------------------------------------------------------------------------------------
+Inter-coder reliability: LLM coders and the human-validation sample
+Raw agreement, unweighted Cohen's kappa, and nominal Krippendorff's alpha.
+Undecidable, blank, and out-of-range values are excluded pairwise.
+B' and C' are conditioned on both coders detecting/pursuing, respectively.
+
+Eligible universe (visibility-filtered traces): N = 10225 
+Human-coded validation sample: N = 513 (5.02% of the universe)
+Undecidable/invalid values, human coder on the sample: A=0, B=3, C=36, D=3 
+Undecidable/invalid values, primary coder on the sample: A=0, B=1, C=1, D=0 
+Undecidable/invalid values, second coder on the sample: A=0, B=0, C=1, D=1 
+
+PRIMARY (GEMINI 3.6 FLASH) VS SECOND CODER (GPT-5.6 TERRA)
+                     code     n agree_pct kappa kripp_a
+       B (tertiary 0/1/2) 10186      88.2 0.785   0.784
+       C (tertiary 0/1/2) 10175      84.5 0.737   0.735
+               D (binary) 10215      94.8 0.834   0.833
+   B detection (1-2 vs 0) 10186      93.4 0.864   0.864
+ B' resolution (detected)  3756      85.8 0.673   0.666
+     C pursuit (1-2 vs 0) 10175      90.9 0.732   0.730
+ C' persistence (pursued)  7516      91.3 0.766   0.765
+
+Confusion matrices (rows = Primary, cols = Second)
+
+-- B --
+       Second
+Primary    0    1    2
+      0 5762  262   75
+      1  331 2330  525
+      2    0   10  891
+
+-- C --
+       Second
+Primary    0    1    2
+      0 1730   70   21
+      1  726 1511  487
+      2  112  164 5354
+
+-- D --
+       Second
+Primary    0    1
+      0 7979  432
+      1   98 1706
+
+HUMAN CODER VS PRIMARY CODER
+                     code   n agree_pct kappa kripp_a
+               A (binary) 513     100.0 1.000   1.000
+       B (tertiary 0/1/2) 510      91.4 0.834   0.834
+       C (tertiary 0/1/2) 477      85.5 0.757   0.754
+               D (binary) 510      96.1 0.849   0.849
+   B detection (1-2 vs 0) 510      94.1 0.875   0.875
+ B' resolution (detected) 177      92.1 0.786   0.786
+     C pursuit (1-2 vs 0) 477      91.0 0.762   0.760
+ C' persistence (pursued) 336      92.3 0.768   0.766
+
+Confusion matrices (rows = Human, cols = Primary)
+
+-- A --
+     Primary
+Human   0   1
+    0 399   0
+    1   0 114
+
+-- B --
+     Primary
+Human   0   1   2
+    0 303  21   0
+    1   9 127   2
+    2   0  12  36
+
+-- C --
+     Primary
+Human   0   1   2
+    0  98  38   1
+    1   3  57   0
+    2   1  26 253
+
+-- D --
+     Primary
+Human   0   1
+    0 422  20
+    1   0  68
+
+HUMAN CODER VS SECOND CODER
+                     code   n agree_pct kappa kripp_a
+               A (binary) 513     100.0 1.000   1.000
+       B (tertiary 0/1/2) 510      91.4 0.837   0.837
+       C (tertiary 0/1/2) 477      88.9 0.806   0.806
+               D (binary) 510      90.8 0.691   0.687
+   B detection (1-2 vs 0) 510      94.5 0.883   0.883
+ B' resolution (detected) 179      91.1 0.792   0.791
+     C pursuit (1-2 vs 0) 477      91.8 0.799   0.799
+ C' persistence (pursued) 322      95.7 0.849   0.849
+
+Confusion matrices (rows = Human, cols = Second)
+
+-- A --
+     Second
+Human   0   1
+    0 399   0
+    1   0 114
+
+-- B --
+     Second
+Human   0   1   2
+    0 303  16   5
+    1   7 116  15
+    2   0   1  47
+
+-- C --
+     Second
+Human   0   1   2
+    0 116  17   4
+    1  10  49   1
+    2   8  13 259
+
+-- D --
+     Second
+Human   0   1
+    0 395  47
+    1   0  68
