@@ -1,11 +1,18 @@
 # 04_stats_trace_codes.R
 # ===========================================================================
 # Trace-code analyses of the paper, combined into one script.
-#   Part 1  Code prevalence by condition                (Section 4.5, App. B)
-#   Part 2  Error by code within condition; joint models (Section 4.6, App. C)
-#   Part 3  A x B_res interaction on detected GP traces  (Section 4.6)
-#   Part 4  Strongest vs remaining models (cohort)       (Section 4.8)
-#   Part 5  Analyses within the four strongest only      (Section 4.8)
+#   Part 1  Code prevalence by condition
+#   Part 2  Error by code within condition; joint models
+#   Part 3  A x B_res interaction on detected GP traces
+#   Part 4  Strongest vs remaining models (cohort)
+#   Part 5  Analyses within the four strongest only
+# Paper sections (Results) and Supplemental File S1:
+#   Part 1     "Trace Content Is Consistent with Typical Garden-Path Processing, with Two Exceptions";
+#              S1 Sections S2.1-S2.2
+#   Parts 2-3  "Recognition and Resolution Track GP Accuracy; Pragmatic Override Tracks NGP-OT Errors";
+#              S1 Sections S3.1-S3.2
+#   Parts 4-5  "The Strongest Models Amplify the Overall Pattern into the Reverse Garden-Path Profile";
+#              S1 Sections S2.2-S2.3 and S3.3
 # The analysis table is derived below from results/trials.xlsx.
 # Software: R 4.3.3, lme4 1.1-35.5, emmeans 1.11.2, dplyr.
 # ===========================================================================
@@ -43,11 +50,11 @@ DF_ALL <- data.frame(
 # Derive the six binary analysis codes from the raw trace codes (Methods):
 # high-thinking trials passing the 0.15 trace-visibility filter, Yes/No answers.
 #   A      = trace_A (0/1)
-#   B_det  = 1 if trace_B in {1,2}, 0 if trace_B == 0        (difficulty detected)
-#   B_res  = 1 if trace_B == 1, 0 if trace_B == 2, else NA   (resolved | detected)
-#   C_purs = 1 if trace_C in {1,2}, 0 if trace_C == 0        (object pursued)
-#   C_pers = 1 if trace_C == 2, 0 if trace_C == 1, else NA   (persisted | pursued)
-#   D      = trace_D if in {0,1}, else NA                    (pragmatic override)
+#   B_det  = 1 if trace_B_coder1 in {1,2}, 0 if trace_B_coder1 == 0       (difficulty detected)
+#   B_res  = 1 if trace_B_coder1 == 1, 0 if trace_B_coder1 == 2, else NA  (resolved | detected)
+#   C_purs = 1 if trace_C_coder1 in {1,2}, 0 if trace_C_coder1 == 0       (object pursued)
+#   C_pers = 1 if trace_C_coder1 == 2, 0 if trace_C_coder1 == 1, else NA  (persisted | pursued)
+#   D      = trace_D_coder1 if in {0,1}, else NA                          (pragmatic override)
 # Cannot-decide values (B/C = 3, D = 2) become NA for that code only.
 STRONG <- c("claude-opus-4-6", "gemini-3-pro-preview", "gpt-5-2025-08-07", "glm-5")
 h <- raw[raw$thinking_condition == "high" & raw$trace_included %in% c(1, TRUE, "TRUE", "True") &
@@ -59,20 +66,20 @@ D_V2 <- data.frame(
   cohort = ifelse(h$model %in% STRONG, "Strong4", "Others"),
   trial = h$trial, error = h$error,
   A      = as.integer(h$trace_A),
-  B_det  = bin01(h$trace_B, c(1,2), 0),
-  B_res  = bin01(h$trace_B, 1, 2),
-  C_purs = bin01(h$trace_C, c(1,2), 0),
-  C_pers = bin01(h$trace_C, 2, 1),
-  D      = bin01(h$trace_D, 1, 0),
+  B_det  = bin01(h$trace_B_coder1, c(1,2), 0),
+  B_res  = bin01(h$trace_B_coder1, 1, 2),
+  C_purs = bin01(h$trace_C_coder1, c(1,2), 0),
+  C_pers = bin01(h$trace_C_coder1, 2, 1),
+  D      = bin01(h$trace_D_coder1, 1, 0),
   stringsAsFactors = FALSE)
 stopifnot(nrow(D_V2) == 10216)   # matches the published analysis set
 
 # ===========================================================================
-# Part 1: code prevalence by GP x verb (Section 4.5)
+# Part 1: code prevalence by GP x verb ("Trace Content Is Consistent with Typical Garden-Path Processing, with Two Exceptions")
 # ===========================================================================
-# Code prevalence by GP x verb (Section 4.5).
+# Code prevalence by GP x verb ("Trace Content Is Consistent with Typical Garden-Path Processing, with Two Exceptions").
 # Six models: code ~ gp2 * verb + (1|item) + (1|model), binomial.
-# LRTs for interaction & mains; emmeans cell rates; Holm within-verb GP contrasts.
+# LRTs for interaction & mains; emmeans cell rates; within-verb GP contrasts.
 # Plus A x B: (a) misuse descriptives among A=1 GP traces; (b) B_res ~ A on GP detected.
 
 suppressMessages({library(lme4); library(emmeans); library(dplyr); library(readr)})
@@ -101,10 +108,10 @@ fit_one <- function(code){
   cat("LRT gp: ");        print(anova(m_nog, m_no3)[2, c("Chisq","Df","Pr(>Chisq)")])
   m_nov <- update(m_no3, . ~ . - verb)
   cat("LRT verb: ");      print(anova(m_nov, m_no3)[2, c("Chisq","Df","Pr(>Chisq)")])
-  # cells + within-verb GP contrasts (Holm)
+  # cells + within-verb GP contrasts
   em <- emmeans(m, ~ gp2 | verb, type="response")
   print(em)
-  print(summary(contrast(em, "revpairwise", adjust="holm"), infer=TRUE))
+  print(summary(contrast(em, "revpairwise", adjust="none"), infer=TRUE))
   invisible(m)
 }
 for (code in codes) fit_one(code)
@@ -134,9 +141,9 @@ gp %>% mutate(Blev = ifelse(is.na(B_det), NA,
 
 
 # ===========================================================================
-# Part 2: error by code within condition (Section 4.6)
+# Part 2: error by code within condition ("Recognition and Resolution Track GP Accuracy; Pragmatic Override Tracks NGP-OT Errors")
 # ===========================================================================
-# Error ~ code x GP x verb per code (Section 4.6),
+# Error ~ code x GP x verb per code ("Recognition and Resolution Track GP Accuracy; Pragmatic Override Tracks NGP-OT Errors"),
 # then adjusted joint models and the C' x D analysis on pursued NGP-OT.
 
 suppressMessages({library(lme4); library(emmeans); library(dplyr); library(readr)})
@@ -166,11 +173,11 @@ fit_err <- function(code){
   m0 <- glmer(error ~ gp2*verb + (1|item) + (1|model), dd, family=binomial,
               control=glmerControl(optimizer="bobyqa"))
   cat("\nLRT all x terms: "); print(anova(m0, m)[2, c("Chisq","Df","Pr(>Chisq)")])
-  # simple effect of code within each cell, Holm across the 4 cells
+  # simple effect of code within each cell
   em <- emmeans(m, ~ x | gp2*verb, type="response")
   print(em)
   print(summary(contrast(em, "revpairwise", by=c("gp2","verb"), adjust="none"),
-        infer=TRUE, adjust="holm"))
+        infer=TRUE))
   invisible(m)
 }
 for (code in codes) fit_err(code)
@@ -216,7 +223,7 @@ cat("N =", nrow(dot), " singular:", isSingular(m4), "\n")
 print(summary(m4)$coefficients)
 em4 <- emmeans(m4, ~ C_pers | gp2, type="response")
 print(em4)
-print(summary(contrast(em4, "revpairwise", adjust="holm"), infer=TRUE))
+print(summary(contrast(em4, "revpairwise", adjust="none"), infer=TRUE))
 
 
 # ===========================================================================
@@ -249,7 +256,7 @@ cat("LRT all x terms: "); print(anova(m0, m)[2, c("Chisq","Df","Pr(>Chisq)")])
 em <- emmeans(m, ~ x | gp2*verb, type="response")
 print(em)
 print(summary(contrast(em, "revpairwise", by=c("gp2","verb"), adjust="none"),
-      infer=TRUE, adjust="holm"))
+      infer=TRUE))
 
 cat("\n========== adjusted error ~ A + B_det (GP), clean CIs ==========\n")
 dg <- d %>% filter(gp2=="GP", !is.na(A), !is.na(B_det))
@@ -271,7 +278,7 @@ d %>% filter(!is.na(B_res)) %>% group_by(gp2, verb, B_res) %>%
 
 
 # ===========================================================================
-# A x B_res on detected GP traces (pooled, and by cohort) -- Section 4.6
+# A x B_res on detected GP traces (pooled, and by cohort) -- "Recognition and Resolution Track GP Accuracy; Pragmatic Override Tracks NGP-OT Errors"
 # ===========================================================================
 cat("\n\n========== A x B_res, detected GP traces (pooled) ==========\n")
 dg <- D_V2[D_V2$gp2 == "GP" & !is.na(D_V2$A) & !is.na(D_V2$B_res), ]
@@ -287,10 +294,10 @@ cat("main-effects model:\n"); print(summary(mAB0)$coefficients)
 print(round(exp(cbind(OR = fixef(mAB0), confint(mAB0, parm = "beta_", method = "Wald"))), 4))
 em <- emmeans(mAB, ~ A | B_res, type = "response"); print(em)
 cat("A effect within B_res levels:\n")
-print(summary(contrast(em, "revpairwise", by = "B_res", adjust = "none"), infer = TRUE, adjust = "holm"))
+print(summary(contrast(em, "revpairwise", by = "B_res", adjust = "none"), infer = TRUE))
 em2 <- emmeans(mAB, ~ B_res | A, type = "response")
 cat("B_res effect within A levels:\n")
-print(summary(contrast(em2, "revpairwise", by = "A", adjust = "none"), infer = TRUE, adjust = "holm"))
+print(summary(contrast(em2, "revpairwise", by = "A", adjust = "none"), infer = TRUE))
 cat("cells:\n")
 dg %>% group_by(A, B_res) %>% summarise(n = n(), err = round(100*mean(error),1), .groups = "drop") %>% print()
 
@@ -308,10 +315,10 @@ for (coh in c("Strong4","Others")) {
 }
 
 # ===========================================================================
-# Part 4: Strong4 vs Others cohort models (Section 4.8)
+# Part 4: Strong4 vs Others cohort models ("The Strongest Models Amplify the Overall Pattern into the Reverse Garden-Path Profile")
 # ===========================================================================
-# Strong4 vs Others cohort models (Section 4.8).
-# (1) code ~ cohort * gp2 * verb per code, cohort contrasts per cell (Holm).
+# Strong4 vs Others cohort models ("The Strongest Models Amplify the Overall Pattern into the Reverse Garden-Path Profile").
+# (1) code ~ cohort * gp2 * verb per code, cohort contrasts per cell.
 # (2) Strong4-only within-OT D contrast (GP-OT vs NGP-OT), same for C_pers.
 # (3) error-by-code descriptives per cohort; adjusted NGP-OT model with cohort.
 
@@ -343,7 +350,7 @@ fit_coh <- function(code){
   em <- emmeans(m, ~ cohort | gp2*verb, type="response")
   print(em)
   print(summary(contrast(em, "revpairwise", by=c("gp2","verb"), adjust="none"),
-        infer=TRUE, adjust="holm"))
+        infer=TRUE))
   invisible(m)
 }
 for (code in codes) fit_coh(code)
@@ -397,11 +404,11 @@ d %>% filter(cohort=="Others", verb=="OT", !is.na(C_pers), !is.na(D)) %>%
 
 
 # ===========================================================================
-# Part 4b: final group analysis set (Section 4.8)
+# Part 4b: final group analysis set ("The Strongest Models Amplify the Overall Pattern into the Reverse Garden-Path Profile")
 # ===========================================================================
-# Final group analysis set (Section 4.8).
+# Final group analysis set ("The Strongest Models Amplify the Overall Pattern into the Reverse Garden-Path Profile").
 # (1) Six prevalence models: code ~ group*gp2*verb + (1|item)+(1|model)
-#     LRT for all group terms; Holm-corrected group contrasts per cell.
+#     LRT for all group terms; group contrasts per cell.
 # (2) Accuracy: error ~ (A + B_res)*group on detected GP trials
 #               error ~ (C_pers + D)*group on pursued NGP-OT trials
 suppressMessages({library(lme4); library(emmeans); library(dplyr); library(readr)})
@@ -430,7 +437,7 @@ for (code in codes) {
   em <- emmeans(m, ~ group | gp2*verb, type="response")
   print(em)
   print(summary(contrast(em, "revpairwise", by=c("gp2","verb"), adjust="none"),
-        infer=TRUE, adjust="holm"))
+        infer=TRUE))
 }
 
 cat("\n\n===================== accuracy: GP detected, (A + B_res)*group =====================\n")
@@ -471,11 +478,11 @@ if (!is.null(mn)) {
 
 
 # ===========================================================================
-# Part 5: within the four strongest models only (Section 4.8)
+# Part 5: within the four strongest models only ("The Strongest Models Amplify the Overall Pattern into the Reverse Garden-Path Profile")
 # ===========================================================================
-# All analyses within the four strongest models only (Section 4.8).
+# All analyses within the four strongest models only ("The Strongest Models Amplify the Overall Pattern into the Reverse Garden-Path Profile").
 # (1) Six prevalence models: code ~ gp2*verb + (1|item) + (1|model), Strong4 trials.
-#     LRTs (gp, verb, gp x verb) + Holm within-verb GP contrasts.
+#     LRTs (gp, verb, gp x verb) + within-verb GP contrasts.
 # (2) Accuracy GP: error ~ A*B_res on detected GP trials + cells.
 # (3) Accuracy NGP-OT: error ~ C_pers + D on pursued trials + C' x D cells + P(D|C').
 suppressMessages({library(lme4); library(emmeans); library(dplyr); library(readr)})
@@ -510,7 +517,7 @@ for (code in codes) {
   cat("LRT gpXverb: chi2(1) =", round(l3$Chisq[2],2), ", p =", signif(l3$`Pr(>Chisq)`[2],3), "\n")
   em <- emmeans(m, ~ gp2 | verb, type="response")
   print(em)
-  print(summary(contrast(em, "revpairwise", by="verb", adjust="none"), infer=TRUE, adjust="holm"))
+  print(summary(contrast(em, "revpairwise", by="verb", adjust="none"), infer=TRUE))
 }
 
 cat("\n\n============ Strong4 accuracy GP: error ~ A*B_res, detected GP trials ============\n")
@@ -527,9 +534,9 @@ l <- anova(mg0, mg); cat("LRT A x B_res: chi2(1) =", round(l$Chisq[2],2), ", p =
 cat("main-effects model:\n"); print(summary(mg0)$coefficients)
 print(round(exp(cbind(OR=fixef(mg0), confint(mg0, parm="beta_", method="Wald"))),4))
 em <- emmeans(mg, ~ A | B_res, type="response")
-cat("A within B_res:\n"); print(summary(contrast(em, "revpairwise", by="B_res", adjust="none"), infer=TRUE, adjust="holm"))
+cat("A within B_res:\n"); print(summary(contrast(em, "revpairwise", by="B_res", adjust="none"), infer=TRUE))
 em2 <- emmeans(mg, ~ B_res | A, type="response")
-cat("B_res within A:\n"); print(summary(contrast(em2, "revpairwise", by="A", adjust="none"), infer=TRUE, adjust="holm"))
+cat("B_res within A:\n"); print(summary(contrast(em2, "revpairwise", by="A", adjust="none"), infer=TRUE))
 
 cat("\n\n============ Strong4 accuracy NGP-OT: error ~ C_pers + D, pursued trials ============\n")
 dn <- d %>% filter(gp2=="NGP", verb=="OT", !is.na(C_pers), !is.na(D))

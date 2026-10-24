@@ -6,7 +6,7 @@ Sections follow the order of the Results section; each block header describes th
 
 
 ====================================================================================================
-#  1. CORE ERROR MODEL: ERROR ~ GP x VERB x THINKING (Paper Section 4.1-4.2, Appendix A)
+#  1. CORE ERROR MODEL: ERROR ~ GP x VERB x THINKING (Paper: "Overall Error Patterns: Lower Rates, Same Good-Enough Profile" and "Thinking Improves Accuracy, Especially Where Reanalysis Matters"; Supplemental File S1, Section S1.1)
 ====================================================================================================
 
 ----------------------------------------------------------------------------------------------------
@@ -37,7 +37,7 @@ m_sum   14 15523 15636 -7747.4    15495 17.214  4   0.001756 **
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 
 ----------------------------------------------------------------------------------------------------
-## 1.2  Three-way interaction test, estimated error rate per cell, no- vs high-thinking odds ratios and absolute risk differences (Holm-corrected)
+## 1.2  Three-way interaction test, estimated error rate per cell, no- vs high-thinking odds ratios and absolute risk differences
 ----------------------------------------------------------------------------------------------------
 ==== LRT three-way GP x verb x thinking ====
 Data: df
@@ -74,7 +74,7 @@ gp = GP, verb = OT:
 Confidence level used: 0.95 
 Intervals are back-transformed from the logit scale 
 
-==== no/high odds ratios (Holm) ====
+==== no/high odds ratios ====
 gp = NGP, verb = RAT:
  contrast  odds.ratio    SE  df null z.ratio p.value
  no / high       4.30 1.440 Inf    1   4.359  <.0001
@@ -93,7 +93,7 @@ gp = GP, verb = OT:
 
 Tests are performed on the log odds ratio scale 
 
-==== ABSOLUTE risk diff high-no (pct pts, Holm) ====
+==== ABSOLUTE risk diff high-no (pct pts) ====
 gp = NGP, verb = RAT:
  contrast  estimate      SE  df asymp.LCL asymp.UCL z.ratio p.value
  high - no  -0.0131 0.00769 Inf   -0.0282   0.00195  -1.706  0.0879
@@ -148,7 +148,7 @@ Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’
 
 
 ====================================================================================================
-#  2. REASONING LENGTH (Paper Section 4.3, Appendix A)
+#  2. REASONING LENGTH (Paper: "Reasoning Length Tracks Difficulty and Predicts Accuracy"; Supplemental File S1, Section S1.2)
 ====================================================================================================
 
 ----------------------------------------------------------------------------------------------------
@@ -179,7 +179,7 @@ n = 6
 
 
 ====================================================================================================
-#  3. THE FOUR STRONGEST MODELS: REVERSE GARDEN-PATH PROFILE (Paper Section 4.4, Appendix A)
+#  3. THE FOUR STRONGEST MODELS: REVERSE GARDEN-PATH PROFILE (Paper: "The Strongest Models Reveal a Reverse Garden-Path Profile"; Supplemental File S1, Section S1.3)
 ====================================================================================================
 
 ----------------------------------------------------------------------------------------------------
@@ -236,7 +236,7 @@ verb = OT:
 Confidence level used: 0.95 
 Intervals are back-transformed from the logit scale 
 
-== GP vs NGP within each verb (Holm). NGP/GP >1 = reverse (NGP worse) ==
+== GP vs NGP within each verb. NGP/GP >1 = reverse (NGP worse) ==
 verb = RAT:
  contrast estimate    SE  df z.ratio p.value
  NGP - GP 5.40e-06 0.718 Inf   0.000  1.0000
@@ -257,7 +257,7 @@ gp_c:verb_c   0.1552  0.0365   0.6595 0.0116
 
 
 ====================================================================================================
-#  4. TRACE-CODE PREVALENCE BY CONDITION (Paper Section 4.5, Appendix B)
+#  4. TRACE-CODE PREVALENCE BY CONDITION (Paper: "Trace Content Is Consistent with Typical Garden-Path Processing, with Two Exceptions"; Supplemental File S1, Sections S2.1-S2.2)
 ====================================================================================================
 
 ----------------------------------------------------------------------------------------------------
@@ -597,7 +597,7 @@ Error by A x B level (GP, descriptive):
 
 
 ====================================================================================================
-#  5. ERROR BY TRACE CODE (Paper Section 4.6, Appendix C)
+#  5. ERROR BY TRACE CODE (Paper: "Recognition and Resolution Track GP Accuracy; Pragmatic Override Tracks NGP-OT Errors"; Supplemental File S1, Sections S3.1-S3.2)
 ====================================================================================================
 
 ----------------------------------------------------------------------------------------------------
@@ -1376,7 +1376,7 @@ Tests are performed on the log odds ratio scale
 
 
 ====================================================================================================
-#  6. STRONGEST VS REMAINING MODELS (Paper Section 4.8, Appendix B-C)
+#  6. STRONGEST VS REMAINING MODELS (Paper: "The Strongest Models Amplify the Overall Pattern into the Reverse Garden-Path Profile"; Supplemental File S1, Sections S2.2-S2.3 and S3.3)
 ====================================================================================================
 
 ----------------------------------------------------------------------------------------------------
@@ -2544,7 +2544,7 @@ D           87827.9823 308.0014 2.504455e+07
 
 
 ====================================================================================================
-#  7. TRACE VS FOLLOW-UP EXPLANATION (Paper Section 4.7, Appendix D)
+#  7. TRACE VS FOLLOW-UP EXPLANATION (Paper: "Comparing the Trace with the Follow-Up Explanation"; Supplemental File S1, Section S4)
 ====================================================================================================
 
 ----------------------------------------------------------------------------------------------------
@@ -3022,7 +3022,7 @@ NOTE: Results may be misleading due to involvement in interactions
 
 
 ====================================================================================================
-#  8. CODER RELIABILITY (Paper Methods 3.4)
+#  8. CODER RELIABILITY (Paper: Materials & Methods section "Trace Coding"; Table 2)
 ====================================================================================================
 
 ----------------------------------------------------------------------------------------------------
@@ -3035,9 +3035,9 @@ B' and C' are conditioned on both coders detecting/pursuing, respectively.
 
 Eligible universe (visibility-filtered traces): N = 10225 
 Human-coded validation sample: N = 513 (5.02% of the universe)
-Undecidable/invalid values, human coder on the sample: A=0, B=3, C=36, D=3 
-Undecidable/invalid values, primary coder on the sample: A=0, B=1, C=1, D=0 
-Undecidable/invalid values, second coder on the sample: A=0, B=0, C=1, D=1 
+Undecidable/invalid values, human coder on the sample: B=3, C=36, D=3 
+Undecidable/invalid values, primary coder on the sample: B=1, C=1, D=0 
+Undecidable/invalid values, second coder on the sample: B=0, C=1, D=1 
 
 PRIMARY (GEMINI 3.6 FLASH) VS SECOND CODER (GPT-5.6 TERRA)
                      code     n agree_pct kappa kripp_a
@@ -3073,7 +3073,6 @@ Primary    0    1
 
 HUMAN CODER VS PRIMARY CODER
                      code   n agree_pct kappa kripp_a
-               A (binary) 513     100.0 1.000   1.000
        B (tertiary 0/1/2) 510      91.4 0.834   0.834
        C (tertiary 0/1/2) 477      85.5 0.757   0.754
                D (binary) 510      96.1 0.849   0.849
@@ -3083,12 +3082,6 @@ HUMAN CODER VS PRIMARY CODER
  C' persistence (pursued) 336      92.3 0.768   0.766
 
 Confusion matrices (rows = Human, cols = Primary)
-
--- A --
-     Primary
-Human   0   1
-    0 399   0
-    1   0 114
 
 -- B --
      Primary
@@ -3112,7 +3105,6 @@ Human   0   1
 
 HUMAN CODER VS SECOND CODER
                      code   n agree_pct kappa kripp_a
-               A (binary) 513     100.0 1.000   1.000
        B (tertiary 0/1/2) 510      91.4 0.837   0.837
        C (tertiary 0/1/2) 477      88.9 0.806   0.806
                D (binary) 510      90.8 0.691   0.687
@@ -3122,12 +3114,6 @@ HUMAN CODER VS SECOND CODER
  C' persistence (pursued) 322      95.7 0.849   0.849
 
 Confusion matrices (rows = Human, cols = Second)
-
--- A --
-     Second
-Human   0   1
-    0 399   0
-    1   0 114
 
 -- B --
      Second

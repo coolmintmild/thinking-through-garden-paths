@@ -1,9 +1,15 @@
 # 03_stats_accuracy.R
 # ===========================================================================
 # Accuracy analyses of the paper, combined into one script.
-#   Part 1  Core error model: error ~ GP x verb x thinking     (Sections 4.1-4.2)
-#   Part 2  Reasoning length: difficulty -> length -> accuracy (Section 4.3)
-#   Part 3  The four strongest models: reverse GP profile      (Section 4.4)
+#   Part 1  Core error model: error ~ GP x verb x thinking
+#   Part 2  Reasoning length: difficulty -> length -> accuracy
+#   Part 3  The four strongest models: reverse GP profile
+# Paper sections (Results) and Supplemental File S1:
+#   Part 1  "Overall Error Patterns: Lower Rates, Same Good-Enough Profile"
+#           and "Thinking Improves Accuracy, Especially Where Reanalysis Matters";
+#           S1 Section S1.1
+#   Part 2  "Reasoning Length Tracks Difficulty and Predicts Accuracy"; S1 Section S1.2
+#   Part 3  "The Strongest Models Reveal a Reverse Garden-Path Profile"; S1 Section S1.3
 # All parts read results/trials.xlsx.
 # Software: R 4.3.3, lme4 1.1-35.5, emmeans 1.11.2.
 # ===========================================================================
@@ -16,7 +22,7 @@
 # the trial-level analysis frame with the variable names the models below use.
 # Run from the scripts/ directory (or set TRIALS to the file location).
 # Expected dimensions are asserted so a silent mismatch cannot pass unnoticed.
-suppressMessages({library(readxl)})
+suppressMessages({library(readxl); library(lme4); library(emmeans)})
 TRIALS <- "../results/trials.xlsx"
 raw <- as.data.frame(read_excel(TRIALS, sheet = "trials"))
 stopifnot(nrow(raw) == 23040)
@@ -91,11 +97,11 @@ m_fac <- glmer(error ~ gp*verb*thinking + (1+thinking|item) + (1+thinking|model)
                data=df, family=binomial, control=ctrl)
 cat("cell error rates (response):\n")
 print(emmeans(m_fac, ~ thinking|gp*verb, type="response"))
-cat("\nno vs high odds ratios (Holm):\n")
-print(pairs(emmeans(m_fac, ~ thinking|gp*verb), adjust="holm", type="response"))
-cat("\nABSOLUTE risk differences high - no (pct pts, Holm):\n")
+cat("\nno vs high odds ratios:\n")
+print(pairs(emmeans(m_fac, ~ thinking|gp*verb), adjust="none", type="response"))
+cat("\nABSOLUTE risk differences high - no (pct pts):\n")
 rg<-regrid(emmeans(m_fac, ~ thinking|gp*verb))
-print(summary(contrast(rg,"revpairwise",by=c("gp","verb"),adjust="holm"), infer=c(TRUE,TRUE)))
+print(summary(contrast(rg,"revpairwise",by=c("gp","verb"),adjust="none"), infer=c(TRUE,TRUE)))
 
 
 
@@ -173,8 +179,8 @@ print(round(data.frame(OR=exp(fe),CI_low=exp(fe-1.96*se),CI_high=exp(fe+1.96*se)
       p=summary(m)$coefficients[,4]),4))
 cat("\n== emmeans error/cell ==\n")
 print(emmeans(m, ~gp|verb, type="response"))
-cat("\n== GP vs NGP within each verb (Holm). NGP/GP >1 = reverse (NGP worse) ==\n")
-print(pairs(emmeans(m, ~gp|verb), adjust="holm"))
+cat("\n== GP vs NGP within each verb. NGP/GP >1 = reverse (NGP worse) ==\n")
+print(pairs(emmeans(m, ~gp|verb), adjust="none"))
 
 cat("\n== sum-coded fit (main effects averaged over the other factor) ==\n")
 d$gp_c<-ifelse(d$gp2=="GP",.5,-.5); d$verb_c<-ifelse(d$verb=="OT",.5,-.5)

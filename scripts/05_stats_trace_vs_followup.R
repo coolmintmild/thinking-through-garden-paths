@@ -1,6 +1,7 @@
 # 05_stats_trace_vs_followup.R
 # ===========================================================================
-# Q1 trace vs Q2 follow-up comparison (Section 4.7, Appendix D).
+# Q1 trace vs Q2 follow-up comparison (Results section
+# "Comparing the Trace with the Follow-Up Explanation"; Supplemental File S1, Section S4).
 # The stages run in order; each later part uses the fits of Part 3.
 #   Part 0  Derive the two analysis tables from results/trials.xlsx
 #   Part 1  Cell-level similarity: Wilcoxon signed-rank, Lin's CCC
@@ -41,7 +42,7 @@ hi  <- raw[raw$thinking_condition == "high", ]
 tr  <- hi[hi$trace_included %in% c(1, TRUE, "TRUE", "True") & hi$q1_answer_norm %in% c("Yes","No"), ]
 q1t <- cbind(tr[key], q1_answer = tr$q1_answer_norm, gp3 = tr$condition,
              gp2 = ifelse(tr$condition == "GP", "GP", "NGP"), verb = tr$verb_type,
-             six(tr$trace_A, tr$trace_B, tr$trace_C, tr$trace_D), source = "Q1trace")
+             six(tr$trace_A, tr$trace_B_coder1, tr$trace_C_coder1, tr$trace_D_coder1), source = "Q1trace")
 stopifnot(nrow(q1t) == 10216)
 
 # Q2high side: follow-up codes of all high-thinking trials with a normalised

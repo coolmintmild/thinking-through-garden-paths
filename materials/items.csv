@@ -14,12 +14,12 @@ itemno,sentence,question,verb_type,condition
 5,While the student read the notes that were long and boring blew off the desk.,Did the student read the notes?,OT,GP
 5,"While the student read, the notes that were long and boring blew off the desk.",Did the student read the notes?,OT,NGP-comma
 5,The notes that were long and boring blew off the desk while the student read.,Did the student read the notes?,OT,NGP-order
-6,While Jack ordered the ﬁsh that was silver and black cooked in a pot.,Did Jack order the ﬁsh?,OT,GP
-6,"While Jack ordered, the ﬁsh that was silver and black cooked in a pot.",Did Jack order the ﬁsh?,OT,NGP-comma
-6,The ﬁsh that was silver and black cooked in a pot while jack ordered.,Did Jack order the ﬁsh?,OT,NGP-order
+6,While Jack ordered the fish that was silver and black cooked in a pot.,Did Jack order the fish?,OT,GP
+6,"While Jack ordered, the fish that was silver and black cooked in a pot.",Did Jack order the fish?,OT,NGP-comma
+6,The fish that was silver and black cooked in a pot while Jack ordered.,Did Jack order the fish?,OT,NGP-order
 7,While Susan wrote the letter that was long and eloquent fell off the table.,Did Susan write the letter?,OT,GP
 7,"While Susan wrote, the letter that was long and eloquent fell off the table.",Did Susan write the letter?,OT,NGP-comma
-7,The letter that was long and eloquent fell off the table while susan wrote.,Did Susan write the letter?,OT,NGP-order
+7,The letter that was long and eloquent fell off the table while Susan wrote.,Did Susan write the letter?,OT,NGP-order
 8,While the secretary typed the memo that was clear and concise neared completion.,Did the secretary type the memo?,OT,GP
 8,"While the secretary typed, the memo that was clear and concise neared completion.",Did the secretary type the memo?,OT,NGP-comma
 8,The memo that was clear and concise neared completion while the secretary typed.,Did the secretary type the memo?,OT,NGP-order
@@ -34,7 +34,7 @@ itemno,sentence,question,verb_type,condition
 11,The stick that was long and bumpy broke in half as henry whittled.,Did Henry whittle the stick?,OT,NGP-order
 12,While Rick drove the car that was red and dusty veered into a ditch.,Did Rick drive the car?,OT,GP
 12,"While Rick drove, the car that was red and dusty veered into a ditch.",Did Rick drive the car?,OT,NGP-comma
-12,The car that was red and dusty veered into a ditch while rick drove.,Did Rick drive the car?,OT,NGP-order
+12,The car that was red and dusty veered into a ditch while Rick drove.,Did Rick drive the car?,OT,NGP-order
 13,While Jim bathed the child that was blond and pudgy giggled with delight.,Did Jim bathe the child?,RAT,GP
 13,"While Jim bathed, the child that was blond and pudgy giggled with delight.",Did Jim bathe the child?,RAT,NGP-comma
 13,The child that was blond and pudgy giggled with delight while Jim bathed.,Did Jim bathe the child?,RAT,NGP-order

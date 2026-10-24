@@ -1,7 +1,7 @@
 # Thinking Through Garden Paths: data and analysis repository
 
-Data and code for "Thinking Through Garden Paths: Reasoning Traces as a Window
-onto Syntactic Processing in Large Reasoning Models". Sixteen large reasoning
+Data and code for "Thinking Through Garden Paths: Reasoning Traces and Sentence
+Comprehension in Large Reasoning Models". Sixteen large reasoning
 models from six families were evaluated on the garden-path materials of
 Christianson et al. (2001) under no-thinking and high-thinking settings, and
 the reasoning traces and follow-up explanations were coded against a scheme
@@ -44,20 +44,34 @@ data mismatch cannot pass silently.
 - `02_code_traces.ipynb` - batch LLM coding of trace codes B, C, D with
   Gemini 3.6 Flash at temperature 0.1. Code A is deterministic pattern
   matching. Set your API key before running.
+- `02_code_A.py` - rule-based coding of trace code A (string match on
+  "garden"); recomputes trace_A and followup_A from the text and checks them
+  against `results/trials.xlsx`.
 - `03_stats_accuracy.R` - accuracy analyses: the core error model
   (GP x verb x thinking), reasoning-length models, and the strongest-four
-  reverse-GP analysis (paper Sections 4.1-4.4).
+  reverse-GP analysis (Results sections
+  "Overall Error Patterns: Lower Rates, Same Good-Enough Profile",
+  "Thinking Improves Accuracy, Especially Where Reanalysis Matters",
+  "Reasoning Length Tracks Difficulty and Predicts Accuracy" and
+  "The Strongest Models Reveal a Reverse Garden-Path Profile";
+  Supplemental File S1, Section S1).
 - `04_stats_trace_codes.R` - trace-code analyses: prevalence by condition,
   error by code, the A x B' interaction, cohort comparisons, and the
-  strongest-four-only refits (paper Sections 4.5, 4.6, 4.8).
+  strongest-four-only refits (Results sections
+  "Trace Content Is Consistent with Typical Garden-Path Processing, with Two Exceptions",
+  "Recognition and Resolution Track GP Accuracy; Pragmatic Override Tracks NGP-OT Errors"
+  and "The Strongest Models Amplify the Overall Pattern into the Reverse Garden-Path Profile";
+  Supplemental File S1, Sections S2-S3).
 - `05_stats_trace_vs_followup.R` - the trace vs follow-up comparison:
   cell-level similarity (Wilcoxon, Lin's CCC), mixed models on the retained
   rung of the fallback ladder, likelihood-ratio tests, post hoc contrasts
-  (paper Section 4.7).
+  (Results section "Comparing the Trace with the Follow-Up Explanation";
+  Supplemental File S1, Section S4).
 - `06_stats_reliability.R` - inter-coder reliability of the trace coding:
   the primary LLM coder against the second coder on all eligible traces, and
   the human-coded validation sample against both (agreement, Cohen's kappa,
-  Krippendorff's alpha, confusion matrices; paper Methods 3.4).
+  Krippendorff's alpha, confusion matrices; Materials & Methods section
+  "Trace Coding" and Table 2).
 
 All statistics scripts read `results/trials.xlsx` only. The mixed-effects
 fits in script 05 are slow (hours in total). Software: R 4.3.3 with lme4
@@ -79,7 +93,7 @@ fits in script 05 are slow (hours in total). Software: R 4.3.3 with lme4
   statistics scripts, in one file, with numbered section headers describing
   each statistic and naming the paper section it supports.
 - `descriptive_statistics.xlsx` - the raw (unmodelled) percentages behind
-  the paper's figures and appendix tables, computed from `trials.xlsx`:
+  the paper's figures and supplementary tables, computed from `trials.xlsx`:
   error rates by model, condition, and thinking setting (with the human
   comparison values); code rates by model; error by code level with trial
   counts, pooled and by cohort and by model; and code rates in the trace vs

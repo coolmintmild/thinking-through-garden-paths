@@ -1,0 +1,12 @@
+{
+  "title": "Thinking Through Garden Paths: Reasoning Traces and Sentence Comprehension in Large Reasoning Models (data and code)",
+  "upload_type": "dataset",
+  "description": "Data and analysis code for the article \"Thinking Through Garden Paths: Reasoning Traces and Sentence Comprehension in Large Reasoning Models\". Data (materials/, results/) are released under CC BY 4.0; code (scripts/) under the MIT License.",
+  "creators": [
+    {"name": "Lee, Jonghyun", "affiliation": "Korea University Sejong Campus"},
+    {"name": "Kang, Eunsoo", "affiliation": "Kyung Hee University"},
+    {"name": "Koo, Keonwoo", "affiliation": "Dongguk University"},
+    {"name": "Shin, Jeong-Ah", "affiliation": "Dongguk University"}
+  ],
+  "license": "cc-by-4.0"
+}
