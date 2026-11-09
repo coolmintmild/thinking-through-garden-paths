@@ -1,13 +1,14 @@
-# Thinking Through Garden Paths: data and analysis repository
+# Thinking through garden paths: reasoning traces and sentence comprehension in large reasoning models
 
-Data and code for "Thinking Through Garden Paths: Reasoning Traces and Sentence
-Comprehension in Large Reasoning Models". Sixteen large reasoning
-models from six families were evaluated on the garden-path materials of
-Christianson et al. (2001) under no-thinking and high-thinking settings, and
-the reasoning traces and follow-up explanations were coded against a scheme
-derived from the psycholinguistic account of garden-path processing.
+## Description
 
-## Repository structure
+Data and code for the article "Thinking through garden paths: reasoning
+traces and sentence comprehension in large reasoning models". Sixteen large
+reasoning models from six families were evaluated on the garden-path
+materials of Christianson et al. (2001) under no-thinking and high-thinking
+settings, and the reasoning traces and follow-up explanations were coded
+against a scheme derived from the psycholinguistic account of garden-path
+processing.
 
 ```
 materials/   What went into the experiment: items, prompts, model list
@@ -15,7 +16,13 @@ scripts/     How it was run and analysed: experiment, coding, statistics
 results/     What came out: one trial-level data file, one statistics file
 ```
 
-## materials/
+## Dataset Information
+
+The 24 item sets are adapted from the garden-path materials of
+Christianson et al. (2001), https://doi.org/10.1006/cogp.2001.0752. All model
+responses were collected for this study through provider APIs.
+
+### materials/
 
 - `items.csv` - the 24 item sets in their three structural variants
   (GP, NGP-comma, NGP-order; 72 sentences) with the comprehension question
@@ -27,57 +34,7 @@ results/     What came out: one trial-level data file, one statistics file
   control, the settings used for the no/low/high conditions, and the access
   provider (open-weight models were accessed through Novita AI).
 
-## scripts/
-
-Run order matches the numbering. The statistics scripts read
-`../results/trials.xlsx` and print the outputs collected in
-`results/statistics_results.txt`; each asserts the expected row counts
-(23,040 trials; 23,029 in the core model; 10,216 coded traces; 11,511 in the
-length analyses; 1,152 item cells; 10,225 in the reliability universe) so a
-data mismatch cannot pass silently.
-
-- `01_run_experiment.py` - the experiment runner, shown in its OpenAI
-  version as a representative example. The same two-turn mechanism (Q1
-  comprehension question, Q2 follow-up in the same conversation, ten
-  independent repetitions per sentence) was used for every provider with its
-  native thinking control. Set your API key before running.
-- `02_code_traces.ipynb` - batch LLM coding of trace codes B, C, D with
-  Gemini 3.6 Flash at temperature 0.1. Code A is deterministic pattern
-  matching. Set your API key before running.
-- `02_code_A.py` - rule-based coding of trace code A (string match on
-  "garden"); recomputes trace_A and followup_A from the text and checks them
-  against `results/trials.xlsx`.
-- `03_stats_accuracy.R` - accuracy analyses: the core error model
-  (GP x verb x thinking), reasoning-length models, and the strongest-four
-  reverse-GP analysis (Results sections
-  "Overall Error Patterns: Lower Rates, Same Good-Enough Profile",
-  "Thinking Improves Accuracy, Especially Where Reanalysis Matters",
-  "Reasoning Length Tracks Difficulty and Predicts Accuracy" and
-  "The Strongest Models Reveal a Reverse Garden-Path Profile";
-  Supplemental File S1, Section S1).
-- `04_stats_trace_codes.R` - trace-code analyses: prevalence by condition,
-  error by code, the A x B' interaction, cohort comparisons, and the
-  strongest-four-only refits (Results sections
-  "Trace Content Is Consistent with Typical Garden-Path Processing, with Two Exceptions",
-  "Recognition and Resolution Track GP Accuracy; Pragmatic Override Tracks NGP-OT Errors"
-  and "The Strongest Models Amplify the Overall Pattern into the Reverse Garden-Path Profile";
-  Supplemental File S1, Sections S2-S3).
-- `05_stats_trace_vs_followup.R` - the trace vs follow-up comparison:
-  cell-level similarity (Wilcoxon, Lin's CCC), mixed models on the retained
-  rung of the fallback ladder, likelihood-ratio tests, post hoc contrasts
-  (Results section "Comparing the Trace with the Follow-Up Explanation";
-  Supplemental File S1, Section S4).
-- `06_stats_reliability.R` - inter-coder reliability of the trace coding:
-  the primary LLM coder against the second coder on all eligible traces, and
-  the human-coded validation sample against both (agreement, Cohen's kappa,
-  Krippendorff's alpha, confusion matrices; Materials & Methods section
-  "Trace Coding" and Table 2).
-
-All statistics scripts read `results/trials.xlsx` only. The mixed-effects
-fits in script 05 are slow (hours in total). Software: R 4.3.3 with lme4
-1.1-35.5, emmeans 1.11.2, dplyr, readxl; Python 3 with pandas, openpyxl.
-
-## results/
+### results/
 
 - `trials.xlsx` - the complete trial-level dataset in one file: 23,040 rows,
   every baseline and high-thinking trial (11,520 each). One row = one trial,
@@ -99,7 +56,7 @@ fits in script 05 are slow (hours in total). Software: R 4.3.3 with lme4
   counts, pooled and by cohort and by model; and code rates in the trace vs
   the follow-up explanation. Sheet `notes` documents each sheet.
 
-## Provenance and terms for the model outputs
+### Provenance and terms for the model outputs
 
 All responses in this repository, including reasoning traces, are
 AI-generated model outputs and may be inaccurate; factual assertions in them
@@ -118,6 +75,96 @@ reflect the views of the model providers.
 - Open-weight model licenses (DeepSeek-V3.1: MIT; GLM-4.7/GLM-5: MIT;
   Qwen3-235B-A22B / Qwen3-Next-80B-A3B: Apache 2.0) place no conditions on
   outputs.
+
+## Code Information
+
+- `01_run_experiment.py` - the experiment runner, shown in its OpenAI
+  version as a representative example. The same two-turn mechanism (Q1
+  comprehension question, Q2 follow-up in the same conversation, ten
+  independent repetitions per sentence) was used for every provider with its
+  native thinking control. Set your API key before running.
+- `02_code_traces.ipynb` - batch LLM coding of trace codes B, C, D with
+  Gemini 3.6 Flash at temperature 0.1. Code A is deterministic pattern
+  matching. Set your API key before running.
+- `02_code_A.py` - rule-based coding of trace code A (string match on
+  "garden"); recomputes trace_A and followup_A from the text and checks them
+  against `results/trials.xlsx`.
+- `03_stats_accuracy.R` - accuracy analyses: the core error model
+  (GP x verb x thinking), reasoning-length models, and the strongest-four
+  reverse-GP analysis (Results sections
+  "Overall Error Patterns: Lower Rates, Same Good-Enough Profile",
+  "Thinking Improves Accuracy, Especially Where Reanalysis Matters",
+  "Reasoning Length Tracks Difficulty and Predicts Accuracy" and
+  "The Strongest Models Reveal a Reversed Garden-Path Effect";
+  Supplemental File S1, Section S1).
+- `04_stats_trace_codes.R` - trace-code analyses: prevalence by condition,
+  error by code, the A x B' interaction, cohort comparisons, and the
+  strongest-four-only refits (Results sections
+  "Trace Content Is Consistent with Typical Garden-Path Processing, with Two Exceptions",
+  "Recognition and Resolution Track GP Accuracy; Pragmatic Override Tracks NGP-OT Errors"
+  and "The Strongest Models Amplify the Overall Pattern into a Reversed Garden-Path Effect";
+  Supplemental File S1, Sections S2-S3).
+- `05_stats_trace_vs_followup.R` - the trace vs follow-up comparison:
+  cell-level similarity (Wilcoxon, Lin's CCC), mixed models on the retained
+  rung of the fallback ladder, likelihood-ratio tests, post hoc contrasts
+  (Results section "Comparing the Trace with the Follow-Up Explanation";
+  Supplemental File S1, Section S4).
+- `06_stats_reliability.R` - inter-coder reliability of the trace coding:
+  the primary LLM coder against the second coder on all eligible traces, and
+  the human-coded validation sample against both (agreement, Cohen's kappa,
+  Krippendorff's alpha, confusion matrices; Materials & Methods section
+  "Trace Coding" and Table 2).
+
+## Usage Instructions
+
+Run order matches the numbering. The statistics scripts read
+`../results/trials.xlsx` and print the outputs collected in
+`results/statistics_results.txt`; each asserts the expected row counts
+(23,040 trials; 23,029 in the core model; 10,216 coded traces; 11,511 in the
+length analyses; 1,152 item cells; 10,225 in the reliability universe) so a
+data mismatch cannot pass silently.
+
+Run the scripts from the `scripts/` directory; they read their inputs
+through paths relative to it (`../materials/`, `../results/`).
+`01_run_experiment.py` and `02_code_traces.ipynb` call provider APIs and need
+your own API key. They document how the data were produced and do not need
+to be rerun to reproduce the analyses. All statistics scripts read
+`results/trials.xlsx` only. The mixed-effects fits in script 05 are slow
+(hours in total).
+
+## Requirements
+
+- R 4.3.3 with lme4 1.1-35.5, emmeans 1.11.2, dplyr, readr, readxl, tidyr
+  (scripts 03 to 06).
+- Python 3 with pandas and openpyxl (`02_code_A.py`), plus openai
+  (`01_run_experiment.py`) and google-genai (`02_code_traces.ipynb`).
+
+## Methodology
+
+1. Experiment. Each of the 72 sentences was presented ten times per model
+   and thinking setting as an independent two-turn API call (Q1
+   comprehension question, Q2 follow-up explanation), giving 23,040 trials.
+2. Preprocessing. Answers were normalised to Yes or No (11 responses could
+   not be normalised, leaving 23,029 trials). High-thinking traces that were
+   empty or whose ratio of visible trace tokens to reasoning tokens fell
+   below 0.15 were excluded from the trace analyses (10,225 of 11,520
+   retained).
+3. Trace coding. Code A by rule-based string matching; codes B, C, and D by
+   an LLM coder (Gemini 3.6 Flash), validated against a second LLM coder and
+   a human-coded 5% sample.
+4. Statistical analysis. Binomial logit mixed-effects models for error and
+   code rates, and a cell-level comparison of the trace with the follow-up
+   explanation (Wilcoxon signed-rank test, Lin's concordance correlation
+   coefficient).
+
+## Citations
+
+- Lee, J., Kang, E., Koo, K., and Shin, J.-A. Thinking through garden paths:
+  reasoning traces and sentence comprehension in large reasoning models.
+  Manuscript submitted to PeerJ Computer Science.
+- Christianson, K., Hollingworth, A., Halliwell, J. F., and Ferreira, F.
+  (2001). Thematic roles assigned along the garden path linger. Cognitive
+  Psychology 42(4), 368-407. https://doi.org/10.1006/cogp.2001.0752
 
 ## License
 
