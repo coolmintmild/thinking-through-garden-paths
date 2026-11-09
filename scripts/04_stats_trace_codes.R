@@ -11,7 +11,7 @@
 #              S1 Sections S2.1-S2.2
 #   Parts 2-3  "Recognition and Resolution Track GP Accuracy; Pragmatic Override Tracks NGP-OT Errors";
 #              S1 Sections S3.1-S3.2
-#   Parts 4-5  "The Strongest Models Amplify the Overall Pattern into the Reverse Garden-Path Profile";
+#   Parts 4-5  "The Strongest Models Amplify the Overall Pattern into a Reversed Garden-Path Effect";
 #              S1 Sections S2.2-S2.3 and S3.3
 # The analysis table is derived below from results/trials.xlsx.
 # Software: R 4.3.3, lme4 1.1-35.5, emmeans 1.11.2, dplyr.
@@ -315,9 +315,9 @@ for (coh in c("Strong4","Others")) {
 }
 
 # ===========================================================================
-# Part 4: Strong4 vs Others cohort models ("The Strongest Models Amplify the Overall Pattern into the Reverse Garden-Path Profile")
+# Part 4: Strong4 vs Others cohort models ("The Strongest Models Amplify the Overall Pattern into a Reversed Garden-Path Effect")
 # ===========================================================================
-# Strong4 vs Others cohort models ("The Strongest Models Amplify the Overall Pattern into the Reverse Garden-Path Profile").
+# Strong4 vs Others cohort models ("The Strongest Models Amplify the Overall Pattern into a Reversed Garden-Path Effect").
 # (1) code ~ cohort * gp2 * verb per code, cohort contrasts per cell.
 # (2) Strong4-only within-OT D contrast (GP-OT vs NGP-OT), same for C_pers.
 # (3) error-by-code descriptives per cohort; adjusted NGP-OT model with cohort.
@@ -404,9 +404,9 @@ d %>% filter(cohort=="Others", verb=="OT", !is.na(C_pers), !is.na(D)) %>%
 
 
 # ===========================================================================
-# Part 4b: final group analysis set ("The Strongest Models Amplify the Overall Pattern into the Reverse Garden-Path Profile")
+# Part 4b: final group analysis set ("The Strongest Models Amplify the Overall Pattern into a Reversed Garden-Path Effect")
 # ===========================================================================
-# Final group analysis set ("The Strongest Models Amplify the Overall Pattern into the Reverse Garden-Path Profile").
+# Final group analysis set ("The Strongest Models Amplify the Overall Pattern into a Reversed Garden-Path Effect").
 # (1) Six prevalence models: code ~ group*gp2*verb + (1|item)+(1|model)
 #     LRT for all group terms; group contrasts per cell.
 # (2) Accuracy: error ~ (A + B_res)*group on detected GP trials
@@ -478,9 +478,9 @@ if (!is.null(mn)) {
 
 
 # ===========================================================================
-# Part 5: within the four strongest models only ("The Strongest Models Amplify the Overall Pattern into the Reverse Garden-Path Profile")
+# Part 5: within the four strongest models only ("The Strongest Models Amplify the Overall Pattern into a Reversed Garden-Path Effect")
 # ===========================================================================
-# All analyses within the four strongest models only ("The Strongest Models Amplify the Overall Pattern into the Reverse Garden-Path Profile").
+# All analyses within the four strongest models only ("The Strongest Models Amplify the Overall Pattern into a Reversed Garden-Path Effect").
 # (1) Six prevalence models: code ~ gp2*verb + (1|item) + (1|model), Strong4 trials.
 #     LRTs (gp, verb, gp x verb) + within-verb GP contrasts.
 # (2) Accuracy GP: error ~ A*B_res on detected GP trials + cells.

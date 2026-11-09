@@ -9,7 +9,7 @@
 #           and "Thinking Improves Accuracy, Especially Where Reanalysis Matters";
 #           S1 Section S1.1
 #   Part 2  "Reasoning Length Tracks Difficulty and Predicts Accuracy"; S1 Section S1.2
-#   Part 3  "The Strongest Models Reveal a Reverse Garden-Path Profile"; S1 Section S1.3
+#   Part 3  "The Strongest Models Reveal a Reversed Garden-Path Effect"; S1 Section S1.3
 # All parts read results/trials.xlsx.
 # Software: R 4.3.3, lme4 1.1-35.5, emmeans 1.11.2.
 # ===========================================================================
