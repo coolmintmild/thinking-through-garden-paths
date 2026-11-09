@@ -179,7 +179,7 @@ n = 6
 
 
 ====================================================================================================
-#  3. THE FOUR STRONGEST MODELS: REVERSE GARDEN-PATH PROFILE (Paper: "The Strongest Models Reveal a Reverse Garden-Path Profile"; Supplemental File S1, Section S1.3)
+#  3. THE FOUR STRONGEST MODELS: REVERSED GARDEN-PATH EFFECT (Paper: "The Strongest Models Reveal a Reversed Garden-Path Effect"; Supplemental File S1, Section S1.3)
 ====================================================================================================
 
 ----------------------------------------------------------------------------------------------------
@@ -1376,7 +1376,7 @@ Tests are performed on the log odds ratio scale
 
 
 ====================================================================================================
-#  6. STRONGEST VS REMAINING MODELS (Paper: "The Strongest Models Amplify the Overall Pattern into the Reverse Garden-Path Profile"; Supplemental File S1, Sections S2.2-S2.3 and S3.3)
+#  6. STRONGEST VS REMAINING MODELS (Paper: "The Strongest Models Amplify the Overall Pattern into a Reversed Garden-Path Effect"; Supplemental File S1, Sections S2.2-S2.3 and S3.3)
 ====================================================================================================
 
 ----------------------------------------------------------------------------------------------------
